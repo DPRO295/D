@@ -11,6 +11,17 @@ def read_random_one(client):
         return -1
     return 1
 
+def read_all_info(client):
+    try:
+        result = client.find()
+        if result is not None:
+            for record in result:
+                print(record)
+    except Exception as e:
+        print("\n message read fail with error: \n", e)
+        return -1
+    return 1
+
 def read_exact_with_key_words(client, keywd: list, values: list):
     if len(keywd) != len(values):
         print("Please use same amount of keywords and values")
