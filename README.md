@@ -1,2 +1,8 @@
-# D
-CS295P
+## $\textcolor{yellow}{This\ is\ a\ Big\ Title}$
+
+### To run the program, run:  ###
+```
+# under DjangoProject
+python manage.py runserver
+```
+![This is an image](https://media.tenor.com/KvQWsHSsiMwAAAAM/sad-pepe.gif)

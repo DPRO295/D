@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/signin.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +54,7 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
