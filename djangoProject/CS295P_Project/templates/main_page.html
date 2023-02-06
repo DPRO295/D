@@ -1,0 +1,48 @@
+<!-- use extends to reduce redundant code (check layout) -->
+{% extends 'anth_layout.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+    <title>main_page</title>
+</head>
+<body>
+
+<div class="section has-background-white-ter">
+    <nav class="panel">
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input" type="text" placeholder="Search">
+                <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+            </p>
+        </div>
+        <p class="panel-tabs">
+            <a class="is-active">All</a>
+            <a>Public</a>
+            <a>Private</a>
+            <a>HomeWork</a>
+            <a>Exams</a>
+            <a>Others</a>
+        </p>
+        <label class="panel-block">
+            <input type="checkbox">
+            remember me
+        </label>
+        <div class="panel-block">
+            <button class="button is-link is-outlined is-fullwidth">
+                Reset all filters
+            </button>
+        </div>
+    </nav>
+
+    <div class="container block">
+{#        <h1>test</h1>#}
+    </div>
+
+
+
+</div>
+
+{% endblock %}
