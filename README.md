@@ -1,4 +1,4 @@
-## $\textcolor{yellow}{This\ is\ a\ Big\ Title}$
+## $\textcolor{red}{DPRO\ CS295P\}$
 
 ### To run the program, run:  ###
 ```
