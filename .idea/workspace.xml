@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/changeDB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/connect_DB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/deleteDB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/insertDB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/readDB.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests/insertTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests/readTest.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/README" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/connect_DB.py" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests/changeTest.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests/deleteTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +49,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Pansmort/Desktop/homework/A_New_Master/course/CS295P/Github_Project/D/djangoProject/CS295P_Project/Database/CURD",
+    "last_opened_file_path": "C:/Users/Pansmort/Desktop/homework/A_New_Master/course/CS295P/Github_Project/D/djangoProject/CS295P_Project/Database/CURD/unittests",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -67,6 +60,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Pansmort\Desktop\homework\A_New_Master\course\CS295P\Github_Project\D\djangoProject\CS295P_Project\Database\CURD\unittests" />
       <recent name="C:\Users\Pansmort\Desktop\homework\A_New_Master\course\CS295P\Github_Project\D\djangoProject\CS295P_Project\Database\CURD" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
