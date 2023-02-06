@@ -6,5 +6,6 @@ import connect_DB as Ct
 
 if __name__ == "__main__":
     client_db = Ct.get_db_handle(1,2)
-    readDB.read_random_one(client_db["User"]["User_info"])
+    testinfo = client_db["User"]["User_info"]
+    readDB.read_exact_with_key_words(testinfo,['name'],['Jordan'])
     client_db.close()
