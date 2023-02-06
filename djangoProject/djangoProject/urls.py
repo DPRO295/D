@@ -1,5 +1,4 @@
 """djangoProject URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
 Examples:
@@ -20,6 +19,7 @@ from CS295P_Project import views
 # where to find the app
 urlpatterns = [
     # path("admin/", admin.site.urls),
-    path("index/", views.index),
-    path("login/", views.login)
+    path("", views.home),
+    path("signin/", views.signin),
+    path("register/", views.register)
 ]
