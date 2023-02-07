@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    {#    <link rel="stylesheet" href= {% static 'css/bulma.css' %}>#}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
+<body>
+{% block content %}
+    {#  'exctends' tag will include everything above and below but besdies this part! #}
+{% endblock %}
+
+<footer class="footer">
+    <hr style="background-color:black">
+    <div class="columns block is-mobile">
+
+        <div class="column is-half">
+            <figure class="image">
+                <img src="">
+            </figure>
+            <b>ZotRun</b>
+            <p>© 2023 ZotRun, Inc.</p>
+            <p> Copyright 2023 ZotRun Team</p>
+        </div>
+
+        <div class="column is-half">
+            <p>
+                ZotRun is an opensource discussion platform
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- End of auth_layout footer for every page -->
+</body>
+</html>
