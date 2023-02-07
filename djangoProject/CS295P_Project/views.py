@@ -15,6 +15,10 @@ def main_page(request):
     return render(request, "main_page.html")
 
 
+def post_thread(request):
+    return render(request, "post_thread.html")
+
+
 def signin(request):
     if request.method == "GET":
         return render(request, "signin.html")

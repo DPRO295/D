@@ -1,0 +1,5 @@
+· Download the mongoDB command to your computer
+    For windows: "https://downloads.mongodb.com/compass/mongosh-1.6.2-win32-x64.zip"
+· Add <your mongosh's download directory>/bin to your $PATH variable.
+· On your terminal, use command “mongosh "mongodb+srv://dpro.qls8nuc.mongodb.net/myFirstDatabase" --apiVersion 1 --username Dpropro”
+· Password is: Dpropro
