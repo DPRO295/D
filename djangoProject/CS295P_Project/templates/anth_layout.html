@@ -41,11 +41,25 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
+                    {% if check_login %}
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link is-primary">
+                                {{ user_email }}
+                            </a>
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item" href="">Logout</a>
+                                <a class="navbar-item" href="">Profile</a>
+                                <a class="navbar-item" href="">Change Password</a></li>
+                            </div>
+                        </div>
+                    {% else %}
                     <a class="button is-primary">
                         <strong>Sign up</strong>
                     </a>
                     <a class="button is-light"> Log in </a>
+                    {% endif %}
                 </div>
+
             </div>
         </div>
     </div>
