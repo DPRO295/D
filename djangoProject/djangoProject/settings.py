@@ -98,7 +98,7 @@ DATABASES = {
         # 'ENGINE': 'mysql.connector.django',
         'NAME': 'CS295P',
         'USER': 'root',
-        'PASSWORD': 'hxfhxf110',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': 3306,
     }
