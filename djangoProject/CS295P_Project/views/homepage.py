@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect
-# from pymongo import MongoClient
+from CS295P_Project.models import *
 import certifi
 
 ca = certifi.where()
@@ -11,20 +11,40 @@ database_path = 'mongodb+srv://Dpropro:Dpropro@dpro.qls8nuc.mongodb.net/?retryWr
 
 # Create your views here.
 def home(request):
-    return render(request, "home.html")
+    # if request.user.is_authenticated():
+    #     return render(request, "main_page.html")
+    # else:
+        return render(request, "home.html")
 
 
 def main_page(request):
-    return render(request, "main_page.html")
+    # if request.user.is_authenticated():
+    post_thread_data = PostThread.objects.all()
+    return render(request, "main_page.html", {"post_thread": post_thread_data})
 
 
 def post_thread(request):
-    return render(request, "post_thread.html")
+    if request.method == "GET":
+        return render(request, "post_thread.html")
+
+    name = "test"
+    title = request.POST.get("title")
+    content = request.POST.get("content")
+    category = request.POST.get("category")
+    PostThread.objects.create(title=title, content=content, name=name, category=category)
+    return redirect("/main_page/")
+    # return render(request, "main_page.html")
+
+
+def delete_post(request):
+    row_id = request.GET.get('nid')
+    PostThread.objects.filter(id=row_id).delete()
+    return redirect("/main_page/")
 
 
 def register(request):
     if request.method == "GET":
-        return render(request, "signin.html")
+        return render(request, "register.html")
     else:
         email = request.POST.get("email")
         password = request.POST.get("pwd")
@@ -42,13 +62,17 @@ def signin(request):
         email = request.POST.get("email")
         password = request.POST.get("pwd")
         user_obj = auth.authenticate(username=email, password=password)
+        print(user_obj)
         if user_obj:
             auth.login(request, user_obj)
+            # -------- test case -----------
             print(request.user)
             print(request.user.id)  # 1   check if the user already login
             print(request.user.username)
             print(request.user.is_active)  # True
             print(request.user.is_authenticated)  # True
+            # -------- test case -----------
+            # return redirect("/home/",)
             return render(request, "main_page.html",
                           {"check_login": user_obj,
                            "user_email": email,

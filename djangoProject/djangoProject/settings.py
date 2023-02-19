@@ -98,7 +98,7 @@ DATABASES = {
         # 'ENGINE': 'mysql.connector.django',
         'NAME': 'CS295P',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'hxfhxf110',
         'HOST': 'localhost',
         'PORT': 3306,
     }
@@ -123,7 +123,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+# TIME_ZONE = "UTC"
+TIME_ZONE = "America/Los_Angeles"
 
 USE_I18N = True
 

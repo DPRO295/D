@@ -20,9 +20,12 @@ from CS295P_Project import views
 # where to find the app
 urlpatterns = [
     # path("admin/", admin.site.urls),
-    path("", views.home),
+    path("home/", views.home),
     path("signin/", views.signin),
     path("register/", views.register),
     path("main_page/", views.main_page),
-    path("post_thread/", views.post_thread)
+
+    path("post_thread/", views.post_thread),
+    path("delete_post/", views.delete_post),
+
 ]

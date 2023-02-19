@@ -38,6 +38,38 @@
         </div>
     </nav>
 
+    {% for each_thread in post_thread %}
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{ each_thread.title }}
+                    <br>
+                    {{ each_thread.category }}
+                </p>
+                <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+                </button>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    {{ each_thread.content }}
+                    <br>
+                    <time datetime="">{{ each_thread.date }}</time>
+                    <br>
+                    {{ each_thread.name }}
+                </div>
+            </div>
+            <footer class="card-footer">
+                <a href="#" class="card-footer-item">Save</a>
+                <a href="#" class="card-footer-item">Edit</a>
+                <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
+            </footer>
+        </div>
+        <br>
+    {% endfor %}
+
     <div class="container block">
 {#        <h1>test</h1>#}
     </div>

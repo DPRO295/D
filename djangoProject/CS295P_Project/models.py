@@ -1,9 +1,20 @@
 from django.db import models
 
+# python manage.py makemigrations
+# python manage.py migrate
+
 
 # Create your models here.
 class UserInfo(models.Model):
     # name = models.CharField(max_length=32)
     email = models.CharField(max_length=64)
     password = models.CharField(max_length=64)
+
+
+class PostThread(models.Model):
+    name = models.CharField(max_length=32)
+    title = models.TextField(max_length=255)
+    content = models.TextField(max_length=255)
+    date = models.DateTimeField(auto_now_add=True)
+    category = models.CharField(max_length=32)
 

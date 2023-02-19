@@ -21,7 +21,7 @@
 </script>
 <div class="container">
     <h1 class="title has-text-centered">Create a new post thread</h1>
-    <form action="" method="post">
+    <form method="post">
         {% csrf_token %}
         <div class="field">
             <label class="label" for="title">Title:</label>
@@ -46,8 +46,9 @@
         <div class="field">
             <label class="label" for="content">Content:</label>
             <div class="control">
-          <textarea class="textarea" id="content" name="content" rows="5" required style="height: 200px;
-          font-size: 18px; padding: 10px; resize: none; border-radius: 5px;"></textarea>
+{#          <textarea class="textarea" id="content" name="content" rows="5" required style="height: 200px;#}
+{#          font-size: 18px; padding: 10px; resize: none; border-radius: 5px;"></textarea>#}
+                <input class="input" type="content" id="content" name="content">
             </div>
         </div>
         <div class="field is-grouped">
@@ -59,6 +60,7 @@
             </div>
         </div>
     </form>
+
 </div>
 </body>
 
