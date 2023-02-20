@@ -8,14 +8,13 @@ from CS295P_Project.models import *
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
-        # return render(request, "main_page.html")
         return redirect("/main_page/")
-        # return render(request, "main_page.html", {"check_login": user_obj, "user_email": email, })
     else:
         return render(request, "home.html")
 
 
 def main_page(request):
+    # -------- test case -----------
     print("--- in main_page ---")
     print(request.user)
     print(request.user.id)  # 1   check if the user already login
@@ -23,17 +22,22 @@ def main_page(request):
     print(request.user.email)
     print(request.user.is_active)  # True
     print(request.user.is_authenticated)
+    # -------- test case -----------
     user_obj = request.user.is_authenticated
     email = request.user.email
-    # if request.user.is_authenticated():
     post_thread_data = PostThread.objects.all()
     return render(request, "main_page.html",
-                  {"post_thread": post_thread_data, "check_login": user_obj, "user_email": email, })
+                  {"post_thread": post_thread_data, "check_login": user_obj, "user_email": email,
+                   "username": request.user.username})
 
 
 def post_thread(request):
     if request.method == "GET":
-        return render(request, "post_thread.html")
+        # send login info
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        return render(request, "post_thread.html", {"check_login": user_obj, "user_email": email,
+                                                    "username": request.user.username})
 
     email = request.user.email
     title = request.POST.get("title")
@@ -41,7 +45,6 @@ def post_thread(request):
     category = request.POST.get("category")
     PostThread.objects.create(title=title, content=content, email=email, category=category)
     return redirect("/main_page/")
-    # return render(request, "main_page.html")
 
 
 def delete_post(request):
@@ -74,6 +77,7 @@ def signin(request):
         user_obj = auth.authenticate(username=username, password=password)
         print(user_obj)
         if user_obj:
+            # if login successfully set the session
             auth.login(request, user_obj)
             # -------- test case -----------
             print(request.user)
@@ -90,6 +94,37 @@ def signin(request):
 def logout(request):
     auth.logout(request)
     return redirect("/home/")
+
+
+def reset_pwd(request):
+    if request.method == "GET":
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        return render(request, "reset_pwd.html", {"check_login": user_obj, "user_email": email,
+                                                  "username": request.user.username})
+
+    old_pwd = request.POST.get("old_pwd")
+    new_pwd = request.POST.get("new_pwd")
+    rnew_pwd = request.POST.get("rnew_pwd")
+
+    if request.user.check_password(old_pwd):
+        if new_pwd != rnew_pwd:
+            return render(request, "reset_pwd.html", {"error_msg": "Entered passwords differ"})
+        else:
+            request.user.set_password(new_pwd)
+            request.user.save()
+            return redirect("/home/")
+    return render(request, "reset_pwd.html", {"error_msg": "Entered wrong old password"})
+
+
+def profile(request):
+    if request.method == "GET":
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        name = request.user.username
+        return render(request, "profile.html", {"check_login": user_obj, "user_email": email,
+                                                "username": name, })
+
 
 # def signin(request):
 #     if request.method == "GET":
