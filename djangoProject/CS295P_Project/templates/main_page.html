@@ -9,7 +9,7 @@
 <body>
 
 <div class="section has-background-white-ter">
-
+{# --------------------------- search function ---------------------------#}
     <nav class="panel">
         <div class="panel-block">
             <p class="control has-icons-left">
@@ -37,7 +37,9 @@
             </button>
         </div>
     </nav>
+{# --------------------------- search function ---------------------------#}
 
+{# --------------------------- display threads ---------------------------#}
     {% for each_thread in post_thread %}
         <div class="card">
             <header class="card-header">
@@ -69,10 +71,8 @@
         </div>
         <br>
     {% endfor %}
+{# --------------------------- display threads ---------------------------#}
 
-    <div class="container block">
-{#        <h1>test</h1>#}
-    </div>
 
 
 
