@@ -18,6 +18,14 @@
 
 <form method="post" class="box">
     {% csrf_token %}
+
+    <div class="field">
+        <label class="label">User Name</label>
+        <div class="control">
+            <input class="input" type="username" name="username" placeholder="e.g. ZotRun#1 ">
+        </div>
+    </div>
+
     <div class="field">
         <label class="label">Email</label>
         <div class="control">

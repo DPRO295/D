@@ -3,35 +3,43 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect
 from CS295P_Project.models import *
-import certifi
-
-ca = certifi.where()
-database_path = 'mongodb+srv://Dpropro:Dpropro@dpro.qls8nuc.mongodb.net/?retryWrites=true&w=majority'
 
 
 # Create your views here.
 def home(request):
-    # if request.user.is_authenticated():
-    #     return render(request, "main_page.html")
-    # else:
+    if request.user.is_authenticated:
+        # return render(request, "main_page.html")
+        return redirect("/main_page/")
+        # return render(request, "main_page.html", {"check_login": user_obj, "user_email": email, })
+    else:
         return render(request, "home.html")
 
 
 def main_page(request):
+    print("--- in main_page ---")
+    print(request.user)
+    print(request.user.id)  # 1   check if the user already login
+    print(request.user.username)
+    print(request.user.email)
+    print(request.user.is_active)  # True
+    print(request.user.is_authenticated)
+    user_obj = request.user.is_authenticated
+    email = request.user.email
     # if request.user.is_authenticated():
     post_thread_data = PostThread.objects.all()
-    return render(request, "main_page.html", {"post_thread": post_thread_data})
+    return render(request, "main_page.html",
+                  {"post_thread": post_thread_data, "check_login": user_obj, "user_email": email, })
 
 
 def post_thread(request):
     if request.method == "GET":
         return render(request, "post_thread.html")
 
-    name = "test"
+    email = request.user.email
     title = request.POST.get("title")
     content = request.POST.get("content")
     category = request.POST.get("category")
-    PostThread.objects.create(title=title, content=content, name=name, category=category)
+    PostThread.objects.create(title=title, content=content, email=email, category=category)
     return redirect("/main_page/")
     # return render(request, "main_page.html")
 
@@ -46,12 +54,13 @@ def register(request):
     if request.method == "GET":
         return render(request, "register.html")
     else:
+        username = request.POST.get("username")
         email = request.POST.get("email")
         password = request.POST.get("pwd")
         if User.objects.filter(username=email).exists():
             return render(request, "register.html", {"error_msg": "This email have been used."})
-        User.objects.create_user(username=email, password=password)
-        return render(request, "home.html")
+        User.objects.create_user(username=username, email=email, password=password)
+        return redirect("/home/")
 
 
 @csrf_protect
@@ -59,9 +68,10 @@ def signin(request):
     if request.method == "GET":
         return render(request, "signin.html")
     else:
+        username = request.POST.get("username")
         email = request.POST.get("email")
         password = request.POST.get("pwd")
-        user_obj = auth.authenticate(username=email, password=password)
+        user_obj = auth.authenticate(username=username, password=password)
         print(user_obj)
         if user_obj:
             auth.login(request, user_obj)
@@ -72,14 +82,14 @@ def signin(request):
             print(request.user.is_active)  # True
             print(request.user.is_authenticated)  # True
             # -------- test case -----------
-            # return redirect("/home/",)
-            return render(request, "main_page.html",
-                          {"check_login": user_obj,
-                           "user_email": email,
-                           "user_password": password, })
+            return redirect("/home/")
         else:
             return render(request, "signin.html")
 
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/home/")
 
 # def signin(request):
 #     if request.method == "GET":

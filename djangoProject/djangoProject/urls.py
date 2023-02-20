@@ -21,10 +21,15 @@ from CS295P_Project import views
 urlpatterns = [
     # path("admin/", admin.site.urls),
     path("home/", views.home),
+
+    # login system function
     path("signin/", views.signin),
     path("register/", views.register),
+    path("logout/", views.logout),
+
     path("main_page/", views.main_page),
 
+    # post thread function
     path("post_thread/", views.post_thread),
     path("delete_post/", views.delete_post),
 

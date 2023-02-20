@@ -60,13 +60,15 @@
                     <br>
                     <time datetime="">{{ each_thread.date }}</time>
                     <br>
-                    {{ each_thread.name }}
                 </div>
             </div>
             <footer class="card-footer">
                 <a href="#" class="card-footer-item">Save</a>
+
+                {% if each_thread.email == user_email %}
                 <a href="#" class="card-footer-item">Edit</a>
                 <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
+                {% endif %}
             </footer>
         </div>
         <br>
