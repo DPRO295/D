@@ -23,12 +23,21 @@ def main_page(request):
     print(request.user.is_active)  # True
     print(request.user.is_authenticated)
     # -------- test case -----------
+    search_dic = {}
+    query = request.GET.get("search", "")       # if there is query get it otherwise blank
     user_obj = request.user.is_authenticated
     email = request.user.email
-    post_thread_data = PostThread.objects.all()
+    # get and set the post thread data in reverse order by post data
+    # post_thread_data = PostThread.objects.all().order_by("date").reverse()
+
+    # if query:
+    #     search_dic["content"] = query
+    # TODO only search for the "content" part from "postthread" table for now
+    query_set = PostThread.objects.filter(content__contains=query).order_by("date").reverse()
+
     return render(request, "main_page.html",
-                  {"post_thread": post_thread_data, "check_login": user_obj, "user_email": email,
-                   "username": request.user.username})
+                  {"post_thread": query_set, "check_login": user_obj, "user_email": email,
+                   "username": request.user.username, "query": query})
 
 
 def post_thread(request):
@@ -57,11 +66,16 @@ def register(request):
     if request.method == "GET":
         return render(request, "register.html")
     else:
+        if request.POST.get("username") is None:
+            return render(request, "register.html", {"error_msg": "please enter your username"})
         username = request.POST.get("username")
+        print(username)
         email = request.POST.get("email")
         password = request.POST.get("pwd")
-        if User.objects.filter(username=email).exists():
+        if User.objects.filter(email=email).exists():
             return render(request, "register.html", {"error_msg": "This email have been used."})
+        elif User.objects.filter(username=username).exists():
+            return render(request, "register.html", {"error_msg": "This username have been used."})
         User.objects.create_user(username=username, email=email, password=password)
         return redirect("/home/")
 
@@ -71,24 +85,17 @@ def signin(request):
     if request.method == "GET":
         return render(request, "signin.html")
     else:
+        # TODO username CompareNoCase may cause problem
         username = request.POST.get("username")
-        email = request.POST.get("email")
         password = request.POST.get("pwd")
         user_obj = auth.authenticate(username=username, password=password)
         print(user_obj)
         if user_obj:
             # if login successfully set the session
             auth.login(request, user_obj)
-            # -------- test case -----------
-            print(request.user)
-            print(request.user.id)  # 1   check if the user already login
-            print(request.user.username)
-            print(request.user.is_active)  # True
-            print(request.user.is_authenticated)  # True
-            # -------- test case -----------
             return redirect("/home/")
         else:
-            return render(request, "signin.html")
+            return render(request, "signin.html", {"error_msg": "Wrong username or password"})
 
 
 def logout(request):
@@ -124,53 +131,3 @@ def profile(request):
         name = request.user.username
         return render(request, "profile.html", {"check_login": user_obj, "user_email": email,
                                                 "username": name, })
-
-
-# def signin(request):
-#     if request.method == "GET":
-#         return render(request, "signin.html")
-#     else:
-#         email = request.POST.get("email")
-#         password = request.POST.get("pwd")
-#
-#         client = MongoClient(database_path, tlsCAFile=ca)
-#         user = client["try"]["user"]
-#         doc = list(user.find({"email": email}))
-#         # user_obj = auth.authenticate(username=email, password=password)
-#         client.close()
-#         if doc == []:
-#             return render(request, "signin.html", {"error_msg": "This email haven't been registered."})
-#         elif doc[0]["pwd"] != password:
-#             return render(request, "signin.html", {"error_msg": "Wrong password! Please try again."})
-#         else:
-#             # return HttpResponse("Sign in successfully!")            # login success
-#             # ------------------ test use -------------------
-#             # print(request.user)
-#             # print(request.user.id)                # 1   check if the user already login
-#             # print(request.user.username)
-#             # print(request.user.is_active)         # True
-#             # print(request.user.is_authenticated)  # True
-#             # ------------------ test use --------------------
-#             # auth.login(request, user_obj)
-#             return render(request, "main_page.html")                  # if success jump to main_page
-#
-#
-# def register(request):
-#     if request.method == "GET":
-#         return render(request, "register.html")
-#     else:
-#         email = request.POST.get("email")
-#         password = request.POST.get("pwd")
-#
-#         client = MongoClient(database_path, tlsCAFile=ca)
-#         user = client["try"]["user"]
-#         doc = list(user.find({"email": email}))
-#         if(doc != []):
-#             client.close()
-#             return render(request, "register.html", {"error_msg": "This email have been used."})
-#         else:
-#             user.insert_one({"email": email, "pwd": password})
-#             client.close()
-#             # User.objects.create_user(username=email, password=password)
-#             # return HttpResponse("Register successfully!")
-#             return render(request, "home.html")

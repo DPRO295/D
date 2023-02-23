@@ -23,25 +23,25 @@
     <div class="field">
         <label class="label">User Name</label>
         <div class="control">
-            <input class="input" type="username" name="username" placeholder="e.g. ZotRun#1 ">
+            <input class="input" required="required" type="" name="username" placeholder="e.g. ZotRun#1 ">
         </div>
     </div>
 
-    <div class="field">
-        <label class="label">Email</label>
-        <div class="control">
-            <input class="input" type="email" name="email" placeholder="e.g. username@example.com">
-        </div>
-    </div>
+{#    <div class="field">#}
+{#        <label class="label">Email</label>#}
+{#        <div class="control">#}
+{#            <input class="input" type="email" name="email" placeholder="e.g. username@example.com">#}
+{#        </div>#}
+{#    </div>#}
 
     <div class="field">
         <label class="label">Password</label>
         <div class="control">
-            <input class="input" type="password" name="pwd" placeholder="********">
+            <input class="input" required="required" type="" name="pwd" placeholder="********">
         </div>
     </div>
     <button class="button is-primary" type="submit" href="/main_page/">Sign in</button>
-    <button class="button is-warning" type="submit" href="">Forgot your password?</button>
+    <button class="button is-warning" type="submit" href="/reset_pwd/">Forgot your password?</button>
     <span style="color: red"> {{ error_msg }} </span>
 </form>
 </body>
