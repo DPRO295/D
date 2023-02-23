@@ -1,71 +1,133 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth.models import User
 from django.contrib import auth
-from pymongo import MongoClient
-import certifi
-
-ca = certifi.where()
-database_path = 'mongodb+srv://Dpropro:Dpropro@dpro.qls8nuc.mongodb.net/?retryWrites=true&w=majority'
+from django.views.decorators.csrf import csrf_protect
+from CS295P_Project.models import *
 
 
 # Create your views here.
 def home(request):
-    return render(request, "home.html")
+    if request.user.is_authenticated:
+        return redirect("/main_page/")
+    else:
+        return render(request, "home.html")
 
 
 def main_page(request):
-    return render(request, "main_page.html")
+    # -------- test case -----------
+    print("--- in main_page ---")
+    print(request.user)
+    print(request.user.id)  # 1   check if the user already login
+    print(request.user.username)
+    print(request.user.email)
+    print(request.user.is_active)  # True
+    print(request.user.is_authenticated)
+    # -------- test case -----------
+    search_dic = {}
+    query = request.GET.get("search", "")       # if there is query get it otherwise blank
+    user_obj = request.user.is_authenticated
+    email = request.user.email
+    # get and set the post thread data in reverse order by post data
+    # post_thread_data = PostThread.objects.all().order_by("date").reverse()
+
+    # if query:
+    #     search_dic["content"] = query
+    # TODO only search for the "content" part from "postthread" table for now
+    query_set = PostThread.objects.filter(content__contains=query).order_by("date").reverse()
+
+    return render(request, "main_page.html",
+                  {"post_thread": query_set, "check_login": user_obj, "user_email": email,
+                   "username": request.user.username, "query": query})
 
 
 def post_thread(request):
-    return render(request, "post_thread.html")
-
-
-def signin(request):
     if request.method == "GET":
-        return render(request, "signin.html")
-    else:
-        email = request.POST.get("email")
-        password = request.POST.get("pwd")
+        # send login info
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        return render(request, "post_thread.html", {"check_login": user_obj, "user_email": email,
+                                                    "username": request.user.username})
 
-        client = MongoClient(database_path, tlsCAFile=ca)
-        user = client["try"]["user"]
-        doc = list(user.find({"email": email}))
-        user_obj = auth.authenticate(username=email, password=password)
-        client.close()
-        if doc == []:
-            return render(request, "signin.html", {"error_msg": "This email haven't been registered."})
-        elif doc[0]["pwd"] != password:
-            return render(request, "signin.html", {"error_msg": "Wrong password! Please try again."})
-        else:
-            # return HttpResponse("Sign in successfully!")            # login success
-            # ------------------ test use -------------------
-            print(request.user)
-            print(request.user.id)                # 1   check if the user already login
-            print(request.user.username)
-            print(request.user.is_active)         # True
-            print(request.user.is_authenticated)  # True
-            # ------------------ test use --------------------
-            auth.login(request, user_obj)
-            return render(request, "main_page.html")                  # if success jump to main_page
+    email = request.user.email
+    title = request.POST.get("title")
+    content = request.POST.get("content")
+    category = request.POST.get("category")
+    PostThread.objects.create(title=title, content=content, email=email, category=category)
+    return redirect("/main_page/")
+
+
+def delete_post(request):
+    row_id = request.GET.get('nid')
+    PostThread.objects.filter(id=row_id).delete()
+    return redirect("/main_page/")
 
 
 def register(request):
     if request.method == "GET":
         return render(request, "register.html")
     else:
+        if request.POST.get("username") is None:
+            return render(request, "register.html", {"error_msg": "please enter your username"})
+        username = request.POST.get("username")
+        print(username)
         email = request.POST.get("email")
         password = request.POST.get("pwd")
-
-        client = MongoClient(database_path, tlsCAFile=ca)
-        user = client["try"]["user"]
-        doc = list(user.find({"email": email}))
-        if(doc != []):
-            client.close()
+        if User.objects.filter(email=email).exists():
             return render(request, "register.html", {"error_msg": "This email have been used."})
+        elif User.objects.filter(username=username).exists():
+            return render(request, "register.html", {"error_msg": "This username have been used."})
+        User.objects.create_user(username=username, email=email, password=password)
+        return redirect("/home/")
+
+
+@csrf_protect
+def signin(request):
+    if request.method == "GET":
+        return render(request, "signin.html")
+    else:
+        # TODO username CompareNoCase may cause problem
+        username = request.POST.get("username")
+        password = request.POST.get("pwd")
+        user_obj = auth.authenticate(username=username, password=password)
+        print(user_obj)
+        if user_obj:
+            # if login successfully set the session
+            auth.login(request, user_obj)
+            return redirect("/home/")
         else:
-            user.insert_one({"email": email, "pwd": password})
-            client.close()
-            User.objects.create_user(username=email, password=password)
-            # return HttpResponse("Register successfully!")
-            return render(request, "home.html")
+            return render(request, "signin.html", {"error_msg": "Wrong username or password"})
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect("/home/")
+
+
+def reset_pwd(request):
+    if request.method == "GET":
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        return render(request, "reset_pwd.html", {"check_login": user_obj, "user_email": email,
+                                                  "username": request.user.username})
+
+    old_pwd = request.POST.get("old_pwd")
+    new_pwd = request.POST.get("new_pwd")
+    rnew_pwd = request.POST.get("rnew_pwd")
+
+    if request.user.check_password(old_pwd):
+        if new_pwd != rnew_pwd:
+            return render(request, "reset_pwd.html", {"error_msg": "Entered passwords differ"})
+        else:
+            request.user.set_password(new_pwd)
+            request.user.save()
+            return redirect("/home/")
+    return render(request, "reset_pwd.html", {"error_msg": "Entered wrong old password"})
+
+
+def profile(request):
+    if request.method == "GET":
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        name = request.user.username
+        return render(request, "profile.html", {"check_login": user_obj, "user_email": email,
+                                                "username": name, })
