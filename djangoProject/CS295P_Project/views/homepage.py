@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect
 from CS295P_Project.models import *
+from datetime import *
 
 
 # Create your views here.
@@ -23,7 +24,8 @@ def main_page(request):
     print(request.user.is_active)  # True
     print(request.user.is_authenticated)
     # -------- test case -----------
-    search_dic = {}
+
+    # search_dic = {}
     query = request.GET.get("search", "")       # if there is query get it otherwise blank
     user_obj = request.user.is_authenticated
     email = request.user.email
@@ -32,6 +34,7 @@ def main_page(request):
 
     # if query:
     #     search_dic["content"] = query
+
     # TODO only search for the "content" part from "postthread" table for now
     query_set = PostThread.objects.filter(content__contains=query).order_by("date").reverse()
 
@@ -47,12 +50,36 @@ def post_thread(request):
         email = request.user.email
         return render(request, "post_thread.html", {"check_login": user_obj, "user_email": email,
                                                     "username": request.user.username})
-
+    # if it's a POST request
     email = request.user.email
     title = request.POST.get("title")
     content = request.POST.get("content")
     category = request.POST.get("category")
     PostThread.objects.create(title=title, content=content, email=email, category=category)
+    return redirect("/main_page/")
+
+
+def edit_thread(request, nid):
+    if request.method == "GET":
+        # send login info
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        # print(nid)
+        thread_data = PostThread.objects.filter(id=nid).first()
+        # print(thread_data.title, thread_data.content)
+        return render(request, "edit_thread.html",
+                      {"check_login": user_obj, "user_email": email,
+                       "username": request.user.username, "thread_data": thread_data}
+                      )
+    # if it's a POST request
+    email = request.user.email
+    title = request.POST.get("title")
+    content = request.POST.get("content")
+    category = request.POST.get("category")
+    # have to manually update time even set to "auto_now=True", since calling update will not go through "models".
+    # the "auto_now=True" will not be triggered
+    PostThread.objects.filter(id=nid).update(title=title, content=content, email=email,
+                                             category=category, date=datetime.now())
     return redirect("/main_page/")
 
 

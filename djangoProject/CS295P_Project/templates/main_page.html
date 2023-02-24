@@ -69,7 +69,7 @@
                 <a href="#" class="card-footer-item">Save</a>
 
                 {% if each_thread.email == user_email %}
-                <a href="#" class="card-footer-item">Edit</a>
+                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
                 <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
                 {% endif %}
             </footer>
@@ -80,7 +80,6 @@
 
 
 
-
 </div>
-
+</body>
 {% endblock %}

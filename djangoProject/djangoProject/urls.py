@@ -35,6 +35,7 @@ urlpatterns = [
 
     # post thread functions
     path("post_thread/", views.post_thread),
+    path("edit_thread/<int:nid>/", views.edit_thread),
     path("delete_post/", views.delete_post),
 
 ]
