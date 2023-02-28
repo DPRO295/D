@@ -8,6 +8,8 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
+
+
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -56,8 +58,9 @@ def post_thread(request):
         # send login info
         user_obj = request.user.is_authenticated
         email = request.user.email
+        post_threads = PostThread.objects.all()
         return render(request, "post_thread.html", {"check_login": user_obj, "user_email": email,
-                                                    "username": request.user.username})
+                                                    "username": request.user.username, "post_threads": post_threads})
     # if it's a POST request
     email = request.user.email
     title = request.POST.get("title")
@@ -66,9 +69,6 @@ def post_thread(request):
     PostThread.objects.create(title=title, content=content, email=email, category=category)
     return redirect("/main_page/")
 
-def post_view(request):
-    post_threads = PostThread.objects.all()
-    return render(request, 'post_thread.html', {'post_threads': post_threads})
 
 def edit_thread(request, nid):
     if request.method == "GET":

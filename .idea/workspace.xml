@@ -4,37 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="edit html">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0002_remove_userinfo_name.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0003_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0004_delete_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0005_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0006_delete_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0007_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0008_delete_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0009_postthread.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0010_delete_userinfo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/auth_layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/reset_pwd.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/D.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/D.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9165b58f-0a36-4b92-ad49-d7083832d774" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/static/css/edit.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/layout.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/main_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/post_thread.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/post_thread.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/signin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/edit_thread.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/edit_thread.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/homepage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,29 +47,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/jinhuima/Desktop/D",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jinhuima/Desktop/D&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PythonContentEntriesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Pansmort\Desktop\homework\A_New_Master\course\CS295P\Github_Project\D\djangoProject\CS295P_Project\Database\CURD\unittests" />
@@ -230,7 +204,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="" />
+      <changelist id="9165b58f-0a36-4b92-ad49-d7083832d774" name="Changes" comment="" />
       <created>1675553579677</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -248,11 +222,23 @@
       <workItem from="1677560750129" duration="1372000" />
       <workItem from="1677567628849" duration="1125000" />
       <workItem from="1677568764300" duration="15524000" />
+      <workItem from="1677609088690" duration="5094000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="edit html" />
