@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_protect
 from CS295P_Project.models import *
+from django.db import models
 from datetime import *
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
@@ -16,3 +17,8 @@ def add_reply(request):
     reply = Replies(comment_id=comment_id, parent_reply_id=parent_reply_id, reply_content=reply_content, user_id=user_id)
     reply.save()
     return HttpResponse("Reply added successfully!")
+
+class Comment(models.Model):
+    # Comment model fields
+    def get_replies(self):
+        return self.reply_set.all()

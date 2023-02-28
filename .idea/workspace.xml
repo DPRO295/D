@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/add_reply.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/add_reply.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/add_reply.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/add_reply.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
