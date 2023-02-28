@@ -1,0 +1,20 @@
+{% extends 'auth_layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+    <div class="section has-background-white-ter" method="post">
+        <h1>Username: {{ username }} </h1>
+        <h1>Email: {{ user_email }} </h1>
+    </div>
+</body>
+
+</html>
+
+{% endblock %}

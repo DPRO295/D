@@ -5,37 +5,68 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Home</title>
+    <title>ZotRun - Join the Conversation</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 <body>
-<div class="section is-mobile has-background-white-ter">
-    <div class="section is-mobile has-text-centered ">
-        <h4 class="is-size-1 has-text-weight-bold">
-            Looking for a better discussion platform?
-        </h4>
+<header class="section hero is-primary is-mobile">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-1 has-text-weight-bold">
+                Join the Conversation on ZotRun
+            </h1>
+            <h2 class="subtitle is-3">
+                The Open Source Discussion Platform for Everyone
+            </h2>
+            <div class="buttons">
+                <a class="button is-success is-large" href="/register/">
+                    <strong>Create Your Account Now</strong>
+                </a>
+                <a class="button is-large" href="/signin/">
+                    Sign In
+                </a>
+            </div>
+        </div>
     </div>
+</header>
 
-    <div class="is-mobile has-text-centered">
-        <a class="button has-text-centered-touch is-mobile is-success is-medium" align="center"
-           href="/register/">
-            <span>Create Your Account Now</span>
-        </a>
-        <a class="button has-text-centered-touch is-mobile is-success is-medium" align="center"
-           href="/signin/">
-            <span>Sign in</span>
-        </a>
+<section class="section is-medium">
+    <div class="container">
+        <div class="columns is-centered">
+            <div class="column is-half has-text-centered">
+                <h2 class="title is-2">Why ZotRun?</h2>
+                <p class="subtitle is-5">ZotRun is the discussion platform for people who want to have meaningful conversations about the things that matter most to them.</p>
+                <ul>
+                    <li>Engage in discussions on a wide range of topics</li>
+                    <li>Connect with a diverse and inclusive community</li>
+                    <li>Share your ideas and perspectives in a safe and respectful space</li>
+                    <li>Discover new perspectives and learn from others</li>
+                </ul>
+            </div>
+        </div>
     </div>
+</section>
 
-    <section class="column has-text-centered">
-        {#            <img src="https://www.codlearningtech.org/wp-content/uploads/2020/07/discussionboard-1.png"#}
-        {#                    alt="Google photo" width="800px" height="800px" />#}
-        <img src={% static 'img/discussionboard-1.png' %} width="800px" height="800px"/>
-    </section>
-
-</div>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <h2 class="title is-2">What Our Users Say</h2>
+                <div class="testimonial">
+                    <p class="subtitle is-5">"I've had some of the most thought-provoking conversations on ZotRun. It's a great platform for connecting with people who share your interests and expanding your worldview." <br> <strong>- Emily</strong></p>
+                </div>
+                <div class="testimonial">
+                    <p class="subtitle is-5">"I love the diversity of perspectives on ZotRun. It's refreshing to have conversations with people who come from different backgrounds and have different experiences." <br> <strong>- Tom</strong></p>
+                </div>
+            </div>
+            <div class="column is-one-third">
+                <img src="{% static 'img/discussionboard-1.png' %}" alt="Discussion on ZotRun" width="800px" height="400px">
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer class="footer ">
     <hr style="background-color:black">

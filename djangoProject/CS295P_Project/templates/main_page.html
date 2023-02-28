@@ -1,30 +1,119 @@
 <!-- use extends to reduce redundant code (check layout) -->
-{% extends 'anth_layout.html' %}
+{% extends 'auth_layout.html' %}
+
 {% block content %}
 {% load static %}
 
 <head>
     <title>main_page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/170b34daeb.js" crossorigin="anonymous"></script>
+    <script src="{% static 'js/like_dislike.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/like_dislike.css' %}">
+
+    <style>
+        /* Styles for the search bar */
+        .panel {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .panel-tabs {
+            margin-bottom: 0;
+        }
+
+        /* Styles for the cards */
+        .card {
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .card-header-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .card-header-icon {
+            background-color: white;
+            border: none;
+        }
+        .card-header-icon:hover {
+            background-color: #f5f5f5;
+        }
+        .card-content {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .card-footer {
+            background-color: white;
+        }
+        .card-footer-item {
+            color: #3273dc;
+            font-weight: bold;
+        }
+        .card-footer-item:hover {
+            text-decoration: underline;
+        }
+
+        /* Styles for the like button */
+        #like-button{
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        #like-button i {
+            color: #ff4136;
+            font-size: 25px;
+        }
+
+        .liked #like-button i {
+            color: #ff725c;
+        }
+
+        #like-count {
+            margin-left: 5px;
+            font-size: 18px;
+        }
+
+        /* Custom styles for left and right design */
+        .left {
+            background-color: #fff;
+            height: 100%;
+        }
+        .right {
+            background-color: #eee;
+            height: 100%;
+        }
+        .center {
+            margin: 0 auto;
+        }
+    </style>
 </head>
+
 <body>
 
 <div class="section has-background-white-ter">
+    <div class="columns">
+        <div class="column is-three-fifths">
+{# --------------------------- search function ---------------------------#}
     <nav class="panel">
-        <div class="panel-block">
-            <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="Search">
-                <span class="icon is-left">
-        <i class="fas fa-search" aria-hidden="true"></i>
-      </span>
-            </p>
-        </div>
+        <form method="get">
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input" type="text" name="search" placeholder="Search" value="{{ query }}">
+                    <span class="icon is-left">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </span>
+                </p>
+                <button class = "button is-info" type="submit">Search</button>
+            </div>
+        </form>
         <p class="panel-tabs">
             <a class="is-active">All</a>
-            <a>Public</a>
-            <a>Private</a>
-            <a>HomeWork</a>
-            <a>Exams</a>
-            <a>Others</a>
+            <a>General</a>
+            <a>Lectures</a>
+            <a>Lab</a>
+            <a>Homework</a>
+            <a>Project</a>
         </p>
         <label class="panel-block">
             <input type="checkbox">
@@ -36,13 +125,98 @@
             </button>
         </div>
     </nav>
+{# --------------------------- search function ---------------------------#}
 
-    <div class="container block">
-{#        <h1>test</h1>#}
+{# --------------------------- display threads ---------------------------#}
+    {% for each_thread in post_thread %}
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{ each_thread.title }}
+                    <br>
+                    {{ each_thread.category }}
+                </p>
+                <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+                </button>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    {{ each_thread.content }}
+                    <br>
+                    <time datetime="">{{ each_thread.date }}</time>
+                    <br>
+                </div>
+            </div>
+            <footer class="card-footer">
+
+                <button id="like-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"
+                    data-isliked="{{ each_thread.is_liked }}"
+                    data-userid = "{{ user.id }}">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>
+
+                <a href="/save_bookmark/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">Save</a>
+
+                {% if each_thread.email == user_email %}
+                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
+                <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
+                {% endif %}
+            </footer>
+        </div>
+        <br>
+    {% endfor %}
+{# --------------------------- display threads ---------------------------#}
+</div>
+        <div class="column is-one-third">
+  <div class="box">
+    <div class="columns">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-4">Course List</h2>
+          <ul style="list-style-type: none;">
+        <li>
+          <button class="button is-primary">Course 1</button>
+        </li>
+        <li>
+          <button class="button is-info">Course 2</button>
+        </li>
+        <li>
+          <button class="button is-success">Course 3</button>
+        </li>
+        <li>
+          <button class="button is-warning">Course 4</button>
+        </li>
+        <li>
+          <button class="button is-danger">Course 5</button>
+        </li>
+      </ul>
+        </div>
+      </div>
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-4">Categories</h3>
+          <div class="buttons">
+            <button class="button is-link is-outlined">General</button>
+            <button class="button is-link is-outlined">Lectures</button>
+            <button class="button is-link is-outlined">Lab</button>
+            <button class="button is-link is-outlined">Homework</button>
+            <button class="button is-link is-outlined">Project</button>
+            </div>
+        </div>
+      </div>
     </div>
-
-
-
+    <figure class="image is-4by3">
+      <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>
+    </figure>
+  </div>
 </div>
 
+
+    </div>
+</div>
+</body>
 {% endblock %}

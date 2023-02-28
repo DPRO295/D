@@ -17,12 +17,33 @@ from django.contrib import admin
 from django.urls import path
 from CS295P_Project import views
 
+
 # where to find the app
 urlpatterns = [
     # path("admin/", admin.site.urls),
-    path("", views.home),
+    # home page
+    path("home/", views.home),
+
+    # login system functions
     path("signin/", views.signin),
     path("register/", views.register),
+    path("logout/", views.logout),
+    path("reset_pwd/", views.reset_pwd),
+    path("profile/", views.profile),
+
+    # main_page functions
     path("main_page/", views.main_page),
-    path("post_thread/", views.post_thread)
+
+    # my_book_mark functions:
+    path("my_bookmark/", views.my_bookmark),
+    path("save_bookmark/<int:post_id>/<int:user_id>/", views.save_bookmark),
+    path("delete_bookmark/<int:post_id>/", views.delete_bookmark),
+
+    # post thread functions
+    path("post_thread/", views.post_thread),
+    path("edit_thread/<int:nid>/", views.edit_thread),
+    path("delete_post/", views.delete_post),
+    path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
+    path('post/', views.post_view, name='post_view'),
+
 ]

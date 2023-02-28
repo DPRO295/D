@@ -4,8 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="d0025b61-4d02-43a7-bb0c-7beccb0d1b5e" name="Changes" comment="edit html">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0002_remove_userinfo_name.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0003_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0004_delete_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0005_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0006_delete_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0007_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0008_delete_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0009_postthread.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/migrations/0010_delete_userinfo.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/auth_layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/profile.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/reset_pwd.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/D.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/D.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/layout.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/layout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/post_thread.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/post_thread.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/signin.html" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/templates/signin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/homepage.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/CS295P_Project/views/homepage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +47,7 @@
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -47,8 +78,10 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Pansmort/Desktop/homework/A_New_Master/course/CS295P/Github_Project/D/djangoProject/CS295P_Project/Database/CURD/unittests",
+    "last_opened_file_path": "/Users/jinhuima/Desktop/D",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,6 +89,11 @@
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PythonContentEntriesConfigurable",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -64,10 +102,11 @@
       <recent name="C:\Users\Pansmort\Desktop\homework\A_New_Master\course\CS295P\Github_Project\D\djangoProject\CS295P_Project\Database\CURD" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/djangoProject/CS295P_Project/static/img" />
       <recent name="C:\Users\Pansmort\Desktop\homework\A_New_Master\course\CS295P\Github_Project\D\djangoProject\CS295P_Project\Database\CURD" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.readTest">
+  <component name="RunManager" selected="Python.settings">
     <configuration name="connect_DB (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="D" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -82,28 +121,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/connect_DB.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="connect_DB" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="D" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/djangoProject/CS295P_Project/Database" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Pansmort\Desktop\homework\A_New_Master\course\CS295P\Github_Project\D\djangoProject\CS295P_Project\Database\CURD\connect_DB.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -156,12 +173,57 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="settings" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/djangoProject/djangoProject" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="urls" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="D" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/djangoProject/djangoProject" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/djangoProject/djangoProject/urls.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.settings" />
+        <item itemvalue="Python.urls" />
         <item itemvalue="Python.readTest" />
         <item itemvalue="Python.insertTest" />
         <item itemvalue="Python.connect_DB (1)" />
-        <item itemvalue="Python.connect_DB" />
       </list>
     </recent_temporary>
   </component>
@@ -176,17 +238,33 @@
       <workItem from="1675553581986" duration="3610000" />
       <workItem from="1675588127149" duration="2311000" />
       <workItem from="1675621736601" duration="9198000" />
+      <workItem from="1677022781357" duration="1170000" />
+      <workItem from="1677024614046" duration="26000" />
+      <workItem from="1677024698823" duration="1688000" />
+      <workItem from="1677559430826" duration="121000" />
+      <workItem from="1677559561136" duration="168000" />
+      <workItem from="1677559736581" duration="89000" />
+      <workItem from="1677559884926" duration="815000" />
+      <workItem from="1677560750129" duration="1372000" />
+      <workItem from="1677567628849" duration="1125000" />
+      <workItem from="1677568764300" duration="15524000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="edit html" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit html" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/D$apps.coverage" NAME="apps Coverage Results" MODIFIED="1675553846404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project" />
+    <SUITE FILE_PATH="coverage/D$urls.coverage" NAME="urls Coverage Results" MODIFIED="1677567653489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/djangoProject" />
+    <SUITE FILE_PATH="coverage/D$settings.coverage" NAME="settings Coverage Results" MODIFIED="1677584175993" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/djangoProject" />
+    <SUITE FILE_PATH="coverage/D$readTest.coverage" NAME="readTest Coverage Results" MODIFIED="1675664211164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests" />
+    <SUITE FILE_PATH="coverage/D$connect_DB.coverage" NAME="connect_DB Coverage Results" MODIFIED="1675590311365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project/Database" />
     <SUITE FILE_PATH="coverage/D$connect_DB__1_.coverage" NAME="connect_DB (1) Coverage Results" MODIFIED="1675623037394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD" />
     <SUITE FILE_PATH="coverage/D$insertTest.coverage" NAME="insertTest Coverage Results" MODIFIED="1675663942994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests" />
-    <SUITE FILE_PATH="coverage/D$connect_DB.coverage" NAME="connect_DB Coverage Results" MODIFIED="1675590311365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project/Database" />
-    <SUITE FILE_PATH="coverage/D$readTest.coverage" NAME="readTest Coverage Results" MODIFIED="1675664211164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project/Database/CURD/unittests" />
-    <SUITE FILE_PATH="coverage/D$apps.coverage" NAME="apps Coverage Results" MODIFIED="1675553846404" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/djangoProject/CS295P_Project" />
   </component>
 </project>
