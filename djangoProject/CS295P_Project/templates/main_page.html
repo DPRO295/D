@@ -5,6 +5,10 @@
 
 <head>
     <title>main_page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/170b34daeb.js" crossorigin="anonymous"></script>
+    <script src="../static/js/like_dislike.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/like_dislike.css">
 </head>
 <body>
 
@@ -66,10 +70,18 @@
                 </div>
             </div>
             <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
+
+                <button id="like-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"
+                    data-isliked="{{ each_thread.is_liked }}"
+                    data-userid = "{{ user.id }}">
+                    <i class="fa-solid fa-heart"></i>
+                </button>
+                <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>
+
+                <a href="/save_bookmark/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">Save</a>
 
                 {% if each_thread.email == user_email %}
-                <a href="#" class="card-footer-item">Edit</a>
+                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
                 <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
                 {% endif %}
             </footer>
@@ -80,7 +92,6 @@
 
 
 
-
 </div>
-
+</body>
 {% endblock %}
