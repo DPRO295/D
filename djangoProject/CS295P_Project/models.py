@@ -23,3 +23,10 @@ class User_liked_Post(models.Model):
 class BookMark(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(PostThread, on_delete=models.CASCADE)
+
+class Replies(models.Model):
+    parent_reply_id = models.IntegerField()
+    comment_id = models.IntegerField()
+    reply_content = models.CharField(max_length=255)
+    reply_time = models.DateTimeField(auto_now_add=True)
+    user_id = models.IntegerField()

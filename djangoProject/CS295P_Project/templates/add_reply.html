@@ -1,0 +1,9 @@
+<form method="post" action="{% url 'add_reply' %}">
+    {% csrf_token %}
+    <input type="hidden" name="comment_id" value="{{ comment_id }}">
+    <input type="hidden" name="parent_reply_id" value="{{ parent_reply_id }}">
+    <input type="hidden" name="user_id" value="{{ user_id }}">
+    <label for="reply_content">Reply:</label><br>
+    <textarea name="reply_content"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
