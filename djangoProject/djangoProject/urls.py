@@ -33,8 +33,16 @@ urlpatterns = [
     # main_page functions
     path("main_page/", views.main_page),
 
+    # my_book_mark functions:
+    path("my_bookmark/", views.my_bookmark),
+    path("save_bookmark/<int:post_id>/<int:user_id>/", views.save_bookmark),
+    path("delete_bookmark/<int:post_id>/", views.delete_bookmark),
+
     # post thread functions
     path("post_thread/", views.post_thread),
+    path("edit_thread/<int:nid>/", views.edit_thread),
     path("delete_post/", views.delete_post),
+    path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
+
 
 ]
