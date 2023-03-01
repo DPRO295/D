@@ -24,6 +24,7 @@ class BookMark(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(PostThread, on_delete=models.CASCADE)
 
+
 class Replies(models.Model):
     parent_reply_id = models.IntegerField()
     comment_id = models.IntegerField()

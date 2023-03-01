@@ -23,6 +23,7 @@
       <div class="existing-posts" style="height: 400px; overflow-y: auto;">
         <h2 class="title">Existing Posts</h2>
         {% for each_thread in post_threads %}
+{#            {% if each_thread.email == user_email  %}#}
         <div class="card">
             <header class="card-header">
                 <p class="card-header-title">
@@ -44,6 +45,7 @@
             </footer>
         </div>
         <br>
+{#            {% endif %}#}
             {% endfor %}
 
       </div>
@@ -83,7 +85,8 @@
               <button class="button is-primary" type="submit">Post</button>
             </div>
             <div class="control">
-              <button class="button is-danger is-light" type="reset">Cancel</button>
+{#              <button class="button is-danger is-light" type="reset">Cancel</button>#}
+                <a class="button is-danger is-light"  href="/main_page/">Cancel</a>
             </div>
           </div>
         </form>

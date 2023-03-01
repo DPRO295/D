@@ -9,7 +9,6 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 
-
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -28,8 +27,6 @@ def main_page(request):
     print(request.user.is_active)  # True
     print(request.user.is_authenticated)
     # -------- test case -----------
-
-    #
 
     # search_dic = {}
     query = request.GET.get("search", "")       # if there is query get it otherwise blank

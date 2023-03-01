@@ -34,8 +34,8 @@
             <footer class="card-footer">
                 {% if each_thread.email == user_email %}
                 <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
-                <a href="/delete_bookmark/{{ each_thread.id }}" class="card-footer-item">Delete From BookMark</a>
                 {% endif %}
+            <a href="/delete_bookmark/{{ each_thread.id }}" class="card-footer-item">Delete BookMark</a>
             </footer>
         </div>
         <br>
