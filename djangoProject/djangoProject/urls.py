@@ -22,6 +22,7 @@ from CS295P_Project import views
 urlpatterns = [
     # path("admin/", admin.site.urls),
     # home page
+    path('', views.home, name='home'),
     path("home/", views.home),
 
     # login system functions
@@ -33,6 +34,7 @@ urlpatterns = [
 
     # main_page functions
     path("main_page/", views.main_page),
+    path("coins/", views.coins_page),
 
     # my_book_mark functions:
     path("my_bookmark/", views.my_bookmark),
