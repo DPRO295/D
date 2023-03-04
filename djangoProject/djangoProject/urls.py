@@ -47,5 +47,5 @@ urlpatterns = [
     path("delete_post/", views.delete_post),
     path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
 
-
+    path("test/", views.test),
 ]
