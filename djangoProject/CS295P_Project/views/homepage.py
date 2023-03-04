@@ -111,7 +111,9 @@ def register(request):
             return render(request, "register.html", {"error_msg": "This email have been used."})
         elif User.objects.filter(username=username).exists():
             return render(request, "register.html", {"error_msg": "This username have been used."})
-        User.objects.create_user(username=username, email=email, password=password)
+        user = User.objects.create_user(username=username, email=email, password=password)
+        user_profile = UserProfile(user=user, coins = 1000)
+        user_profile.save()
         return redirect("/home/")
 
 
@@ -157,16 +159,6 @@ def reset_pwd(request):
             request.user.save()
             return redirect("/home/")
     return render(request, "reset_pwd.html", {"error_msg": "Entered wrong old password"})
-
-
-def profile(request):
-    if request.method == "GET":
-        user_obj = request.user.is_authenticated
-        email = request.user.email
-        name = request.user.username
-        return render(request, "profile.html", {"check_login": user_obj, "user_email": email,
-                                                "username": name, })
-
 
 def save_bookmark(request, post_id, user_id):
     post = get_object_or_404(PostThread, id=post_id)

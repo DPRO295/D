@@ -31,3 +31,17 @@ class Replies(models.Model):
     reply_content = models.CharField(max_length=255)
     reply_time = models.DateTimeField(auto_now_add=True)
     user_id = models.IntegerField()
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    coins = models.IntegerField(default = 1000)
+
+    def __str__(self):
+        return f"{self.user} {self.coins}"
+
+class CoinsLog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    credit_type = models.CharField(max_length=10, choices=[('add', '增加'), ('sub', '减少')])
+    amount = models.DecimalField(max_digits=8, decimal_places=2)
+    notes = models.CharField(max_length=100, blank=True, null=True)
