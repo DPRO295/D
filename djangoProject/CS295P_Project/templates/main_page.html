@@ -92,10 +92,10 @@
 <body>
 
 <div class="section has-background-white-ter">
-    <div class="columns">
-        <div class="column is-three-fifths">
-{# --------------------------- search function ---------------------------#}
-    <nav class="panel">
+    <div class="columns is-multiline is-mobile" >
+    {# --------------------------- search function ---------------------------#}
+        <div class="column is-two-fifths">
+    <div class="card">
         <form method="get">
             <div class="panel-block">
                 <p class="control has-icons-left">
@@ -115,16 +115,16 @@
             <a>Homework</a>
             <a>Project</a>
         </p>
-        <label class="panel-block">
-            <input type="checkbox">
-            remember me
-        </label>
+{#        <label class="panel-block">#}
+{#            <input type="checkbox">#}
+{#            remember me#}
+{#        </label>#}
         <div class="panel-block">
             <button class="button is-link is-outlined is-fullwidth">
                 Reset all filters
             </button>
         </div>
-    </nav>
+    </div>
 {# --------------------------- search function ---------------------------#}
 
 {# --------------------------- display threads ---------------------------#}
@@ -180,51 +180,58 @@
 
         <br>
     {% endfor %}
-{# --------------------------- display threads ---------------------------#}
 </div>
-        <div class="column is-one-third" >
-  <div class="box" id="hide_show">
-    <div class="columns">
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-4">Course List</h2>
-          <ul style="list-style-type: none;">
-        <li>
-          <button class="button is-primary">Course 1</button>
-        </li>
-        <li>
-          <button class="button is-info">Course 2</button>
-        </li>
-        <li>
-          <button class="button is-success">Course 3</button>
-        </li>
-        <li>
-          <button class="button is-warning">Course 4</button>
-        </li>
-        <li>
-          <button class="button is-danger">Course 5</button>
-        </li>
-      </ul>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content">
-          <h3 class="title is-4">Categories</h3>
-          <div class="buttons">
-            <button class="button is-link is-outlined">General</button>
-            <button class="button is-link is-outlined">Lectures</button>
-            <button class="button is-link is-outlined">Lab</button>
-            <button class="button is-link is-outlined">Homework</button>
-            <button class="button is-link is-outlined">Project</button>
-            </div>
-        </div>
-      </div>
-    </div>
-    <figure class="image is-4by3">
-      <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>
-    </figure>
-  </div>
+{# --------------------------- display threads ---------------------------#}
+
+{# --------------------------- other functions ---------------------------#}
+
+{#        <div class="column is-one-third" >#}
+{#  <div class="box" id="hide_show">#}
+{#    <div class="columns">#}
+{#      <div class="column">#}
+{#        <div class="content">#}
+{#          <h2 class="title is-4">Course List</h2>#}
+{#          <ul style="list-style-type: none;">#}
+{#        <li>#}
+{#          <button class="button is-primary">Course 1</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-info">Course 2</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-success">Course 3</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-warning">Course 4</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-danger">Course 5</button>#}
+{#        </li>#}
+{#      </ul>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="column">#}
+{#        <div class="content">#}
+{#          <h3 class="title is-4">Categories</h3>#}
+{#          <div class="buttons">#}
+{#            <button class="button is-link is-outlined">General</button>#}
+{#            <button class="button is-link is-outlined">Lectures</button>#}
+{#            <button class="button is-link is-outlined">Lab</button>#}
+{#            <button class="button is-link is-outlined">Homework</button>#}
+{#            <button class="button is-link is-outlined">Project</button>#}
+{#            </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <figure class="image is-4by3">#}
+{#      <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>#}
+{#    </figure>#}
+{#  </div>#}
+{#</div>            #}
+{# --------------------------- other functions ---------------------------#}
+
 {# --------------------------- dynamicly display threads ---------------------------#}
+    <div class="column is-two-fifths" >
         <div class="card">
             <a>
             <header class="card-header" id="display_thread">
@@ -254,8 +261,9 @@
 {#                <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>#}
 {#            </footer>#}
         </div>
+    </div>
             {# --------------------------- dynamicly display threads ---------------------------#}
-</div>
+
     </div>
 </div>
 
