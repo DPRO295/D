@@ -129,8 +129,18 @@
 
 {# --------------------------- display threads ---------------------------#}
     {% for each_thread in post_thread %}
-        <div class="card">
-            <header class="card-header">
+
+        <div class="card" type="button">
+            <a>
+            <header class="card-header" id="display_thread"
+                    data-post_id="{{ each_thread.id }}"
+                    data-post_email="{{ each_thread.email }}"
+                    data-post_title="{{ each_thread.title }}"
+                    data-post_date="{{ each_thread.date }}"
+                    data-post_content="{{ each_thread.content }}"
+                    data-post_category="{{ each_thread.category }}"
+                    data-post_user_id="{{ user.id }}"
+            >
                 <p class="card-header-title">
                     {{ each_thread.title }}
                     <br>
@@ -141,7 +151,7 @@
         <i class="fas fa-angle-down" aria-hidden="true"></i>
       </span>
                 </button>
-            </header>
+            </header></a>
             <div class="card-content">
                 <div class="content">
                     {{ each_thread.content }}
@@ -167,12 +177,13 @@
                 {% endif %}
             </footer>
         </div>
+
         <br>
     {% endfor %}
 {# --------------------------- display threads ---------------------------#}
 </div>
-        <div class="column is-one-third">
-  <div class="box">
+        <div class="column is-one-third" >
+  <div class="box" id="hide_show">
     <div class="columns">
       <div class="column">
         <div class="content">
@@ -213,10 +224,43 @@
       <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>
     </figure>
   </div>
+{# --------------------------- dynamicly display threads ---------------------------#}
+        <div class="card">
+            <a>
+            <header class="card-header" id="display_thread">
+                <p class="card-header-title" id="show_post_title">
+
+                </p>
+                <h1 id="show_post_category"> </h1>
+      <span class="icon">
+      </span>
+                </button>
+            </header></a>
+            <div class="card-content">
+                <div class="content" >
+                    <p id="show_post_content"> </p>
+                    <br>
+                    <time datetime="" id="show_post_time"></time>
+                    <br>
+                </div>
+            </div>
+{#            <footer class="card-footer">#}
+{##}
+{#                <button id="like-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"#}
+{#                    data-isliked="{{ each_thread.is_liked }}"#}
+{#                    data-userid = "{{ user.id }}">#}
+{#                    <i class="fa-solid fa-heart"></i>#}
+{#                </button>#}
+{#                <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>#}
+{#            </footer>#}
+        </div>
+            {# --------------------------- dynamicly display threads ---------------------------#}
 </div>
-
-
     </div>
 </div>
+
+
+<script src="{% static 'js/show_thread.js' %}"></script>
+
 </body>
 {% endblock %}
