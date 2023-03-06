@@ -29,7 +29,11 @@ urlpatterns = [
     path("signin/", views.signin),
     path("register/", views.register),
     path("logout/", views.logout),
+
+    # profile page:
     path("reset_pwd/", views.reset_pwd),
+    path("edit_email/", views.edit_email),
+    path("edit_name/", views.edit_name),
     path("profile/", views.profile),
 
     # main_page functions:
