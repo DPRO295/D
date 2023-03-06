@@ -27,6 +27,7 @@ def test(request):
         return render(request, "test.html", {"check_login": user_obj, "user_email": email,
                                              "username": request.user.username, "form": form})
     if request.method == "POST":
+        print(request.POST)
         # to deal with multiple post on pages
         # https://stackoverflow.com/questions/1395807/proper-way-to-handle-multiple-forms-on-one-page-in-django
         post_kind = request.POST.get("post")

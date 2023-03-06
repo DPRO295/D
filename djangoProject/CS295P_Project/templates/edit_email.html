@@ -1,0 +1,33 @@
+{% extends 'auth_layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change Email</title>
+</head>
+<body>
+<form method="post" class="box">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label">Enter Your Old Email Address</label>
+        <div class="control">
+            <input class="input" required="required" type="email" name="old_email" placeholder="ZotRun@gmail.com">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Enter Your New Email Address</label>
+        <div class="control">
+            <input class="input" required="required" type="email" name="new_email" placeholder="ZotRun@gmail.com">
+        </div>
+    </div>
+    <button class="button is-primary" type="submit">Submit</button>
+    <span style="color: red"> {{ error_msg }} </span>
+</form>
+</body>
+</html>
+{% endblock %}
