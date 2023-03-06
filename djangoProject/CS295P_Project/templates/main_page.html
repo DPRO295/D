@@ -92,10 +92,10 @@
 <body>
 
 <div class="section has-background-white-ter">
-    <div class="columns">
-        <div class="column is-three-fifths">
-{# --------------------------- search function ---------------------------#}
-    <nav class="panel">
+    <div class="columns is-multiline is-mobile" >
+    {# --------------------------- search function ---------------------------#}
+        <div class="column is-two-fifths">
+    <div class="card">
         <form method="get">
             <div class="panel-block">
                 <p class="control has-icons-left">
@@ -115,22 +115,32 @@
             <a>Homework</a>
             <a>Project</a>
         </p>
-        <label class="panel-block">
-            <input type="checkbox">
-            remember me
-        </label>
+{#        <label class="panel-block">#}
+{#            <input type="checkbox">#}
+{#            remember me#}
+{#        </label>#}
         <div class="panel-block">
             <button class="button is-link is-outlined is-fullwidth">
                 Reset all filters
             </button>
         </div>
-    </nav>
+    </div>
 {# --------------------------- search function ---------------------------#}
 
 {# --------------------------- display threads ---------------------------#}
     {% for each_thread in post_thread %}
-        <div class="card">
-            <header class="card-header">
+
+        <div class="card" type="button">
+            <a>
+            <header class="card-header" id="display_thread"
+                    data-post_id="{{ each_thread.id }}"
+                    data-post_email="{{ each_thread.email }}"
+                    data-post_title="{{ each_thread.title }}"
+                    data-post_date="{{ each_thread.date }}"
+                    data-post_content="{{ each_thread.content }}"
+                    data-post_category="{{ each_thread.category }}"
+                    data-post_user_id="{{ user.id }}"
+            >
                 <p class="card-header-title">
                     {{ each_thread.title }}
                     <br>
@@ -141,7 +151,7 @@
         <i class="fas fa-angle-down" aria-hidden="true"></i>
       </span>
                 </button>
-            </header>
+            </header></a>
             <div class="card-content">
                 <div class="content">
                     {{ each_thread.content }}
@@ -167,56 +177,94 @@
                 {% endif %}
             </footer>
         </div>
+
         <br>
     {% endfor %}
+</div>
 {# --------------------------- display threads ---------------------------#}
-</div>
-        <div class="column is-one-third">
-  <div class="box">
-    <div class="columns">
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-4">Course List</h2>
-          <ul style="list-style-type: none;">
-        <li>
-          <button class="button is-primary">Course 1</button>
-        </li>
-        <li>
-          <button class="button is-info">Course 2</button>
-        </li>
-        <li>
-          <button class="button is-success">Course 3</button>
-        </li>
-        <li>
-          <button class="button is-warning">Course 4</button>
-        </li>
-        <li>
-          <button class="button is-danger">Course 5</button>
-        </li>
-      </ul>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content">
-          <h3 class="title is-4">Categories</h3>
-          <div class="buttons">
-            <button class="button is-link is-outlined">General</button>
-            <button class="button is-link is-outlined">Lectures</button>
-            <button class="button is-link is-outlined">Lab</button>
-            <button class="button is-link is-outlined">Homework</button>
-            <button class="button is-link is-outlined">Project</button>
+
+{# --------------------------- other functions ---------------------------#}
+
+{#        <div class="column is-one-third" >#}
+{#  <div class="box" id="hide_show">#}
+{#    <div class="columns">#}
+{#      <div class="column">#}
+{#        <div class="content">#}
+{#          <h2 class="title is-4">Course List</h2>#}
+{#          <ul style="list-style-type: none;">#}
+{#        <li>#}
+{#          <button class="button is-primary">Course 1</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-info">Course 2</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-success">Course 3</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-warning">Course 4</button>#}
+{#        </li>#}
+{#        <li>#}
+{#          <button class="button is-danger">Course 5</button>#}
+{#        </li>#}
+{#      </ul>#}
+{#        </div>#}
+{#      </div>#}
+{#      <div class="column">#}
+{#        <div class="content">#}
+{#          <h3 class="title is-4">Categories</h3>#}
+{#          <div class="buttons">#}
+{#            <button class="button is-link is-outlined">General</button>#}
+{#            <button class="button is-link is-outlined">Lectures</button>#}
+{#            <button class="button is-link is-outlined">Lab</button>#}
+{#            <button class="button is-link is-outlined">Homework</button>#}
+{#            <button class="button is-link is-outlined">Project</button>#}
+{#            </div>#}
+{#        </div>#}
+{#      </div>#}
+{#    </div>#}
+{#    <figure class="image is-4by3">#}
+{#      <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>#}
+{#    </figure>#}
+{#  </div>#}
+{#</div>            #}
+{# --------------------------- other functions ---------------------------#}
+
+{# --------------------------- dynamicly display threads ---------------------------#}
+    <div class="column is-two-fifths" >
+        <div class="card">
+            <header class="card-header" id="display_thread">
+                <p class="card-header-title" id="show_post_title">
+
+                </p>
+                <h1 id="show_post_category"> </h1>
+            </header>
+            <div class="card-content">
+                <div class="content" >
+                    <p id="show_post_content"> </p>
+                    <br>
+                    <time datetime="" id="show_post_time"></time>
+                    <br>
+                </div>
             </div>
+{#            <footer class="card-footer">#}
+{##}
+{#                <button id="like-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"#}
+{#                    data-isliked="{{ each_thread.is_liked }}"#}
+{#                    data-userid = "{{ user.id }}">#}
+{#                    <i class="fa-solid fa-heart"></i>#}
+{#                </button>#}
+{#                <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>#}
+{#            </footer>#}
         </div>
-      </div>
     </div>
-    <figure class="image is-4by3">
-      <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>
-    </figure>
-  </div>
-</div>
-
+            {# --------------------------- dynamicly display threads ---------------------------#}
 
     </div>
 </div>
+
+
+<script src="{% static 'js/show_thread.js' %}"></script>
+
 </body>
 {% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'auth_layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit User Name</title>
+</head>
+<body>
+    <form method="post" class="box">
+    {% csrf_token %}
+
+    <div class="field">
+        <label class="label">Enter Your Old User Name</label>
+        <div class="control">
+            <input class="input" required="required" type="text" name="old_user_name" placeholder="Your Old User Name">
+        </div>
+    </div>
+
+    <div class="field">
+        <label class="label">Enter Your New User Name</label>
+        <div class="control">
+            <input class="input" required="required" type="text" name="new_user_name" placeholder="Your New User Name">
+        </div>
+    </div>
+    <button class="button is-primary" type="submit">Submit</button>
+    <span style="color: red"> {{ error_msg }} </span>
+</form>
+</body>
+</html>
+{% endblock %}

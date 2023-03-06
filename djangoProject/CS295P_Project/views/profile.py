@@ -8,6 +8,7 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
+
 def profile(request):
     if request.method == "GET":
         user_obj = request.user.is_authenticated
@@ -36,6 +37,7 @@ def profile(request):
     if request.method == "POST":
         if 'change_pwd' in request.POST:
             return redirect("/reset_pwd/")
+
 
 def coins_page(request):
     user_obj = request.user.is_authenticated

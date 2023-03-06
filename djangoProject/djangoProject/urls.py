@@ -25,27 +25,33 @@ urlpatterns = [
     path('', views.home, name='home'),
     path("home/", views.home),
 
-    # login system functions
+    # login system functions:
     path("signin/", views.signin),
     path("register/", views.register),
     path("logout/", views.logout),
+
+    # profile page:
     path("reset_pwd/", views.reset_pwd),
+    path("edit_email/", views.edit_email),
+    path("edit_name/", views.edit_name),
     path("profile/", views.profile),
 
-    # main_page functions
+    # main_page functions:
     path("main_page/", views.main_page),
     path("coins/", views.coins_page),
+    path("show_thread/", views.show_thread),
 
     # my_book_mark functions:
     path("my_bookmark/", views.my_bookmark),
     path("save_bookmark/<int:post_id>/<int:user_id>/", views.save_bookmark),
     path("delete_bookmark/<int:post_id>/", views.delete_bookmark),
 
-    # post thread functions
+    # post thread functions:
     path("post_thread/", views.post_thread),
     path("edit_thread/<int:nid>/", views.edit_thread),
     path("delete_post/", views.delete_post),
     path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
 
+    # for test use
     path("test/", views.test),
 ]
