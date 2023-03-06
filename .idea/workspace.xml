@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9165b58f-0a36-4b92-ad49-d7083832d774" name="Changes" comment="fix bug and edit_thread">
-      <change beforePath="$PROJECT_DIR$/.idea/D.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/D.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/djangoProject/djangoProject/settings.py" afterDir="false" />
-    </list>
+    <list default="true" id="9165b58f-0a36-4b92-ad49-d7083832d774" name="Changes" comment="fix bug and edit_thread" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
