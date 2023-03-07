@@ -48,21 +48,13 @@
                                 </tr>
                             </thead>
                             <tbody>
+                            {%  for obj in coinslog %}
                                 <tr>
-                                    <td>2022-01-01</td>
-                                    <td>Deposit</td>
-                                    <td>+1000</td>
+                                    <td>{{ obj.timestamp }}</td>
+                                    <td>{{ obj.credit_type }}</td>
+                                    <td>{{ obj.amount }}</td>
                                 </tr>
-                                <tr>
-                                    <td>2022-02-01</td>
-                                    <td>Withdrawal</td>
-                                    <td>-500</td>
-                                </tr>
-                                <tr>
-                                    <td>2022-03-01</td>
-                                    <td>Deposit</td>
-                                    <td>+2000</td>
-                                </tr>
+                            {% endfor %}
                             </tbody>
                         </table>
                     </div>
