@@ -1,0 +1,38 @@
+{% extends 'auth_layout.html' %}
+{% block content %}
+{% load static %}
+
+  <section class="section">
+    <div class="container">
+      <h1 class="title">{{ question.title }}</h1>
+      <div class="box">
+        <p>{{ question.content }}</p>
+        <hr>
+        <h2 class="subtitle">{{ answers|length }} Answers</h2>
+        {% for answer in answers %}
+          <div class="box">
+            <p>{{ answer.content }}</p>
+            <p class="is-size-7 has-text-right">answered by {{ answer.author }} on {{ answer.created_at }}</p>
+          </div>
+        {% empty %}
+          <p>No answers yet.</p>
+        {% endfor %}
+      </div>
+      <hr>
+      <h2 class="subtitle">Your Answer</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" name="content" placeholder="Enter your answer"></textarea>
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <button type="submit" class="button is-primary">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+{% endblock %}
