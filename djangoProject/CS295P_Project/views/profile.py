@@ -42,13 +42,19 @@ def profile(request):
 def coins_page(request):
     user_obj = request.user.is_authenticated
     email = request.user.email
+    coinlogs = CoinsLog.objects.filter(user=request.user)
     if request.method == "GET":
         return render(request, "coins.html", {"check_login": user_obj, "user_email": email,
-                                              "username": request.user.username})
+                                              "username": request.user.username,
+                                              "coinslog": coinlogs})
     if request.method == 'POST':
         coins = request.POST['coins']
         if 'add' in request.POST:
-            print("+", coins)
+            CoinsLog.objects.create(user=request.user, credit_type="add",
+                                    amount=coins)
         elif 'subtract' in request.POST:
-            print("-", coins)
-        return render(request, "coins.html", {"check_login": user_obj})
+            CoinsLog.objects.create(user=request.user, credit_type="sub",
+                                    amount=coins)
+        return render(request, "coins.html", {"check_login": user_obj,"user_email": email,
+                                              "username": request.user.username,
+                                              "coinslog": coinlogs})
