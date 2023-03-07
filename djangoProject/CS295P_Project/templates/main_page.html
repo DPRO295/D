@@ -95,42 +95,62 @@
     <div class="columns is-multiline is-mobile" >
     {# --------------------------- search function ---------------------------#}
         <div class="column is-two-fifths">
-    <div class="card">
-        <form method="get">
-            <div class="panel-block">
-                <p class="control has-icons-left">
-                    <input class="input" type="text" name="search" placeholder="Search" value="{{ query }}">
-                    <span class="icon is-left">
+            <div class="column">
+                <div class="card is-mobile">
+                    <form method="get">
+                        <div class="panel-block">
+                            <p class="control has-icons-left">
+                                <input class="input" type="text" name="search" placeholder="Search" value="{{ query }}">
+                                <span class="icon is-left">
                         <i class="fas fa-search" aria-hidden="true"></i>
                     </span>
-                </p>
-                <button class = "button is-info" type="submit">Search</button>
+                            </p>
+                            <button class="button is-info" type="submit">Search</button>
+                        </div>
+                    </form>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <p class="panel-tabs">
+                            <a class="is-active">
+                                <button name="all" value="all">All</button>
+                            </a>
+                            <a>
+                                <button name="general" value="general">General</button>
+                            </a>
+                            <a>
+                                <button name="lectures" value="lectures">Lectures</button>
+                            </a>
+                            <a>
+                                <button name="lab" value="lab">Lab</button>
+                            </a>
+                            <a>
+                                <button name="homework" value="homework">Homework</button>
+                            </a>
+                            <a>
+                                <button name="project" value="project">Project</button>
+                            </a>
+                        </p>
+
+                        {#        <label class="panel-block">#}
+                        {#            <input type="checkbox">#}
+                        {#            remember me#}
+                        {#        </label>#}
+                        {#        <div class="panel-block">#}
+                        {#            <button class="button is-link is-outlined is-fullwidth" name="reset" value="reset">#}
+                        {#                Reset all filters#}
+                        {#            </button>#}
+                        {#        </div>#}
+                    </form>
+                </div>
             </div>
-        </form>
-        <p class="panel-tabs">
-            <a class="is-active">All</a>
-            <a>General</a>
-            <a>Lectures</a>
-            <a>Lab</a>
-            <a>Homework</a>
-            <a>Project</a>
-        </p>
-{#        <label class="panel-block">#}
-{#            <input type="checkbox">#}
-{#            remember me#}
-{#        </label>#}
-        <div class="panel-block">
-            <button class="button is-link is-outlined is-fullwidth">
-                Reset all filters
-            </button>
-        </div>
-    </div>
 {# --------------------------- search function ---------------------------#}
 
 {# --------------------------- display threads ---------------------------#}
+        <div class="column" style="height: 800px; overflow-y: auto;">
     {% for each_thread in post_thread %}
 
-        <div class="card" type="button">
+        <div class="card" type="button" >
             <a>
             <header class="card-header" id="display_thread"
                     data-post_id="{{ each_thread.id }}"
@@ -180,7 +200,7 @@
 
         <br>
     {% endfor %}
-</div>
+</div></div>
 {# --------------------------- display threads ---------------------------#}
 
 {# --------------------------- other functions ---------------------------#}
@@ -231,16 +251,17 @@
 {# --------------------------- other functions ---------------------------#}
 
 {# --------------------------- dynamicly display threads ---------------------------#}
-    <div class="column is-two-fifths" >
+    <div class="column is-three-fifths" >
         <div class="card">
             <header class="card-header" id="display_thread">
                 <p class="card-header-title" id="show_post_title">
-
                 </p>
-                <h1 id="show_post_category"> </h1>
+                <br>
+
             </header>
             <div class="card-content">
                 <div class="content" >
+                    <p id="show_post_category"> </p>
                     <p id="show_post_content"> </p>
                     <br>
                     <time datetime="" id="show_post_time"></time>
