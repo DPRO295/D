@@ -13,6 +13,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.forms import ModelForm
 
 
+# ----------------------------------------  test use ----------------------------------------
 class UserModelForm(ModelForm):
     class Meta:
         model = User
@@ -38,6 +39,7 @@ def test(request):
                                                  "user_email": request.user.email,
                                                  "username": request.user.username,
                                                  "which_post": post_kind})
+# ----------------------------------------  test use ----------------------------------------
 
 
 # Create your views here.
@@ -48,6 +50,7 @@ def home(request):
         return render(request, "home.html")
 
 
+@csrf_protect
 def main_page(request):
     if request.method == "GET":
         # -------- test case -----------
@@ -61,6 +64,7 @@ def main_page(request):
         # -------- test case -----------
 
         # search_dic = {}
+        print(request.GET.get("general"))
         query = request.GET.get("search", "")       # if there is query get it otherwise blank
         user_obj = request.user.is_authenticated
         email = request.user.email
@@ -80,6 +84,22 @@ def main_page(request):
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": user_obj, "user": request.user,"user_email": email,
                        "username": request.user.username, "query": query})
+    if request.method == "POST":
+        post_kind_list = list(request.POST)
+        post_kind = post_kind_list[1]
+        print("post_kind", post_kind)
+
+        if post_kind == "all" or post_kind == "resset":
+            all_thread = PostThread.objects.order_by("date").reverse()
+        else:
+            all_thread = PostThread.objects.filter(category=post_kind).order_by("date").reverse()
+
+        for post in all_thread:
+            is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
+            post.is_liked = is_liked
+        return render(request, "main_page.html",
+                      {"post_thread": all_thread, "check_login": request.user.is_authenticated, "user": request.user,
+                       "user_email": request.user.email,"username": request.user.username,})
 
 
 @csrf_exempt
@@ -88,3 +108,5 @@ def show_thread(request):
     thread_data = request.POST.dict()             # convert request POST to dict() type
     # print(thread_data)
     return HttpResponse(json.dumps(thread_data))   # dump the thread_data to json type
+
+
