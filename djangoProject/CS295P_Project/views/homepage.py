@@ -76,7 +76,8 @@ def main_page(request):
         #     search_dic["content"] = query
 
         # TODO only search for the "content" part from "postthread" table for now
-        all_thread = PostThread.objects.filter(content__contains=query).order_by("date").reverse()
+        all_thread = (PostThread.objects.filter(content__contains=query)
+                      | PostThread.objects.filter(title__contains=query)).order_by("date").reverse()
         for post in all_thread:
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
             post.is_liked = is_liked
@@ -84,19 +85,24 @@ def main_page(request):
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": user_obj, "user": request.user,"user_email": email,
                        "username": request.user.username, "query": query})
-    if request.method == "POST":
-        post_kind_list = list(request.POST)
-        post_kind = post_kind_list[1]
-        print("post_kind", post_kind)
 
-        if post_kind == "all" or post_kind == "resset":
+    if request.method == "POST":
+        # print(request.POST)
+        # convert the POST queryset to list.
+        post_kind_list = list(request.POST)     # <QueryDict: {'csrftoken':['token'],'post_name':['post_value'], ... ,}
+        # print(post_kind_list)                 # ['csrftoken', 'post_value']
+        post_kind = post_kind_list[1]           # so we can get the actual post kind from " post_kind_list[1] "
+        print("post_kind", post_kind)
+        # reset is same as all, can be removed
+        if post_kind == "all" or post_kind == "resset":                    # if post kind is all no filter
             all_thread = PostThread.objects.order_by("date").reverse()
-        else:
+        else:                                                              # filter the posts with post_kind
             all_thread = PostThread.objects.filter(category=post_kind).order_by("date").reverse()
 
         for post in all_thread:
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
             post.is_liked = is_liked
+
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": request.user.is_authenticated, "user": request.user,
                        "user_email": request.user.email,"username": request.user.username,})
