@@ -56,5 +56,6 @@ urlpatterns = [
     path("test/", views.test),
 
     # reward
-    path("response_reward/", views.res_reward)
+    path("response_reward/", views.res_reward),
+    path("post_reward/",views.post_reward),
 ]

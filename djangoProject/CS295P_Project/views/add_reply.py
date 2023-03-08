@@ -18,7 +18,7 @@ def add_reply(request):
     reply.save()
     return HttpResponse("Reply added successfully!")
 
-class Comment(models.Model):
-    # Comment model fields
-    def get_replies(self):
-        return self.reply_set.all()
+# class Comment(models.Model):
+#     # Comment model fields
+#     def get_replies(self):
+#         return self.reply_set.all()

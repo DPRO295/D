@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from math import pow
 # python manage.py makemigrations
 # python manage.py migrate
 
@@ -14,6 +15,25 @@ class PostThread(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
 
+
+class PostReward(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.TextField(max_length=255)
+    content = models.TextField(max_length=pow(2,15))
+    date = models.DateTimeField(auto_now=True)
+    category = models.CharField(max_length=32)
+    coin_num = models.IntegerField(default=0)
+    is_taken = models.BooleanField(default=False)
+    is_completed = models.BooleanField(default=False)
+    likes = models.IntegerField(default=0)
+    dislikes = models.IntegerField(default=0)
+class AnswerReward(models.Model):
+    answer_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    reward = models.ForeignKey(PostReward, on_delete=models.CASCADE)
+    content = models.TextField(max_length=pow(2,15))
+    date = models.DateTimeField(auto_now=True)
+    is_read = models.BooleanField(default=False)
+    is_satisfied = models.BooleanField(default=False)
 
 class User_liked_Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
