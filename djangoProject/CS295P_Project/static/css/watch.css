@@ -1,0 +1,19 @@
+.unwatch {
+  border: none;
+  background-color: transparent;
+  padding-left: 15px;
+}
+
+/* Define a class for buttons with no border and a red background color */
+.watch {
+  border: none;
+padding-left: 15px;
+  color: red;
+  background-color: transparent;
+}
+
+
+
+button i.fa-eye {
+  font-size: 1.5em; /* or any other value you prefer */
+}

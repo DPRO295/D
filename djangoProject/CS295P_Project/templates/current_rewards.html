@@ -8,7 +8,9 @@
     <title>main_page</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/170b34daeb.js" crossorigin="anonymous"></script>
-    <script src="{% static 'js/like_dislike.js' %}"></script>
+    <script src="{% static 'js/watch.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/watch.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/reward.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/like_dislike.css' %}">
 
     <style>
@@ -132,10 +134,10 @@
 
     {# --------------------------- search function ---------------------------#}
         <div class="column is-two-fifths">
-            <div class="column">
+            <div class="column ">
                 <div class="card is-mobile">
                     <form method="get">
-                        <div class="panel-block">
+                        <div class="panel-block r">
                             <p class="control has-icons-left">
                                 <input class="input" type="text" name="search" placeholder="Search" value="{{ query }}">
                                 <span class="icon is-left">
@@ -191,7 +193,7 @@
             <a>
             <header class="card-header" id="display_thread"
                     data-post_id="{{ each_thread.id }}"
-                    data-post_email="{{ each_thread.email }}"
+{#                    data-post_email="{{ user.email }}"#}
                     data-post_title="{{ each_thread.title }}"
                     data-post_date="{{ each_thread.date }}"
                     data-post_content="{{ each_thread.content }}"
@@ -220,18 +222,18 @@
 
             <footer class="card-footer">
 
-                <button id="like-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"
-                    data-isliked="{{ each_thread.is_liked }}"
+                <button id="watch-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"
+                    data-iswatched="{{ each_thread.is_watched }}"
                     data-userid = "{{ user.id }}">
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-eye "></i>
                 </button>
-                <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>
+                <span id="watch-count{{ each_thread.id }}">{{ each_thread.watches }}</span>
 
-                <a href="/save_bookmark_thread/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">Save</a>
+                <a href="/save_bookmark_reward/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">Save</a>
 
-                {% if each_thread.email == user_email %}
-                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
-                <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
+                {% if each_thread.user.id == user.id %}
+                <a href="/edit_reward/{{ each_thread.id }}" class="card-footer-item">Edit</a>
+                <a href="/delete_reward/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
                 {% endif %}
             </footer>
         </div>
@@ -327,7 +329,7 @@
 </button>
 
 <script src="{% static 'js/roll.js' %}"></script>
-<script src="{% static 'js/show_thread.js' %}"></script>
+<script src="{% static 'js/show_reward.js' %}"></script>
 
 </body>
 {% endblock %}

@@ -32,10 +32,10 @@
                 </div>
             </div>
             <footer class="card-footer">
-                {% if each_thread.email == user_email %}
-                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
+                {% if each_thread.user.id == user.id %}
+                <a href="/edit_reward/{{ each_thread.id }}" class="card-footer-item">Edit</a>
                 {% endif %}
-            <a href="/delete_bookmark/{{ each_thread.id }}" class="card-footer-item">Delete BookMark</a>
+            <a href="/delete_bookmark_reward/{{ each_thread.id }}" class="card-footer-item">Delete Reward BookMark</a>
             </footer>
         </div>
         <br>

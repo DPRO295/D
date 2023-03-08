@@ -1,0 +1,65 @@
+{% extends 'auth_layout.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        Edit Your Reward
+      </h1>
+      <h2 class="subtitle has-text-centered">
+        Update your reward with new content.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div class="container edit-thread">
+  <form method="post">
+    {% csrf_token %}
+    <div class="field">
+      <label class="label" for="title">Title:</label>
+      <div class="control">
+        <input class="input" type="text" id="title" name="title" value="{{ thread_data.title }}">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label" for="category">Category:</label>
+      <div class="control">
+        <div class="select">
+          <select id="category" name="category">
+              <option value="general">General</option>
+              <option value="lectures">Lectures</option>
+              <option value="lab">Lab</option>
+              <option value="homework">Homework</option>
+              <option value="project">Project</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="label" for="content">Content:</label>
+      <div class="control">
+          {# <textarea class="textarea" id="content" name="content" rows="5"></textarea> #}
+          <input class="textarea" type="content" id="content" name="content" value="{{ thread_data.content }}">
+      </div>
+    </div>
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-primary" type="submit">Save Changes</button>
+      </div>
+      <div class="control">
+        <button class="button is-danger is-light" type="reset">Discard Changes</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-pulled-right" type="reset" onclick="history.back()">Return</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+{% endblock %}

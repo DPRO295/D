@@ -22,9 +22,18 @@
             <a class="navbar-item" href="/main_page/"> Home </a>
             <a class="navbar-item"> Discussion </a>
             <a class="navbar-item" href="/post_thread/"> New Thread </a>
+            <a class="navbar-item" href="/current_rewards/"> Rewards </a>
             <a class="navbar-item" href="/post_reward/"> New Reward </a>
             <a class="navbar-item"> Private Message </a>
-            <a class="navbar-item" href="/my_bookmark/"> BookMark </a>
+{#            <a class="navbar-item" href="/my_bookmark/"> BookMark </a>#}
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link"> BookMark</a>
+                <div class="navbar-dropdown">
+                    <a href="/my_bookmark_thread/" class="navbar-item"> Threads </a>
+                    <a href="/my_bookmark_reward/" class="navbar-item"> Rewards </a>
+                </div>
+            </div>
 
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link"> More</a>

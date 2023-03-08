@@ -14,4 +14,4 @@ def post_reward(request):
     category = request.POST.get("category")
     coin_num = request.POST.get("coin_num")
     PostReward.objects.create(title=title, content=content, user_id=request.user.id, category=category, coin_num=coin_num)
-    return redirect("/main_page/")
+    return redirect("/current_rewards/")
