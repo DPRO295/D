@@ -42,10 +42,12 @@ urlpatterns = [
     path("show_thread/", views.show_thread),
 
     # my_book_mark functions:
-    path("my_bookmark/", views.my_bookmark),
-    path("save_bookmark/<int:post_id>/<int:user_id>/", views.save_bookmark),
-    path("delete_bookmark/<int:post_id>/", views.delete_bookmark),
-
+    path("my_bookmark_thread/", views.my_bookmark_thread),
+    path("my_bookmark_reward/", views.my_bookmark_reward),
+    path("save_bookmark_thread/<int:post_id>/<int:user_id>/", views.save_bookmark_thread),
+    path("delete_bookmark_thread/<int:post_id>/", views.delete_bookmark_thread),
+    path("save_bookmark_reward/<int:post_id>/<int:user_id>/", views.save_bookmark_reward),
+    path("delete_bookmark_reward/<int:post_id>/", views.delete_bookmark_reward),
     # post thread functions:
     path("post_thread/", views.post_thread),
     path("edit_thread/<int:nid>/", views.edit_thread),
@@ -56,5 +58,11 @@ urlpatterns = [
     path("test/", views.test),
 
     # reward
-    path("response_reward/", views.res_reward)
+    path("response_reward/", views.res_reward),
+    path("post_reward/",views.post_reward),
+    path("current_rewards/", views.current_rewards),
+    path("show_reward/", views.show_reward),
+    path("edit_reward/<int:nid>/", views.edit_reward),
+    path("delete_reward/", views.delete_reward),
+    path('change_watch/<int:post_id>/<int:user_id>/<str:iswatched>/', views.change_watch, name='change_like'),
 ]
