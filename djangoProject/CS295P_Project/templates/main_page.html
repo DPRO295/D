@@ -227,12 +227,22 @@
                 </button>
                 <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>
 
-                <a href="/save_bookmark_thread/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">Save</a>
+                <a href="/save_bookmark_thread/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">
+                    <span class="icon"><i class="fa-regular fa-floppy-disk"></i></span>
+                    <span>Save</span>
+                </a>
 
                 {% if each_thread.email == user_email %}
-                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">Edit</a>
-                <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
+                <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">
+                    <span class="icon"><i class="fa-regular fa-pen-to-square"></i></span>
+                    <span>Edit</span>
+                </a>
+                <a href="/delete_post/?nid={{ each_thread.id }}" class="card-footer-item">
+                    <span class="icon"><i class="fa-regular fa-trash-can"></i></span>
+                    <span>Delete</span>
+                </a>
                 {% endif %}
+
             </footer>
         </div>
 

@@ -12,19 +12,21 @@
                 var content  = $(this).data("post_content")
                 var category  = $(this).data("post_category")
                 var user_id  = $(this).data("post_user_id")
-                var coin_num = $(this).data("coin_num")
+                var mycoin_num = $(this).data("coin_num")
+                var mywatches = $(this).data("mywatches")
                 $.ajax({
                     url: '/show_reward/',
                     method: 'POST',
                     data: {
                         post_id: post_id,
                         title:title,
-                        emil:email,
+                        email:email,
                         date:date,
                         content:content,
                         category:category,
                         user_id:user_id,
-                        coin_num:coin_num
+                        coin_num:mycoin_num,
+                        mywatches:mywatches,
                     },
                     dataType:"JSON",               // convert the data from POST and read as JSON
                     success: function (res) {
@@ -38,6 +40,8 @@
                          tag4.innerText = res["date"]
                         var tag5 = document.getElementById("show_coin_num");
                          tag5.innerText = res["coin_num"]
+                        var tag6 = document.getElementById("show_watches");
+                         tag6.innerText = res["mywatches"]
                         console.log(res);
                     }
                 });

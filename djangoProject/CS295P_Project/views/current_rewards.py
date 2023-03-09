@@ -26,6 +26,8 @@ def current_rewards(request):
 
         # search_dic = {}
         # print(request.GET.get("general"))
+        if not request.user.is_authenticated:
+            return render(request, "home.html")
         query = request.GET.get("search", "")  # if there is query get it otherwise blank
         user_obj = request.user.is_authenticated
         email = request.user.email

@@ -150,26 +150,17 @@
 
                     <form method="post">
                         {% csrf_token %}
-                        <p class="panel-tabs">
-                            <a class="is-active">
-                                <button name="all" value="all">All</button>
-                            </a>
-                            <a>
-                                <button name="general" value="general">General</button>
-                            </a>
-                            <a>
-                                <button name="lectures" value="lectures">Lectures</button>
-                            </a>
-                            <a>
-                                <button name="lab" value="lab">Lab</button>
-                            </a>
-                            <a>
-                                <button name="homework" value="homework">Homework</button>
-                            </a>
-                            <a>
-                                <button name="project" value="project">Project</button>
-                            </a>
-                        </p>
+                        <div class="columns is-mobile">
+                                <div class="column ">
+
+                                <button class="button is-ghost is-medium" name="all" value="all">All</button>
+                                <button class="button is-ghost is-medium" name="general" value="general">General</button>
+                                <button class="button is-ghost is-medium" name="lectures" value="lectures">Lectures</button>
+                                <button class="button is-ghost is-medium" name="lab" value="lab">Lab</button>
+                                <button class="button is-ghost is-medium" name="homework" value="homework">Homework</button>
+                                <button class="button is-ghost is-medium" name="project" value="project">Project</button>
+                                </div>
+                        </div>
 
                         {#        <label class="panel-block">#}
                         {#            <input type="checkbox">#}
@@ -188,7 +179,6 @@
 {# --------------------------- display threads ---------------------------#}
         <div class="column" style="height: 800px; overflow-y: auto;">
     {% for each_thread in post_thread %}
-
         <div class="card" type="button" >
             <a>
             <header class="card-header" id="display_thread"
@@ -199,6 +189,8 @@
                     data-post_content="{{ each_thread.content }}"
                     data-post_category="{{ each_thread.category }}"
                     data-post_user_id="{{ user.id }}"
+                    data-coin_num="{{ each_thread.coin_num }}"
+                    data-mywatches="{{ each_thread.watches }}"
             >
                 <p class="card-header-title">
                     {{ each_thread.title }}
@@ -206,11 +198,21 @@
                     {{ each_thread.category }}
                     <br>
                 </p>
-                <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
+{#                <button class="card-header-icon" aria-label="more options">#}
+{#      <span class="icon">#}
+{#        <i class="fas fa-angle-down" aria-hidden="true"></i>#}
+{#      </span>#}
+{#                </button>#}
+                <button class="card-header-icon">
+                    <span class="icon">
+                        <i class="fa-solid fa-coins" style="color:#00b300;font-size:1.5em"></i>
+
+                    </span>
+                    <span style="color:#00b300;padding:0 5px">
+                        {{ each_thread.coin_num }}
+                    </span>
                 </button>
+
             </header></a>
 
               <div class="card-content">
@@ -229,11 +231,20 @@
                 </button>
                 <span id="watch-count{{ each_thread.id }}">{{ each_thread.watches }}</span>
 
-                <a href="/save_bookmark_reward/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">Save</a>
+                <a href="/save_bookmark_reward/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">
+                     <span class="icon"><i class="fa-regular fa-floppy-disk"></i></span>
+                    <span>Save</span>
+                </a>
 
                 {% if each_thread.user.id == user.id %}
-                <a href="/edit_reward/{{ each_thread.id }}" class="card-footer-item">Edit</a>
-                <a href="/delete_reward/?nid={{ each_thread.id }}" class="card-footer-item">Delete</a>
+                <a href="/edit_reward/{{ each_thread.id }}" class="card-footer-item">
+                    <span class="icon"><i class="fa-regular fa-pen-to-square"></i></span>
+                    <span>Edit</span>
+                </a>
+                <a href="/delete_reward/?nid={{ each_thread.id }}" class="card-footer-item">
+                    <span class="icon"><i class="fa-regular fa-trash-can"></i></span>
+                    <span>Delete</span>
+                </a>
                 {% endif %}
             </footer>
         </div>
@@ -296,7 +307,29 @@
         <div class="card is-mobile" >
             <header class="card-header">
               <p class="card-header-title" id="show_post_title"></p>
-              <br>
+
+                <button class="card-header-icon">
+                    <span class="icon">
+                        <i class="fa-solid fa-square-check"></i>
+                    </span>
+                    <span id="accept_reward">
+                    </span>
+                </button>
+                <button class="card-header-icon">
+                    <span class="icon">
+                        <i class="fa-solid fa-coins" style="color:#00b300;font-size:1.5em"></i>
+
+                    </span>
+                    <span style="padding:0 5px; color:#00b300;" id="show_coin_num">
+                    </span>
+                </button>
+{#                <button class="card-header-icon">#}
+{#                    <span class="icon">#}
+{#                        <i class="fa-solid fa-eye"></i>#}
+{#                    </span>#}
+{#                    <span style="padding:0 5px" id="show_watches">#}
+{#                    </span>#}
+{#                </button>#}
             </header>
             <div class="card-content">
             <div class="content">

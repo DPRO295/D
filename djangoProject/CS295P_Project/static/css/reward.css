@@ -10,3 +10,19 @@
 .bluebody{
     background-color: #ccd8ff;
 }
+
+.reward_search_filter{
+    border: 0;
+    color: #ffe699;
+}
+
+
+/*<button class="card-header-icon">*/
+/*    <span class="icon">*/
+/*        <i class="fa-solid fa-coins" style="color:#00b300;font-size:1.5em"></i>*/
+
+/*    </span>*/
+/*    <span style="color:#00b300;padding:0 5px">*/
+/*        {{ each_thread.coin_num }}*/
+/*    </span>*/
+/*</button>*/
