@@ -1,0 +1,110 @@
+{% extends 'auth_layout.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+<link rel="stylesheet" href="{% static 'css/reward.css' %}">
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">
+        Post a New Reward
+      </h1>
+      <h2 class="subtitle has-text-centered">
+        Use your Coin and wait for solutions!
+      </h2>
+    </div>
+  </div>
+</section>
+{# --------------------------- show exist posts ---------------------------#}
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-third">
+      <div class="existing-posts" style="height: 400px; overflow-y: auto;">
+        <h2 class="title">Existing Rewards</h2>
+        {% for each_reward in Rewards %}
+{#            {% if each_thread.email == user_email  %}#}
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{ each_reward.title }}
+                </p>
+                <p class="coin_show" >
+                    coins:
+                    {{ each_reward.coin_num }}
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    {{ each_reward.content }}
+                    <br>
+                    <time datetime="">{{ each_reward.date }}</time>
+                    <br>
+                </div>
+            </div>
+            <footer class="card-footer">
+            </footer>
+        </div>
+        <br>
+{#            {% endif %}#}
+            {% endfor %}
+
+      </div>
+    </div>
+  {# --------------------------- show exist posts ---------------------------#}
+
+  {# --------------------------- post thread fn ---------------------------#}
+    <div class="column is-two-thirds">
+      <div class="create-post">
+        <form method="post">
+          {% csrf_token %}
+           <div class = "field">
+                <label class="label" for="title">Coins:</label>
+                <div class="control">
+                  <input class="input" style="width:15%" type="number" id="coin_num" name="coin_num">
+                </div>
+           </div>
+          <div class="field">
+            <label class="label" for="title">Title:</label>
+            <div class="control">
+              <input class="input" type="text" id="title" name="title">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="category">Category:</label>
+            <div class="control">
+              <div class="select">
+                <select id="category" name="category">
+                  <option value="general">General</option>
+                  <option value="lectures">Lectures</option>
+                  <option value="lab">Lab</option>
+                  <option value="homework">Homework</option>
+                  <option value="project">Project</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label" for="content">Content:</label>
+            <div class="control">
+              <textarea class="textarea" id="content" name="content" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-primary" type="submit">Post</button>
+            </div>
+            <div class="control">
+{#              <button class="button is-danger is-light" type="reset">Cancel</button>#}
+                <a class="button is-danger is-light"  href="/main_page/">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  {# --------------------------- post thread fn ---------------------------#}
+  </div>
+</div>
+
+{% endblock %}

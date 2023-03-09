@@ -115,4 +115,3 @@ def show_thread(request):
     # print(thread_data)
     return HttpResponse(json.dumps(thread_data))   # dump the thread_data to json type
 
-

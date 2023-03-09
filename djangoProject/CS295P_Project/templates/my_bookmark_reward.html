@@ -1,0 +1,47 @@
+{% extends 'auth_layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my_bookmark</title>
+</head>
+<body>
+   {% for each_thread in display_bookmark %}
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    {{ each_thread.title }}
+                    <br>
+                    {{ each_thread.category }}
+                </p>
+                <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+                </button>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    {{ each_thread.content }}
+                    <br>
+                    <time datetime="">{{ each_thread.date }}</time>
+                    <br>
+                </div>
+            </div>
+            <footer class="card-footer">
+                {% if each_thread.user.id == user.id %}
+                <a href="/edit_reward/{{ each_thread.id }}" class="card-footer-item">Edit</a>
+                {% endif %}
+            <a href="/delete_bookmark_reward/{{ each_thread.id }}" class="card-footer-item">Delete Reward BookMark</a>
+            </footer>
+        </div>
+        <br>
+    {% endfor %}
+
+</body>
+</html>
+
+{% endblock %}
