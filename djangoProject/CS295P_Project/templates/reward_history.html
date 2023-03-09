@@ -1,0 +1,79 @@
+{% extends 'auth_layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Page</title>
+    <style>
+      .highlight {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="columns" style="margin-top: 80px;">
+      <div class="column">
+        <h1 class="title">pending questions</h1>
+        <div id="unfinished-questions" style="margin-top: 80px;">
+          <!-- 未完成提问列表 -->
+        </div>
+      </div>
+      <div class="column">
+        <h1 class="title">pending answers</h1>
+        <div id="unfinished-answers" style="margin-top: 80px;">
+          <!-- 未完成回答列表 -->
+        </div>
+      </div>
+      <div class="column">
+        <h1 class="title">completed</h1>
+        <div id="completed-questions" style="margin-top: 80px;">
+          <!-- 已完成问题列表 -->
+        </div>
+      </div>
+    </div>
+    <div id="data" style="display: none;">{{ data }}</div>
+
+    <script>
+        const data = JSON.parse(document.getElementById('data').textContent);
+        console.log(data)
+        const unfinishedQuestions = data.unfinished_questions;
+        const unfinishedAnswers = data.pending_answer;
+        const completedQuestions = data.finished_questions;
+
+      const renderQuestions = (questions, container) => {
+        container.innerHTML = '';
+        questions.forEach(question => {
+          const questionLink = `<a href="/current_rewards/" class="question-link">${question.content}</a>`;
+          const questionBox = document.createElement('div');
+          questionBox.classList.add('box');
+          questionBox.innerHTML = questionLink;
+          questionBox.addEventListener('mouseover', () => {
+            questionBox.classList.add('highlight');
+          });
+          questionBox.addEventListener('mouseout', () => {
+            questionBox.classList.remove('highlight');
+          });
+          questionBox.addEventListener('click', () => {
+            window.location.href = '/current_rewards/';
+          });
+          container.appendChild(questionBox);
+        });
+      };
+
+      const unfinishedQuestionsContainer = document.querySelector('#unfinished-questions');
+      renderQuestions(unfinishedQuestions, unfinishedQuestionsContainer);
+
+      const unfinishedAnswersContainer = document.querySelector('#unfinished-answers');
+      renderQuestions(unfinishedAnswers, unfinishedAnswersContainer);
+
+      const completedQuestionsContainer = document.querySelector('#completed-questions');
+      renderQuestions(completedQuestions, completedQuestionsContainer);
+    </script>
+  </body>
+
+</html>
+
+{% endblock %}
