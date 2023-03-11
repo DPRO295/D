@@ -65,4 +65,6 @@ urlpatterns = [
     path("edit_reward/<int:nid>/", views.edit_reward),
     path("delete_reward/", views.delete_reward),
     path('change_watch/<int:post_id>/<int:user_id>/<str:iswatched>/', views.change_watch, name='change_like'),
+    path('ans_history/', views.get_reward_history),
+    path('teach_as/',views.teach_side),
 ]

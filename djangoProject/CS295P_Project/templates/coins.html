@@ -9,7 +9,7 @@
             <div class="columns">
                 <div class="column is-half">
                     <div class="box">
-                        <h2 class="subtitle">Total Coins</h2>
+                        <h2 class="subtitle">Coins changer</h2>
                         <form method="POST">
                             {% csrf_token %}
                             <div class="field has-addons">
@@ -33,9 +33,11 @@
                                     </button>
                                 </div>
                             </div>
+                            <div class="subtitle"><br><br><br><br>Total Coins: {{ coins_remain }}</div>
                         </form>
                     </div>
                 </div>
+
                 <div class="column is-half">
                     <div class="box">
                         <h2 class="subtitle">Recent Transactions</h2>
