@@ -7,25 +7,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
 </head>
 <body>
 <!-- ======================== navbar start ======================== -->
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="/home/">
-            ZotRun
-        </a>
+    <a class="navbar-item" style="height: 44px" href="/home/">
+        <img src="{% static 'img/logo.png' %}" alt="ZotRun Logo">
+    </a>
     </div>
 
     <div id="main_navbar" class="navbar-menu">
         <div class="navbar-start">
 
             <a class="navbar-item" href="/main_page/"> Home </a>
-            <a class="navbar-item"> Discussion </a>
-            <a class="navbar-item" href="/post_thread/"> New Thread </a>
+            {#  <a class="navbar-item"> Discussion </a> #}
+            {# <a class="navbar-item" href="/post_thread/"> New Thread </a> #}
             <a class="navbar-item" href="/current_rewards/"> Rewards </a>
-            <a class="navbar-item" href="/post_reward/"> New Reward </a>
-            <a class="navbar-item"> Private Message </a>
+            {# <a class="navbar-item" href="/post_reward/"> New Reward </a> #}
+            {# <a class="navbar-item"> Private Message </a> #}
 {#            <a class="navbar-item" href="/my_bookmark/"> BookMark </a>#}
 
             <div class="navbar-item has-dropdown is-hoverable">
@@ -33,6 +35,15 @@
                 <div class="navbar-dropdown">
                     <a href="/my_bookmark_thread/" class="navbar-item"> Threads </a>
                     <a href="/my_bookmark_reward/" class="navbar-item"> Rewards </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class = "navbar-link">Courses</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-item my-colorful-link">Course 1</a>
+                    <a class="navbar-item my-colorful-link">Course 2</a>
+                    <a class="navbar-item my-colorful-link">Course 3</a>
                 </div>
             </div>
 
