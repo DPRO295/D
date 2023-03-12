@@ -31,22 +31,22 @@ def edit_thread(request, nid):
     if request.method == "GET":
         # send login info
         user_obj = request.user.is_authenticated
-        email = request.user.email
+        # email = request.user.email
         # print(nid)
         thread_data = PostThread.objects.filter(id=nid).first()
         # print(thread_data.title, thread_data.content)
         return render(request, "edit_thread.html",
-                      {"check_login": user_obj, "user_email": email,
+                      {"check_login": user_obj,
                        "username": request.user.username, "thread_data": thread_data}
                       )
     # if it's a POST request
-    email = request.user.email
+    user = request.user.id
     title = request.POST.get("title")
     content = request.POST.get("content")
     category = request.POST.get("category")
     # have to manually update time even set to "auto_now=True", since calling update will not go through "models".
     # the "auto_now=True" will not be triggered
-    PostThread.objects.filter(id=nid).update(title=title, content=content, email=email,
+    PostThread.objects.filter(id=nid).update(title=title, content=content, user=user,
                                              category=category, date=datetime.now())
     return redirect("/main_page/")
 

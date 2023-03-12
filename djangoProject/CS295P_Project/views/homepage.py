@@ -9,7 +9,7 @@ from datetime import *
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
-
+from django.forms.models import model_to_dict
 from django.forms import ModelForm
 
 
@@ -110,10 +110,28 @@ def main_page(request):
                        "user_email": request.user.email,"username": request.user.username,})
 
 
+# @csrf_exempt
+# def show_thread(request):
+#     # print(request.POST)                         # for debug use
+#     thread_data = request.POST.dict()             # convert request POST to dict() type
+#     # print(thread_data)
+#     return HttpResponse(json.dumps(thread_data))   # dump the thread_data to json type
+from django.core import serializers
 @csrf_exempt
 def show_thread(request):
-    # print(request.POST)                         # for debug use
-    thread_data = request.POST.dict()             # convert request POST to dict() type
-    # print(thread_data)
-    return HttpResponse(json.dumps(thread_data))   # dump the thread_data to json type
-
+    thread_id=request.POST.get('thread_id')
+    thread_s=PostThread.objects.filter(id=thread_id)
+    thread=thread_s.first()
+    comments=thread.commentthread_set.all()
+    thread_d=list(thread_s.values())[0]
+    comments_d=list(comments.values())
+    # thread_d = serializers.serialize('json', [thread])
+    # comments_d = serializers.serialize('json', comments)
+    # print(thread_d)
+    post_user_name=User.objects.filter(id=thread.user.id).first().username
+    thread_d['post_user_name']=post_user_name
+    for comment_d in comments_d:
+        user_name=User.objects.filter(id=comment_d['comment_user_id']).first().username
+        comment_d['user_name']=user_name
+    data={"thread":thread_d,"comments":comments_d}
+    return JsonResponse(data)

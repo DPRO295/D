@@ -37,7 +37,8 @@ def signin(request):
         if user_obj:
             # if login successfully set the session
             auth.login(request, user_obj)
-            return redirect("/home/")
+            # return redirect("/home/")
+            return redirect("/current_rewards/")
         else:
             return render(request, "signin.html", {"error_msg": "Wrong username or password"})
 

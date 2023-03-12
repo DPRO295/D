@@ -7,14 +7,21 @@ from math import pow
 
 # Create your models here.
 class PostThread(models.Model):
-    email = models.CharField(max_length=32)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
+    # email = models.CharField(max_length=32)
     title = models.TextField(max_length=255)
     content = models.TextField(max_length=255)
     date = models.DateTimeField(auto_now=True)
     category = models.CharField(max_length=32)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
+    tip_num = models.IntegerField(default=0)
 
+class CommentThread(models.Model):
+    comment_user=models.ForeignKey(User, on_delete=models.CASCADE)
+    thread=models.ForeignKey(PostThread, on_delete=models.CASCADE)
+    content = models.TextField(max_length=pow(2, 15))
+    date = models.DateTimeField(auto_now=True)
 
 class PostReward(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -24,6 +31,7 @@ class PostReward(models.Model):
     category = models.CharField(max_length=32)
     coin_num = models.IntegerField(default=0)
     is_taken = models.BooleanField(default=False)
+    taken_user_id = models.IntegerField(default=0)
     is_completed = models.BooleanField(default=False)
     watches = models.IntegerField(default=0)
 

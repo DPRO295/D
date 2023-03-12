@@ -96,7 +96,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'ENGINE': 'mysql.connector.django',
-        'NAME': 'mydb3',
+        'NAME': 'db',
         'USER': 'root',
         'PASSWORD': 'a85881165z',
         'HOST': 'localhost',

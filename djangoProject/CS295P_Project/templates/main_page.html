@@ -191,7 +191,7 @@
             <a>
             <header class="card-header" id="display_thread"
                     data-post_id="{{ each_thread.id }}"
-                    data-post_email="{{ each_thread.email }}"
+                    data-post_user="{{ each_thread.user }}"
                     data-post_title="{{ each_thread.title }}"
                     data-post_date="{{ each_thread.date }}"
                     data-post_content="{{ each_thread.content }}"
@@ -232,7 +232,7 @@
                     <span>Save</span>
                 </a>
 
-                {% if each_thread.email == user_email %}
+                {% if each_thread.user.id == user.id %}
                 <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">
                     <span class="icon"><i class="fa-regular fa-pen-to-square"></i></span>
                     <span>Edit</span>
@@ -301,26 +301,30 @@
 {# --------------------------- dynamicly display threads ---------------------------#}
     <div class="column is-three-fifths">
         <div class="column" style="position: sticky; top: 20px;">
-        <div class="card is-mobile" >
-            <header class="card-header">
-              <p class="card-header-title" id="show_post_title"></p>
-              <br>
-            </header>
-            <div class="card-content">
-            <div class="content">
-                <p id="show_post_category"> </p>
-                <p id="show_post_content"> </p>
-                <br>
-                <time datetime="" id="show_post_time"></time>
-                <br>
-            </div>
-            </div>
-            <div class="card">
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Answer</a>
-                </footer>
-            </div>
-{#            <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>#}
+        <div id='parent' class="card is-mobile" >
+{#            <header class="card-header">#}
+{#              <p class="card-header-title" id="show_post_title"></p>#}
+{#              <br>#}
+{#            </header>#}
+{#            <div class="card-content">#}
+{#            <div class="content">#}
+{#                <p id="show_post_category"> </p>#}
+{#                <p id="show_post_content"> </p>#}
+{#                <br>#}
+{#                <time datetime="" id="show_post_time"></time>#}
+{#                <br>#}
+{#            </div>#}
+{#            </div>#}
+{##}
+{##}
+{#                <div style="height:30px;background-color:white"></div>#}
+{#                {% for answer in answers %}#}
+{#                    <div class="card-content">{{ answer.content }}</div>#}
+{#                <div style="background-color:white;height:30px">#}
+{#                    <div style="float:right;"> author: {{ answer.answer_user.username }}</div>#}
+{#                </div>#}
+{#                {% endfor %}#}
+
         </div>
         </div>
   {# --------------------------- dynamically display threads ---------------------------#}

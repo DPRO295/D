@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/watch.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/reward.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/like_dislike.css' %}">
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/answer.css' %}">
     <style>
         /* Styles for the search bar */
         .panel {
@@ -177,11 +177,11 @@
 {# --------------------------- search function ---------------------------#}
 
 {# --------------------------- display threads ---------------------------#}
-        <div class="column" style="height: 800px; overflow-y: auto;">
+        <div id="directory" class="column" style="height: 800px; overflow-y: auto;">
     {% for each_thread in post_thread %}
         <div class="card" type="button" >
-            <a>
-            <header class="card-header" id="display_thread"
+            <a href="/current_rewards/?reward_id={{ each_thread.id }}">
+            <header class="card-header" id="display_thread{{ each_thread.id }}"
                     data-post_id="{{ each_thread.id }}"
 {#                    data-post_email="{{ user.email }}"#}
                     data-post_title="{{ each_thread.title }}"
@@ -191,6 +191,7 @@
                     data-post_user_id="{{ user.id }}"
                     data-coin_num="{{ each_thread.coin_num }}"
                     data-mywatches="{{ each_thread.watches }}"
+                    data-post_is_taken="{{ each_thread.is_taken }}"
             >
                 <p class="card-header-title">
                     {{ each_thread.title }}
@@ -302,27 +303,43 @@
 {# --------------------------- other functions ---------------------------#}
 
 {# --------------------------- dynamicly display threads ---------------------------#}
+    {% if reward %}
     <div class="column is-three-fifths">
         <div class="column" style="position: sticky; top: 20px;">
-        <div class="card is-mobile" >
+        <div  class="card is-mobile" >
             <header class="card-header">
-              <p class="card-header-title" id="show_post_title"></p>
+              <p class="card-header-title" id="show_post_title">{{ reward.title }}</p>
 
-                <button class="card-header-icon">
-                    <span class="icon">
-                        <i class="fa-solid fa-square-check"></i>
-                    </span>
-                    <span id="accept_reward">
-                    </span>
+                {% if reward.user.id == user.id and reward.taken_user_id != 0 %}     {#  only poster can finish reward #}
+                <button id="finish_reward" class="card-header-icon">     {# satisfy, reward finished #}
+                    <a href="/finish_reward/?reward_id={{ reward.id }}" class="icon">
+                        <i class="fa-solid fa-cannabis" style="font-size:1.5em"></i>
+                    </a>
+                </button>
+                {%  else %}
+                {% endif %}
+
+                <button id="accept_reward" class="card-header-icon"
+                        data-reward_id="{{ reward.id }}"
+                        data-is_taken="{{ reward.is_taken }}"
+                        data-user_id="{{ user.id }}"
+                        data-post_user_id="{{ reward.user.id }}"
+                        data-taken_user_name="{{ taken_user.username }}"
+                        data-taken_user_id="{{ taken_user.id }}"
+                >
+                <i id='i' class="fa-solid fa-square-check" style="font-size: 1.5em;"></i>
+                    <span id="accept_word" style="padding:0 5px;"></span>
+
                 </button>
                 <button class="card-header-icon">
                     <span class="icon">
                         <i class="fa-solid fa-coins" style="color:#00b300;font-size:1.5em"></i>
-
                     </span>
                     <span style="padding:0 5px; color:#00b300;" id="show_coin_num">
+                        {{ reward.coin_num }}
                     </span>
                 </button>
+
 {#                <button class="card-header-icon">#}
 {#                    <span class="icon">#}
 {#                        <i class="fa-solid fa-eye"></i>#}
@@ -333,26 +350,46 @@
             </header>
             <div class="card-content">
             <div class="content">
-                <p id="show_post_category"> </p>
-                <p id="show_post_content"> </p>
+                <p id="show_post_name"> {{ reward.user.username }}</p>
+                <p id="show_post_content"> {{ reward.content }}</p>
                 <br>
-                <time datetime="" id="show_post_time"></time>
+                <time datetime="" id="show_post_time">{{ reward.date }}</time>
                 <br>
             </div>
             </div>
-            <div class="card">
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Answer</a>
-                </footer>
+            <div class="card-footer">             {# show comment #}
             </div>
-{#            <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>#}
+
+            <div id='parent_card'
+                 data-reward_id={{ reward.id }} data-post_user_id={{ reward.user.id }}
+                    data-taken_user_id={{ reward.taken_user_id }}
+                 data-user_id={{ user.id }} data-username={{ user.username }}
+                  >
+                <div style="height:30px;background-color:white"></div>
+                {% for answer in answers %}
+                    <div class="card-content">{{ answer.content }}</div>
+                <div style="background-color:white;height:30px">
+                    <div style="float:right;"> author: {{ answer.answer_user.username }}</div>
+                </div>
+
+                {% endfor %}
+                <button id="answer_reward" style="float:right; color:blue"  class="card-header-icon">Answer</button>
+            </div>
         </div>
         </div>
+        </div>
+    {% else %}
+    {%  endif %}
   {# --------------------------- dynamically display threads ---------------------------#}
-
+{##}
+{#</div>#}
+{#    </div>#}
+{#    <div class="column is-three-fifths">#}
+{#        <div class="column" style="position: sticky; top: 20px;">#}
+{#            <div id="card_content"></div>#}
+{#        </div>#}
+{#      </div>#}
 </div>
-    </div>
-
 </div>
 
 <button style="position: fixed; bottom: 20px; right: 20px;" id="scrollToTopBtn" class="button is-primary" title="Go to top">
@@ -361,8 +398,12 @@
     </span>
 </button>
 
+<script src="{% static 'js/scroll.js' %}"></script>
 <script src="{% static 'js/roll.js' %}"></script>
-<script src="{% static 'js/show_reward.js' %}"></script>
-
+{#<script src="{% static 'js/show_reward.js' %}"></script>#}
+<script src="{% static 'js/accept_reward.js' %}"></script>
+<script src="{% static 'js/answer.js' %}"></script>
+<script src="{% static 'js/finish_reward.js' %}"></script>
 </body>
+
 {% endblock %}
