@@ -11,87 +11,18 @@
     <script src="{% static 'js/like_dislike.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/like_dislike.css' %}">
 
-    <style>
-        /* Styles for the search bar */
-        .panel {
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        .panel-tabs {
-            margin-bottom: 0;
-        }
-
-        /* Styles for the cards */
-        .card {
-            margin-bottom: 20px;
-            border-radius: 5px;
-        }
-        .card-header-title {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .card-header-icon {
-            background-color: white;
-            border: none;
-        }
-        .card-header-icon:hover {
-            background-color: #f5f5f5;
-        }
-        .card-content {
-            background-color: #f5f5f5;
-            padding: 20px;
-        }
-        .card-footer {
-            background-color: white;
-        }
-        .card-footer-item {
-            color: #3273dc;
-            font-weight: bold;
-        }
-        .card-footer-item:hover {
-            text-decoration: underline;
-        }
-
-        /* Styles for the like button */
-        #like-button{
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            outline: none;
-        }
-        #like-button i {
-            color: #ff4136;
-            font-size: 25px;
-        }
-
-        .liked #like-button i {
-            color: #ff725c;
-        }
-
-        #like-count {
-            margin-left: 5px;
-            font-size: 18px;
-        }
-
-        /* Custom styles for left and right design */
-        .left {
-            background-color: #fff;
-            height: 100%;
-        }
-        .right {
-            background-color: #eee;
-            height: 100%;
-        }
-        .center {
-            margin: 0 auto;
-        }
-    </style>
 </head>
 
 <body>
 
+<button id="post-reward-btn" style="position: fixed; top: 70px; left: 10px; border-radius: 25% 15%;" class="button is-danger" title="Post New Reward">
+  <span class="icon">
+    <i class="fas fa-plus"></i>
+  </span>
+</button>
+
 <div class="section has-background-white-ter">
-    <div class="columns is-multiline is-mobile" >
+    <div class="columns is-multiline is-mobile">
 {#        <div class="column">#}
 {#        <div class="column is-one-fifth">#}
 {#        <div class="column "style="position: sticky; top: 20px; bottom: 20px;">#}
@@ -294,7 +225,7 @@
 {# --------------------------- dynamicly display threads ---------------------------#}
     <div class="column is-three-fifths">
         <div class="column" style="position: sticky; top: 20px;">
-        <div class="card is-mobile" >
+        <div class="card is-mobile">
             <header class="card-header">
               <p class="card-header-title" id="show_post_title"></p>
               <br>
@@ -313,7 +244,6 @@
                     <a href="#" class="card-footer-item">Answer</a>
                 </footer>
             </div>
-{#            <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>#}
         </div>
         </div>
   {# --------------------------- dynamically display threads ---------------------------#}
@@ -329,7 +259,9 @@
     </span>
 </button>
 
+
 <script src="{% static 'js/roll.js' %}"></script>
+<script src="{% static 'js/move.js' %}"></script>
 <script src="{% static 'js/show_thread.js' %}"></script>
 
 </body>
