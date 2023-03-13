@@ -17,7 +17,7 @@ def get_reward_history(request):
         user_obj = request.user.is_authenticated
         email = request.user.email
         user = request.user
-        completed_question = PostReward.objects.filter(user=user, is_completed = True).values('category', 'title', 'content')
+        completed_question = PostThread.objects.filter(user=user).values('category', 'title', 'content')
         uncompleted_question = PostReward.objects.filter(user=user, is_completed=False).values('category', 'title', 'content')
         pending_answer = AnswerReward.objects.filter(answer_user = user, is_satisfied = False).values('content')
 
