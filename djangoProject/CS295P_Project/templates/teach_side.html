@@ -35,14 +35,21 @@
 					<td>{{ obj.Pen }}</td>
 				</tr>
 
-
                 {% endfor %}
 			</tbody>
 		</table>
 
-        <div class="container" id="chart_div" style="width: 400px">
-		    <canvas id="myChart" width="200" height="200"></canvas>
+        <div class="columns">
+            <div class="column is-half is-centered is-vcentered">
+                <p id="grade" class="is-size-1 has-text-centered" style="padding-top: 10rem; padding-right: 10rem; "></p>
+            </div>
+            <div class="column" id="chart_div" style="padding-right: 10rem; ">
+		        <canvas id="myChart" width="200" height="200"></canvas>
+            </div>
         </div>
+
+
+
 	</div>
 	<script>
     // JavaScript代码
@@ -62,13 +69,30 @@
         var tips = parseInt(row.cells[4].innerHTML);
         var penalties = parseInt(row.cells[5].innerHTML);
 
-    // 创建闭包，保留正确的变量值
-    (function(name, questions, answers, likes, tips, penalties) {
-        // 创建单击事件监听器
-        row.addEventListener('click', function() {
-            generateChart(name, questions, answers, likes, tips, penalties);
-        });
-    })(name, questions, answers, likes, tips, penalties)};
+        // 创建闭包，保留正确的变量值
+        (function(name, questions, answers, likes, tips, penalties) {
+            // 创建单击事件监听器
+            row.addEventListener('click', function() {
+                generateChart(name, questions, answers, likes, tips, penalties);
+                autograde(questions, answers, likes, tips, penalties);
+            });
+        })(name, questions, answers, likes, tips, penalties)};
+
+    function autograde(questions, answers, likes, tips, penalties){
+        // 计算总分数
+        var totalScore = questions + answers + likes + tips - penalties;
+        // 判断分数等级
+        var grade;
+        if (totalScore > 10) {
+            grade = "A";
+        } else if (totalScore >= 6 && totalScore <= 9) {
+            grade = "B";
+        } else {
+            grade = "C";
+        }
+        var gradeElement = document.getElementById("grade");
+        gradeElement.innerHTML = "Predict score：" + grade;
+    };
 
     function generateChart(name, questions, answers, likes, tips, penalties) {
     let chartStatus = Chart.getChart("myChart"); // <canvas> id
