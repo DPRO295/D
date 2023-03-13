@@ -60,9 +60,9 @@ def current_rewards(request):
         print("post_kind", post_kind)
         # reset is same as all, can be removed
         if post_kind == "all" or post_kind == "resset":  # if post kind is all no filter
-            all_thread = PostReward.objects.reverse()
+            all_thread = PostReward.objects.order_by("date").reverse()
         else:  # filter the posts with post_kind
-            all_thread = PostReward.objects.filter(category=post_kind).reverse()
+            all_thread = PostReward.objects.filter(category=post_kind).order_by("date").reverse()
 
         for post in all_thread:
             is_watched = User_watched_Reward.objects.filter(reward=post, user=request.user).exists()
@@ -244,6 +244,12 @@ def add_reward_answer(request):
 def finish_reward(request):           # when poster is satisfied with the answer, the reward is deleted from Reward page and go to thread page
     reward_id = request.GET.get('reward_id')
     reward = PostReward.objects.filter(id=reward_id).first()
+
+    taken_user=User.objects.filter(id=reward.taken_user_id).first()
+    taken_user_profile = UserProfile.objects.filter(user=taken_user).first()
+    taken_user_profile.coins+=reward.coin_num
+    taken_user_profile.save()
+
     thread=PostThread.objects.create(user=reward.user,title=reward.title,content=reward.content
                               ,category=reward.category)
     answers=AnswerReward.objects.filter(reward=reward).all()

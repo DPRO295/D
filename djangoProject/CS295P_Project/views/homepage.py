@@ -135,3 +135,21 @@ def show_thread(request):
         comment_d['user_name']=user_name
     data={"thread":thread_d,"comments":comments_d}
     return JsonResponse(data)
+
+@csrf_exempt
+def tip_thread(request):
+    thread_id=request.POST.get('thread_id')
+    user_id=request.POST.get('user_id')
+    tip_quantity=int(request.POST.get('tip_quantity'))
+
+    thread=PostThread.objects.filter(id=thread_id).first()
+    user=User.objects.filter(id=user_id).first()
+    user_profile=UserProfile.objects.filter(user=user).first()
+
+    thread.tip_num+=tip_quantity
+    tip_num=thread.tip_num
+    thread.save()
+    user_profile.coins-=tip_quantity
+    user_profile.save()
+    data={"tip_num":tip_num}
+    return JsonResponse(data)

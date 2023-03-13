@@ -12,6 +12,10 @@ def post_reward(request):
     title = request.POST.get("title")
     content = request.POST.get("content")
     category = request.POST.get("category")
-    coin_num = request.POST.get("coin_num")
-    PostReward.objects.create(title=title, content=content, user_id=request.user.id, category=category, coin_num=coin_num)
+    coin_num = int(request.POST.get("coin_num"))
+
+    user_profile=UserProfile.objects.filter(user=request.user).first()        # now let user's coins > reward coins by default
+    user_profile.coins-=coin_num
+    user_profile.save()
+    PostReward.objects.create(title=title, content=content, user=request.user, category=category, coin_num=coin_num)
     return redirect("/current_rewards/")

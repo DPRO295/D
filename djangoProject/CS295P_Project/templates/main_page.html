@@ -301,7 +301,7 @@
 {# --------------------------- dynamicly display threads ---------------------------#}
     <div class="column is-three-fifths">
         <div class="column" style="position: sticky; top: 20px;">
-        <div id='parent' class="card is-mobile" >
+        <div id='parent' class="card is-mobile" data-user_id="{{ user.id }}">
 {#            <header class="card-header">#}
 {#              <p class="card-header-title" id="show_post_title"></p>#}
 {#              <br>#}
@@ -342,6 +342,7 @@
 
 <script src="{% static 'js/roll.js' %}"></script>
 <script src="{% static 'js/show_thread.js' %}"></script>
+<script src="{% static 'js/tip.js' %}"></script>
 
 </body>
 {% endblock %}

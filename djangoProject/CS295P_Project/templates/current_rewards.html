@@ -308,7 +308,10 @@
         <div class="column" style="position: sticky; top: 20px;">
         <div  class="card is-mobile" >
             <header class="card-header">
-              <p class="card-header-title" id="show_post_title">{{ reward.title }}</p>
+              <p style="height:54px" class="card-header-title" id="show_post_title">{{ reward.title }}</p>
+            </header>
+            <header class="card-header" style="height:40px;background-color: white">
+                <p style="font-size: 1em" class="card-header-title"  id="show_post_name">poster: {{ reward.user.username }}</p>
 
                 {% if reward.user.id == user.id and reward.taken_user_id != 0 %}     {#  only poster can finish reward #}
                 <button id="finish_reward" class="card-header-icon">     {# satisfy, reward finished #}
@@ -339,6 +342,8 @@
                         {{ reward.coin_num }}
                     </span>
                 </button>
+            </header>
+
 
 {#                <button class="card-header-icon">#}
 {#                    <span class="icon">#}
@@ -347,13 +352,12 @@
 {#                    <span style="padding:0 5px" id="show_watches">#}
 {#                    </span>#}
 {#                </button>#}
-            </header>
+
             <div class="card-content">
             <div class="content">
-                <p id="show_post_name"> {{ reward.user.username }}</p>
                 <p id="show_post_content"> {{ reward.content }}</p>
                 <br>
-                <time datetime="" id="show_post_time">{{ reward.date }}</time>
+                <time style="float:right" datetime="" id="show_post_time">{{ reward.date }}</time>
                 <br>
             </div>
             </div>

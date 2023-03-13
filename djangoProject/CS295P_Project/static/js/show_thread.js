@@ -4,16 +4,38 @@ function createThread(parent,data){      //create a thread for homepage
     // console.log(comments)
     var now=new Date(thread.date)
     now=now.toLocaleString();
+
+    var post_user_name=thread.post_user_name
+
     var html=` 
         <header class="card-header">
-          <p class="card-header-title" id="show_post_title">${thread.title}</p>
+          <p style="height:54px" class="card-header-title" id="show_post_title">${thread.title}</p>
+          </header>
+          
+          <header class="card-header" style="height:40px;background-color: white">
+          <p style="font-size: 1em" class="card-header-title">poster: ${post_user_name}</p>
+         
+          <button class="card-header-icon" id="tip" data-thread_id="${thread.id}">
+          Tip
+          </button>
+          
+          <div  class="card-header-icon" style="padding: 0 0"  id="tipboard"></div>
+          
+          <button class="card-header-icon" style="color:green ;">
+          <span style="padding-right: 10px; font-size: 1.5em" >
+          <i class="fa-solid fa-circle-dollar-to-slot"></i>
+          </span>
+          <span id="tip_num">${thread.tip_num}</span>     
+            </button>
+            
           <br>
         </header>
+        
         <div class="card-content">
         <div class="content">
             <p id="show_post_content"> ${thread.content}</p>
             <br>
-            <time datetime="" id="show_post_time">${now}</time>
+            <time style="float:right" datetime="" id="show_post_time">${now}</time>
             <br>
         </div>
         </div>
