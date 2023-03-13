@@ -43,10 +43,15 @@
         const unfinishedAnswers = data.pending_answer;
         const completedQuestions = data.finished_questions;
 
-      const renderQuestions = (questions, container) => {
+      const renderQuestions = (questions, container, web) => {
         container.innerHTML = '';
         questions.forEach(question => {
-          const questionLink = `<a href="/current_rewards/" class="question-link">${question.content}</a>`;
+            if (web == 0){
+                var questionLink = `<a href="/current_rewards/" class="question-link">${question.content}</a>`;
+            }else{
+                var questionLink = `<a href="/main_page/" class="question-link">${question.content}</a>`;
+            }
+
           const questionBox = document.createElement('div');
           questionBox.classList.add('box');
           questionBox.innerHTML = questionLink;
@@ -64,13 +69,13 @@
       };
 
       const unfinishedQuestionsContainer = document.querySelector('#unfinished-questions');
-      renderQuestions(unfinishedQuestions, unfinishedQuestionsContainer);
+      renderQuestions(unfinishedQuestions, unfinishedQuestionsContainer, 0);
 
       const unfinishedAnswersContainer = document.querySelector('#unfinished-answers');
-      renderQuestions(unfinishedAnswers, unfinishedAnswersContainer);
+      renderQuestions(unfinishedAnswers, unfinishedAnswersContainer, 0);
 
       const completedQuestionsContainer = document.querySelector('#completed-questions');
-      renderQuestions(completedQuestions, completedQuestionsContainer);
+      renderQuestions(completedQuestions, completedQuestionsContainer, 1);
     </script>
   </body>
 

@@ -1,0 +1,26 @@
+                        <h2 class="subtitle">Coins changer</h2>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="field has-addons">
+                                <div class="control">
+                                    <input class="input" type="number" name="coins" value="1000">
+                                </div>
+                                <div class="control">
+                                    <button class="button is-primary" type="submit" name="add">
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                        <span>Add</span>
+                                    </button>
+                                </div>
+                                <div class="control">
+                                    <button class="button is-danger" type="submit" name="subtract">
+                                        <span class="icon">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                        <span>Subtract</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="subtitle"><br><br><br><br>Total Coins: {{ coins_remain }}</div>
+                        </form>
