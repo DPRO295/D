@@ -19,7 +19,7 @@ def teach_side(request):
             countquestion = PostReward.objects.filter(user_id=each_student[0]).count()
             answerquestion = AnswerReward.objects.filter(answer_user=each_student[0]).count()
             liked = 0
-            records = PostReward.objects.filter(user_id=each_student[0])
+            records = PostReward.objects.filter(user=each_student[0])
             for record in records:
                 liked += int(record.watches)
             Tips = 0
