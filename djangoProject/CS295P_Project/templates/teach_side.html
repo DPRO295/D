@@ -1,0 +1,125 @@
+{% extends 'teach_layout.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student List</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+	<div class="container">
+        {% csrf_token %}
+		<table class="table is-hoverable is-fullwidth is-bordered" id="studentsTable" style="margin-top: 80px;">
+			<thead>
+				<tr>
+					<th>Student</th>
+					<th>Count of Questions</th>
+					<th>Count of Answers</th>
+					<th>Liked</th>
+					<th>Tips amount</th>
+					<th>Penalties</th>
+				</tr>
+			</thead>
+			<tbody>
+                {%  for obj in datas_chart %}
+
+				<tr onclick="generateChart()">
+					<td>{{ obj.name }}</td>
+					<td>{{ obj.CountQ }}</td>
+					<td>{{ obj.CountA }}</td>
+					<td>{{ obj.liked }}</td>
+					<td>{{ obj.Tips }}</td>
+					<td>{{ obj.Pen }}</td>
+				</tr>
+
+
+                {% endfor %}
+			</tbody>
+		</table>
+
+        <div class="container" id="chart_div" style="width: 400px">
+		    <canvas id="myChart" width="200" height="200"></canvas>
+        </div>
+	</div>
+	<script>
+    // JavaScript代码
+    var canvas = document.getElementById('myChart');
+    var ctx = canvas.getContext('2d');
+
+    // 获取学生表格
+    var table = document.getElementById('studentsTable');
+
+    // 遍历学生表格中的每行数据，为每个学生创建单击事件监听器
+    for (var i = 1; i < table.rows.length; i++) {
+        var row = table.rows[i];
+        var name = row.cells[0].innerHTML;
+        var questions = parseInt(row.cells[1].innerHTML);
+        var answers = parseInt(row.cells[2].innerHTML);
+        var likes = parseInt(row.cells[3].innerHTML);
+        var tips = parseInt(row.cells[4].innerHTML);
+        var penalties = parseInt(row.cells[5].innerHTML);
+
+    // 创建闭包，保留正确的变量值
+    (function(name, questions, answers, likes, tips, penalties) {
+        // 创建单击事件监听器
+        row.addEventListener('click', function() {
+            generateChart(name, questions, answers, likes, tips, penalties);
+        });
+    })(name, questions, answers, likes, tips, penalties)};
+
+    function generateChart(name, questions, answers, likes, tips, penalties) {
+    let chartStatus = Chart.getChart("myChart"); // <canvas> id
+    if (chartStatus != undefined) {
+        chartStatus.destroy();
+    }
+    // 生成饼状图
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['question', 'answer', 'liked', 'Tips', 'penalties'],
+            datasets: [{
+                label: '数据统计',
+                data: [questions, answers, likes, tips, penalties],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+            }]
+        },
+         options: {
+             responsive: true,
+             height: 200, // 设置Chart高度为200像素
+            width: 200, // 设置Chart宽度为200像素
+            title: {
+                display: true,
+                text: '学生 ' + name + ' 统计图表'
+            },
+            // 其他配置项
+        }
+
+
+    });
+
+
+}
+
+    </script>
+
+</body>
+</html>
+
+{% endblock %}
+

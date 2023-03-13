@@ -43,6 +43,7 @@ def coins_page(request):
     user_obj = request.user.is_authenticated
     email = request.user.email
     coinlogs = CoinsLog.objects.filter(user=request.user)
+    coins_remain = UserProfile.objects.filter(user=request.user).first()
     if request.method == "GET":
         return render(request, "coins.html", {"check_login": user_obj, "user_email": email,
                                               "username": request.user.username,
@@ -52,9 +53,16 @@ def coins_page(request):
         if 'add' in request.POST:
             CoinsLog.objects.create(user=request.user, credit_type="add",
                                     amount=coins)
+            coins_remain.coins = int(coins_remain.coins) + int(coins)
+            coins_remain.save()
         elif 'subtract' in request.POST:
             CoinsLog.objects.create(user=request.user, credit_type="sub",
                                     amount=coins)
+            coins_remain.coins = int(coins_remain.coins) - int(coins)
+            coins_remain.save()
+
         return render(request, "coins.html", {"check_login": user_obj,"user_email": email,
                                               "username": request.user.username,
-                                              "coinslog": coinlogs})
+                                              "coinslog": coinlogs,
+                                              "coins_remain": int(coins_remain.coins)
+                                              })

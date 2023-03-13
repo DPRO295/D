@@ -148,36 +148,20 @@
 
                     <form method="post">
                         {% csrf_token %}
-                        <p class="panel-tabs">
-                            <a class="is-active">
-                                <button name="all" value="all">All</button>
-                            </a>
-                            <a>
-                                <button name="general" value="general">General</button>
-                            </a>
-                            <a>
-                                <button name="lectures" value="lectures">Lectures</button>
-                            </a>
-                            <a>
-                                <button name="lab" value="lab">Lab</button>
-                            </a>
-                            <a>
-                                <button name="homework" value="homework">Homework</button>
-                            </a>
-                            <a>
-                                <button name="project" value="project">Project</button>
-                            </a>
-                        </p>
 
-                        {#        <label class="panel-block">#}
-                        {#            <input type="checkbox">#}
-                        {#            remember me#}
-                        {#        </label>#}
-                        {#        <div class="panel-block">#}
-                        {#            <button class="button is-link is-outlined is-fullwidth" name="reset" value="reset">#}
-                        {#                Reset all filters#}
-                        {#            </button>#}
-                        {#        </div>#}
+                        <div class="columns is-mobile">
+                                <div class="column ">
+
+                                <button class="button is-ghost is-medium" name="all" value="all">All</button>
+                                <button class="button is-ghost is-medium" name="general" value="general">General</button>
+                                <button class="button is-ghost is-medium" name="lectures" value="lectures">Lectures</button>
+                                <button class="button is-ghost is-medium" name="lab" value="lab">Lab</button>
+                                <button class="button is-ghost is-medium" name="homework" value="homework">Homework</button>
+                                <button class="button is-ghost is-medium" name="project" value="project">Project</button>
+                                </div>
+                        </div>
+
+
                     </form>
                 </div>
             </div>

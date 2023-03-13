@@ -70,4 +70,6 @@ urlpatterns = [
     path('add_reward_answer/',views.add_reward_answer),
     path('finish_reward/', views.finish_reward),
     path('tip_thread/',views.tip_thread),
+    path('ans_history/', views.get_reward_history),
+    path('teach_as/', views.teach_side),
 ]

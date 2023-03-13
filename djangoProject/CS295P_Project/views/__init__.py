@@ -7,3 +7,5 @@ from .thread_fn import *
 from .response_reward import *
 from .post_reward import *
 from .current_rewards import *
+from .reward_history import *
+from .teach_sides import *
