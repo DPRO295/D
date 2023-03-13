@@ -17,5 +17,7 @@ def post_reward(request):
     user_profile=UserProfile.objects.filter(user=request.user).first()        # now let user's coins > reward coins by default
     user_profile.coins-=coin_num
     user_profile.save()
+    CoinsLog.objects.create(user=request.user, credit_type="sub",
+                            amount=coin_num)
     PostReward.objects.create(title=title, content=content, user=request.user, category=category, coin_num=coin_num)
     return redirect("/current_rewards/")
