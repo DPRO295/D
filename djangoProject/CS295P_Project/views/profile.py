@@ -47,7 +47,7 @@ def coins_page(request):
     if request.method == "GET":
         return render(request, "coins.html", {"check_login": user_obj, "user_email": email,
                                               "username": request.user.username,
-                                              "coinslog": coinlogs})
+                                              "coinslog": coinlogs, "coins_remain": int(coins_remain.coins)})
     if request.method == 'POST':
         coins = request.POST['coins']
         if 'add' in request.POST:
