@@ -10,15 +10,21 @@ def register(request):
     else:
         if request.POST.get("username") is None:
             return render(request, "register.html", {"error_msg": "please enter your username"})
+        elif request.POST.get("user_type") is None:
+            return render(request, "register.html", {"error_msg": "please select your user type"})
         username = request.POST.get("username")
         print(username)
         email = request.POST.get("email")
         password = request.POST.get("pwd")
+        ident = request.POST.get("user_type")
         if User.objects.filter(email=email).exists():
             return render(request, "register.html", {"error_msg": "This email have been used."})
         elif User.objects.filter(username=username).exists():
             return render(request, "register.html", {"error_msg": "This username have been used."})
-        user = User.objects.create_user(username=username, email=email, password=password)
+        if str(ident) == 'teacher':
+            user = User.objects.create_user(username=username, email=email, password=password, is_staff = True)
+        else:
+            user = User.objects.create_user(username=username, email=email, password=password)
         user_profile = UserProfile(user=user, coins = 1000)
         user_profile.save()
         return redirect("/home/")
@@ -37,6 +43,8 @@ def signin(request):
         if user_obj:
             # if login successfully set the session
             auth.login(request, user_obj)
+            if user_obj.is_staff:
+                return redirect("/teach_as/")
             return redirect("/home/")
         else:
             return render(request, "signin.html", {"error_msg": "Wrong username or password"})
