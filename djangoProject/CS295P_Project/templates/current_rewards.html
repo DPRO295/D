@@ -92,45 +92,14 @@
 
 <body>
 
+<button id="post-reward-btn" style="position: fixed; top: 70px; left: 10px; border-radius: 25% 15%;" class="button is-danger" title="Post New Reward">
+  <span class="icon">
+    <i class="fas fa-plus"></i>
+  </span>
+</button>
+
 <div class="section has-background-white-ter">
     <div class="columns is-multiline is-mobile" >
-{#        <div class="column">#}
-{#        <div class="column is-one-fifth">#}
-{#        <div class="column "style="position: sticky; top: 20px; bottom: 20px;">#}
-{#  <div class="card is-mobile has-background-white", >#}
-{#    <div class="card-content" style="padding: 20px;">#}
-{#        <div class="column is-narrow is-centered">#}
-{#          <a href="/post_thread">#}
-{#            <button class="button is-link" style="margin-bottom: 10px;">#}
-{#              <span class="icon">#}
-{#                <i class="fas fa-pencil-alt"></i>#}
-{#              </span>#}
-{#              <span>New Thread</span>#}
-{#            </button>#}
-{#          </a>#}
-{#        </div>#}
-{#      <h2 class="title is-4">Course List</h2>#}
-{#      <ul style="list-style-type: none;" class="has-text-left">#}
-{#        <li style="margin-bottom: 10px;">#}
-{#          <button class="button is-primary">Course 1</button>#}
-{#        </li>#}
-{#        <li style="margin-bottom: 10px;">#}
-{#          <button class="button is-info">Course 2</button>#}
-{#        </li>#}
-{#        <li style="margin-bottom: 10px;">#}
-{#          <button class="button is-success">Course 3</button>#}
-{#        </li>#}
-{#        <li style="margin-bottom: 10px;">#}
-{#          <button class="button is-warning">Course 4</button>#}
-{#        </li>#}
-{#        <li style="margin-bottom: 10px;">#}
-{#          <button class="button is-danger">Course 5</button>#}
-{#        </li>#}
-{#      </ul>#}
-{#    </div>#}
-{#  </div></div>#}
-{#</div>#}
-
 
     {# --------------------------- search function ---------------------------#}
         <div class="column is-two-fifths">
@@ -245,49 +214,6 @@
 
 {# --------------------------- other functions ---------------------------#}
 
-{#        <div class="column is-one-third" >#}
-{#  <div class="box" id="hide_show">#}
-{#    <div class="columns">#}
-{#      <div class="column">#}
-{#        <div class="content">#}
-{#          <h2 class="title is-4">Course List</h2>#}
-{#          <ul style="list-style-type: none;">#}
-{#        <li>#}
-{#          <button class="button is-primary">Course 1</button>#}
-{#        </li>#}
-{#        <li>#}
-{#          <button class="button is-info">Course 2</button>#}
-{#        </li>#}
-{#        <li>#}
-{#          <button class="button is-success">Course 3</button>#}
-{#        </li>#}
-{#        <li>#}
-{#          <button class="button is-warning">Course 4</button>#}
-{#        </li>#}
-{#        <li>#}
-{#          <button class="button is-danger">Course 5</button>#}
-{#        </li>#}
-{#      </ul>#}
-{#        </div>#}
-{#      </div>#}
-{#      <div class="column">#}
-{#        <div class="content">#}
-{#          <h3 class="title is-4">Categories</h3>#}
-{#          <div class="buttons">#}
-{#            <button class="button is-link is-outlined">General</button>#}
-{#            <button class="button is-link is-outlined">Lectures</button>#}
-{#            <button class="button is-link is-outlined">Lab</button>#}
-{#            <button class="button is-link is-outlined">Homework</button>#}
-{#            <button class="button is-link is-outlined">Project</button>#}
-{#            </div>#}
-{#        </div>#}
-{#      </div>#}
-{#    </div>#}
-{#    <figure class="image is-4by3">#}
-{#      <img src="{% static 'img/dis.png' %}" alt="Placeholder image"/>#}
-{#    </figure>#}
-{#  </div>#}
-{#</div>            #}
 {# --------------------------- other functions ---------------------------#}
 
 {# --------------------------- dynamicly display threads ---------------------------#}
@@ -329,6 +255,7 @@
 </button>
 
 <script src="{% static 'js/roll.js' %}"></script>
+<script src="{% static 'js/move.js' %}"></script>
 <script src="{% static 'js/show_reward.js' %}"></script>
 
 </body>
