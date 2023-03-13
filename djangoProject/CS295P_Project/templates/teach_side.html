@@ -15,39 +15,28 @@
 		<table class="table is-hoverable is-fullwidth is-bordered" id="studentsTable" style="margin-top: 80px;">
 			<thead>
 				<tr>
-					<th>学生姓名</th>
-					<th>提问次数</th>
-					<th>回答次数</th>
-					<th>获得赞的数量</th>
-					<th>Tips次数</th>
-					<th>被惩罚次数</th>
+					<th>Student</th>
+					<th>Count of Questions</th>
+					<th>Count of Answers</th>
+					<th>Liked</th>
+					<th>Tips amount</th>
+					<th>Penalties</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr onclick="generateChart('学生A', 10, 5, 2, 3, 1)">
-					<td>学生A</td>
-					<td>10</td>
-					<td>5</td>
-					<td>2</td>
-					<td>3</td>
-					<td>1</td>
+                {%  for obj in datas_chart %}
+
+				<tr onclick="generateChart()">
+					<td>{{ obj.name }}</td>
+					<td>{{ obj.CountQ }}</td>
+					<td>{{ obj.CountA }}</td>
+					<td>{{ obj.liked }}</td>
+					<td>{{ obj.Tips }}</td>
+					<td>{{ obj.Pen }}</td>
 				</tr>
-				<tr onclick="generateChart('学生B', 5, 10, 8, 2, 0)">
-					<td>学生B</td>
-					<td>5</td>
-					<td>10</td>
-					<td>8</td>
-					<td>2</td>
-					<td>0</td>
-				</tr>
-				<tr onclick="generateChart('学生C', 2, 3, 5, 10, 2)">
-					<td>学生C</td>
-					<td>2</td>
-					<td>3</td>
-					<td>5</td>
-					<td>10</td>
-					<td>2</td>
-				</tr>
+
+
+                {% endfor %}
 			</tbody>
 		</table>
 
@@ -90,7 +79,7 @@
     var myChart = new Chart(ctx, {
         type: 'pie',
         data: {
-            labels: ['提问次数', '回答次数', '获得赞的数量', 'Tips次数', '被惩罚次数'],
+            labels: ['question', 'answer', 'liked', 'Tips', 'penalties'],
             datasets: [{
                 label: '数据统计',
                 data: [questions, answers, likes, tips, penalties],
@@ -120,7 +109,11 @@
             },
             // 其他配置项
         }
+
+
     });
+
+
 }
 
     </script>
