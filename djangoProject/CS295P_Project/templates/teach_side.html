@@ -1,4 +1,4 @@
-{% extends 'auth_layout.html' %}
+{% extends 'teach_layout.html' %}
 {% block content %}
 {% load static %}
 
@@ -11,6 +11,7 @@
 </head>
 <body>
 	<div class="container">
+        {% csrf_token %}
 		<table class="table is-hoverable is-fullwidth is-bordered" id="studentsTable" style="margin-top: 80px;">
 			<thead>
 				<tr>
