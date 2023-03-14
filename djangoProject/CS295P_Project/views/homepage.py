@@ -151,5 +151,7 @@ def tip_thread(request):
     thread.save()
     user_profile.coins-=tip_quantity
     user_profile.save()
+    CoinsLog.objects.create(user=request.user, credit_type="sub",
+                            amount=tip_quantity)
     data={"tip_num":tip_num}
     return JsonResponse(data)
