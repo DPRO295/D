@@ -17,12 +17,14 @@ def teach_side(request):
         return_chart = []
         for each_student in name_list:
             countquestion = PostReward.objects.filter(user_id=each_student[0]).count()
+            countquestion += PostThread.objects.filter(user_id=each_student[0]).count()
             answerquestion = AnswerReward.objects.filter(answer_user=each_student[0]).count()
+            answerquestion += CommentThread.objects.filter(comment_user_id=each_student[0]).count()
             liked = 0
-            records = PostReward.objects.filter(user=each_student[0])
+            records = PostThread.objects.filter(user_id=each_student[0])
             for record in records:
-                liked += int(record.watches)
-            Tips = 0
+                liked += int(record.likes)
+            Tips = CoinsLog.objects.filter(user_id=each_student[0]).count()
             Penalities = 0
             dict_form = {"name": each_student[1],
                          "CountQ" : countquestion,
