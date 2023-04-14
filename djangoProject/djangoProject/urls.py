@@ -38,6 +38,7 @@ urlpatterns = [
 
     # main_page functions:
     path("main_page/", views.main_page),
+    path("main_page/<int:thread_id>", views.main_page),
     path("coins/", views.coins_page),
     path("show_thread/", views.show_thread),
 

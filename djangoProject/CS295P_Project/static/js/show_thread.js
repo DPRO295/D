@@ -55,14 +55,17 @@ function createThread(parent,data){      //create a thread for homepage
     parent.html(html)
 
 }
-//${comment.comment_user.username}
                                 // show thread with comments
 $(document).ready(function(){
 
     $(document).on('click', '[id^="display_thread"]', function(){
-        // console.log('are you ok')
         var header=$(this)
         var thread_id=header.attr('data-post_id')
+                                            // Update the displayed URL in the address bar without reloading the page
+        var newURL="/main_page/"+thread_id
+        history.pushState(null, null, newURL);
+        window.history.replaceState({}, document.title, newURL);
+
         var parent=$('#parent')
 
         $.ajax({
@@ -72,50 +75,26 @@ $(document).ready(function(){
                 thread_id:thread_id
             },
             success:function(data){
-                console.log(data.thread)
+                // console.log(data.thread)
                createThread(parent,data)
             }
         });
     });
 
 });
-    // function bindShowThread() {
-    //     $('header[id^="display_thread"]').each(function () {
-    //         $(this).click(function () {
-    //             var post_id = $(this).data("post_id")
-    //             var title = $(this).data("post_title")
-    //             var email = $(this).data("post_email")
-    //             var date  = $(this).data("post_date")
-    //             var content  = $(this).data("post_content")
-    //             var category  = $(this).data("post_category")
-    //             var user_id  = $(this).data("post_user_id")
-    //             $.ajax({
-    //                 url: '/show_thread/',
-    //                 method: 'POST',
-    //                 data: {
-    //                     post_id: post_id,
-    //                     title:title,
-    //                     emil:email,
-    //                     date:date,
-    //                     content:content,
-    //                     category:category,
-    //                     user_id:user_id,
-    //
-    //                 },
-    //                 dataType:"JSON",               // convert the data from POST and read as JSON
-    //                 success: function (res) {
-    //                     var tag1 = document.getElementById("show_post_title");
-    //                     tag1.innerText = res["title"]
-    //                     var tag2 = document.getElementById("show_post_category");
-    //                      tag2.innerText = res["category"]
-    //                     var tag3 = document.getElementById("show_post_content");
-    //                      tag3.innerText = res["content"]
-    //                     var tag4 = document.getElementById("show_post_time");
-    //                      tag4.innerText = res["date"]
-    //                     console.log(res);
-    //                 }
-    //             });
-    //         });
-    //     });
-    // }
-
+$(document).ready(function(){
+    var x=$('#thread_board').data('show_thread_id');   //if x is string like 1,25,100 it will be turned to integer by jquery automatically
+    x=x.toString()
+    if(x!=="-1"){
+        $('header[data-post_id='+x+']').click();
+    }
+});
+// $(document).ready(function() {
+//   // Trigger click event on button with ID "myButton"
+//
+//   // Listen to click event on button with ID "myButton"
+//   $('#myButton').on("click", function() {
+//     alert("Button clicked!");
+//   });
+//   $('#myButton').click();
+// });
