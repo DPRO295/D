@@ -1,44 +1,63 @@
 // can be rewritten by Handlebars or template literal, which don't need to build html in js manually
 
-function update_button(button){
-    var parent=button.parent()
+function update_button(parent){         //add answer/ask button if satisfy condition
+
+
    var user_id=parent.attr('data-user_id')
    var post_user_id=parent.attr('data-post_user_id')
    var taken_user_id=parent.attr('data-taken_user_id')
-    // console.log(user_id,post_user_id,taken_user_id)
-    button.css('background-color','#81F781')
+    var text,color;
+    if(user_id!==post_user_id && user_id !==taken_user_id)
+        return;
     if(user_id===post_user_id){
-        button.text('Keep Asking')
-        button.css('color','purple')
+        text="keep Asking";
+        color="purple";
     }
     else if(user_id===taken_user_id){
-        button.text('Answer')
-        button.css('color','blue')
+        text="Answer"
+        color="blue";
     }
-    else{
-        button.remove()
-    }
+    var html=`
+    <button id="answer_reward" style="float:right; color:${color};background-color: #81F781"  class="card-header-icon">${text}</button>
+    `;
+    parent.append(html)
+    // button.css('background-color','#81F781')
+    // if(user_id===post_user_id){
+    //     button.text('Keep Asking')
+    //     button.css('color','purple')
+    // }
+    // else if(user_id===taken_user_id){
+    //     button.text('Answer')
+    //     button.css('color','blue')
+    // }
+    // else{
+    //     button.remove()
+    // }
 }
+
                    //show button at the beginning and each time it is inserted
 $(document).ready(function() {
-  // Find all existing buttons with the ID "answer_reward" and apply the updateButton function to them
-  $('#answer_reward').each(function() {
-    update_button($(this));
-  });
 
-  // Listen for changes to the DOM and apply the updateButton function to any newly added buttons with the ID "answer_reward"
-  $(document).on('DOMNodeInserted', function(event) {
-    var target = $(event.target);
-    if (target.is('#answer_reward')) {
-      update_button(target);
-    }
-  });
+  //  listen to button addition
+  //   $(document).on('DOMNodeInserted', function(event) {
+  //   var target = $(event.target);
+  //   if (target.find('#parent_card').length>0 && $('#answer_reward').length===0) {
+  //
+  //     update_button($('#parent_card'));
+  //
+  //   }
+  // });
+     //when accept reward  may create a button
+    // $(document).on('click','#accept_reward',function(){
+    //     if($('#answer_reward').length===0)
+    //         update_button($('#parent_card'));
+    // });
 });
 
 
 
-$(document).ready(function() {          // build html while click the answer button
-   $(document).on('click','#answer_reward',function(){                     // build html while click answer button
+$(document).ready(function() {          // build texting area while click the answer/ask button
+   $(document).on('click','#answer_reward',function(){
 
       var parent=$(this).parent();
       var bu=$(this);
@@ -99,13 +118,7 @@ $(document).ready(function() {
           bar.append(author)
           parent.append(bar)
 
-      var new_button=$('<button>')
-      new_button.addClass('card-header-icon')
-      new_button.css({'color':'blue','float':'right'})
-      new_button.attr('id','answer_reward')
-      new_button.text('Answer')
-      parent.append(new_button)
-
+      update_button(parent);      // after submit, add answer/ask button
       },
     });
   });

@@ -42,9 +42,7 @@ function createThread(parent,data){      //create a thread for homepage
         <div style="height:30px;background-color:white"></div>
     `;
     for(const index in comments){
-        // console.log(comment.content)
         var comment=comments[index]
-        // console.log(comment)
         html+=`
             <div class="card-content">${comment.content}</div>
             <div style="background-color:white;height:30px">
@@ -82,7 +80,7 @@ $(document).ready(function(){
     });
 
 });
-$(document).ready(function(){
+$(document).ready(function(){            // simulate click() when getting url to visit a thread
     var x=$('#thread_board').data('show_thread_id');   //if x is string like 1,25,100 it will be turned to integer by jquery automatically
     x=x.toString()
     if(x!=="-1"){

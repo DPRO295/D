@@ -43,10 +43,10 @@ def save_bookmark_reward(request, post_id, user_id):
     post = get_object_or_404(PostReward, id=post_id)
     user = get_object_or_404(User, id=user_id)
     if BookMark_Reward.objects.filter(post=post, user=user):
-        return redirect("/current_rewards/")
+        return redirect("/current_rewards/"+str(post_id))
     else:
         BookMark_Reward.objects.create(post=post, user=user)
-        return redirect("/current_rewards/")
+        return redirect("/current_rewards/"+str(post_id))
 
 
 def delete_bookmark_reward(request, post_id):

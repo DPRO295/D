@@ -63,6 +63,8 @@ urlpatterns = [
     path("post_reward/",views.post_reward),
     # path("current_rewards/", views.current_rewards),
     path("current_rewards/", views.current_rewards),
+    path("current_rewards/<int:reward_id>", views.current_rewards),
+
     path("show_reward/", views.show_reward),
     path("edit_reward/<int:nid>/", views.edit_reward),
     path("delete_reward/", views.delete_reward),
