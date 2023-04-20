@@ -48,7 +48,7 @@ def edit_thread(request, nid):
     # the "auto_now=True" will not be triggered
     PostThread.objects.filter(id=nid).update(title=title, content=content, user=user,
                                              category=category, date=datetime.now())
-    return redirect("/main_page/")
+    return redirect("/main_page/"+str(nid))
 
 
 def delete_post(request):

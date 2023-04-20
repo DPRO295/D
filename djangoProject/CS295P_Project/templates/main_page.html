@@ -166,9 +166,9 @@
                 </div>
             </div>
 {# --------------------------- search function ---------------------------#}
-
 {# --------------------------- display threads ---------------------------#}
-        <div class="column" style="height: 800px; overflow-y: auto;">
+        <div class="column" id="thread_board" style="height: 800px; overflow-y: auto;"
+             data-show_thread_id="{{ thread_id }}">        {# show this thread when render main page #}
     {% for each_thread in post_thread %}
 
         <div class="card" type="button" >

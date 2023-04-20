@@ -3,14 +3,15 @@ from CS295P_Project.models import *
 from django.shortcuts import get_object_or_404
 
 
-def save_bookmark_thread(request, post_id, user_id):
+def save_bookmark_thread(request, post_id, user_id):    #need fix
     post = get_object_or_404(PostThread, id=post_id)
     user = get_object_or_404(User, id=user_id)
     if BookMark_Thread.objects.filter(post=post, user=user):
-        return redirect("/main_page/")
+        return redirect("/main_page/"+str(post_id))
+
     else:
         BookMark_Thread.objects.create(post=post, user=user)
-        return redirect("/main_page/")
+        return redirect("/main_page/"+str(post_id))
 
 
 def delete_bookmark_thread(request, post_id):
@@ -42,10 +43,10 @@ def save_bookmark_reward(request, post_id, user_id):
     post = get_object_or_404(PostReward, id=post_id)
     user = get_object_or_404(User, id=user_id)
     if BookMark_Reward.objects.filter(post=post, user=user):
-        return redirect("/current_rewards/")
+        return redirect("/current_rewards/"+str(post_id))
     else:
         BookMark_Reward.objects.create(post=post, user=user)
-        return redirect("/current_rewards/")
+        return redirect("/current_rewards/"+str(post_id))
 
 
 def delete_bookmark_reward(request, post_id):

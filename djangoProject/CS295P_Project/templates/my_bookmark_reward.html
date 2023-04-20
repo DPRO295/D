@@ -11,6 +11,7 @@
 <body>
    {% for each_thread in display_bookmark %}
         <div class="card">
+        <a href="/current_rewards/{{each_thread.id}}">
             <header class="card-header">
                 <p class="card-header-title">
                     {{ each_thread.title }}
@@ -23,6 +24,7 @@
       </span>
                 </button>
             </header>
+        </a>
             <div class="card-content">
                 <div class="content">
                     {{ each_thread.content }}

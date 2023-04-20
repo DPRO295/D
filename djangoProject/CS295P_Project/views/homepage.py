@@ -51,7 +51,7 @@ def home(request):
 
 
 @csrf_protect
-def main_page(request):
+def main_page(request, thread_id=-1):
     if request.method == "GET":
         # -------- test case -----------
         # print("--- in main_page ---")
@@ -86,7 +86,7 @@ def main_page(request):
 
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": user_obj, "user": request.user,"user_email": email,
-                       "username": request.user.username, "query": query})
+                       "username": request.user.username, "query": query, "thread_id": thread_id})
 
     if request.method == "POST":
         # print(request.POST)
@@ -107,7 +107,7 @@ def main_page(request):
 
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": request.user.is_authenticated, "user": request.user,
-                       "user_email": request.user.email,"username": request.user.username,})
+                       "user_email": request.user.email,"username": request.user.username,"thread_id": thread_id})
 
 
 # @csrf_exempt
