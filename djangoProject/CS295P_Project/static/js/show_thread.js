@@ -77,6 +77,9 @@ $(document).ready(function(){
                createThread(parent,data)
             }
         });
+      // $('[id^="display_thread"]').parent().parent().css('background-color','white');
+      // header.parent().parent().css('background-color','#99e6ff');
+
     });
 
 });

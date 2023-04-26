@@ -173,7 +173,7 @@
 
         <div class="card" type="button" >
             <a>
-            <header class="card-header" id="display_thread"
+            <header class="card-header" id="display_thread{{ each_thread.id }}"
                     data-post_id="{{ each_thread.id }}"
                     data-post_user="{{ each_thread.user }}"
                     data-post_title="{{ each_thread.title }}"
@@ -327,6 +327,6 @@
 <script src="{% static 'js/roll.js' %}"></script>
 <script src="{% static 'js/show_thread.js' %}"></script>
 <script src="{% static 'js/tip.js' %}"></script>
-
+<script src="{% static 'js/click_thread.js' %}"></script>
 </body>
 {% endblock %}
