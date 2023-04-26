@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'CS295P_Project.apps.LoginConfig'
+    'CS295P_Project.apps.LoginConfig',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "djangoProject.wsgi.application"
 
+# 指定ASGI的路由地址
+ASGI_APPLICATION = 'djangoProject.asgi.application'
+
 import certifi
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -96,9 +100,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'ENGINE': 'mysql.connector.django',
-        'NAME': 'db',
+        'NAME': 'cs295p',
         'USER': 'root',
-        'PASSWORD': 'a85881165z',
+        'PASSWORD': '12333haoyan',
         'HOST': 'localhost',
         'PORT': 3306,
     }
