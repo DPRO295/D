@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "daphne",
     "django.contrib.staticfiles",
     'CS295P_Project.apps.LoginConfig',
     'channels',
@@ -73,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "djangoProject.wsgi.application"
+# WSGI_APPLICATION = "djangoProject.wsgi.application"
 
 # 指定ASGI的路由地址
 ASGI_APPLICATION = 'djangoProject.asgi.application'
