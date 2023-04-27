@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+import warnings
+
+warnings.filterwarnings("ignore", message="You are using cryptography on a 32-bit Python on a 64-bit Windows Operating System.")
 
 from pathlib import Path
 
@@ -41,6 +44,12 @@ INSTALLED_APPS = [
     'CS295P_Project.apps.LoginConfig',
     'channels',
 ]
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

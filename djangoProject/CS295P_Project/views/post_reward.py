@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from CS295P_Project.models import *
+
 def post_reward(request):
     if request.method == "GET":
         user_obj = request.user.is_authenticated
