@@ -7,14 +7,21 @@ socket.onopen = function(event) {
 socket.onmessage = function(event) {
     var message = JSON.parse(event.data);
     console.log(message.type);
-    if (message.type === "NewData" || message.type === "error") {
-        var messageDiv = document.createElement("div");
-        messageDiv.classList.add("message");
+    if (message.type === "New_Reward") {
 
-        var messageText = document.createElement("p");
-        messageText.textContent = "New message arrived";
-
-        messageDiv.appendChild(messageText);
-        document.body.insertBefore(messageDiv, document.body.firstChild);
+    }
+    else if(message.type==="New_Watch_number"){   // update watches number
+        var span=$('#watch-count'+message.reward_id);
+        span.text(message.watches);
+    }
+    else if(message.type==="New_Answer"){      // update new answer
+        if($('button[data-reward_id="'+message.reward_id+'"]').length>0){
+            $('header[data-post_id='+message.reward_id+']').click();
+        }
+    }
+    else if(message.type==="New_Accept_Reward"){      // update accept reward button
+        if($('button[data-reward_id="'+message.reward_id+'"]').length>0){
+            $('header[data-post_id='+message.reward_id+']').click();
+        }
     }
 };

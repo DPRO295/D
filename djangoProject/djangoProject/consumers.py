@@ -20,6 +20,17 @@ import json
 
 class MyConsumer(WebsocketConsumer):
 
+    def New_Watch_number(self, event):
+        # print(event)
+        self.send(text_data=json.dumps({
+            "type": "New_Watch_number",
+            "reward_id": event["reward_id"],
+            "watches": event["watches"]
+        }))
+    def New_Answer(self, event):
+        self.send(text_data=json.dumps(event))
+    def New_Accept_Reward(self, event):
+        self.send(text_data=json.dumps(event))
     def NewData(self, event):
         print(event)
         self.send(text_data=json.dumps({
