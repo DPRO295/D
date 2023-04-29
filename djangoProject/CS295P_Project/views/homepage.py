@@ -71,7 +71,9 @@ def main_page(request, thread_id=-1):
         user_obj = request.user.is_authenticated
         email = request.user.email
         uid = request.user.id
-        # get and set the post thread data in reverse order by post data
+        staff_user = request.user.is_staff
+        # print("staff_user", staff_user)
+        # get and set the post thread data in reverse order by post dataf
         # post_thread_data = PostThread.objects.all().order_by("date").reverse()
 
         # if query:
@@ -85,8 +87,9 @@ def main_page(request, thread_id=-1):
             post.is_liked = is_liked
 
         return render(request, "main_page.html",
-                      {"post_thread": all_thread, "check_login": user_obj, "user": request.user,"user_email": email,
-                       "username": request.user.username, "query": query, "thread_id": thread_id})
+                      {"post_thread": all_thread, "check_login": user_obj, "user": request.user,
+                       "staff_user": staff_user, "user_email": email, "username": request.user.username,
+                       "query": query, "thread_id": thread_id})
 
     if request.method == "POST":
         # print(request.POST)
@@ -98,10 +101,12 @@ def main_page(request, thread_id=-1):
         # reset is same as all, can be removed
         if post_kind == "all" or post_kind == "resset":                    # if post kind is all no filter
             all_thread = PostThread.objects.order_by("date").reverse()
+            all_annc = PostThread.objects.filter(category="announcement").order_by("date").reverse()
         else:                                                              # filter the posts with post_kind
             all_thread = PostThread.objects.filter(category=post_kind).order_by("date").reverse()
 
         for post in all_thread:
+            # print(post.category)
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
             post.is_liked = is_liked
 

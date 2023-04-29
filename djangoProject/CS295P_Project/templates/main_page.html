@@ -216,7 +216,7 @@
                     <span>Save</span>
                 </a>
 
-                {% if each_thread.user.id == user.id %}
+                {% if each_thread.user.id == user.id or staff_user %}
                 <a href="/edit_thread/{{ each_thread.id }}" class="card-footer-item">
                     <span class="icon"><i class="fa-regular fa-pen-to-square"></i></span>
                     <span>Edit</span>

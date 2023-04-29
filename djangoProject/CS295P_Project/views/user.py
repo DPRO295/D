@@ -39,12 +39,12 @@ def signin(request):
         username = request.POST.get("username")
         password = request.POST.get("pwd")
         user_obj = auth.authenticate(username=username, password=password)
-        print(user_obj)
+        # print(auth.authenticate(username=request.POST.get("username"), password=request.POST.get("pwd")).is_staff)
         if user_obj:
             # if login successfully set the session
             auth.login(request, user_obj)
-            if user_obj.is_staff:
-                return redirect("/teach_as/")
+            # if user_obj.is_staff:
+            #     return redirect("/teach_as/")
             return redirect("/home/")
         else:
             return render(request, "signin.html", {"error_msg": "Wrong username or password"})
