@@ -19,11 +19,12 @@ def post_thread(request):
                       {"check_login": user_obj, "user_email": email,
                        "username": request.user.username, "post_threads": post_threads})
     # if it's a POST request
-    email = request.user.email
+    user_id = request.user.id
+    print(user_id)
     title = request.POST.get("title")
     content = request.POST.get("content")
     category = request.POST.get("category")
-    PostThread.objects.create(title=title, content=content, email=email, category=category)
+    PostThread.objects.create(title=title, content=content, category=category, user_id=user_id)
     return redirect("/main_page/")
 
 
@@ -52,8 +53,20 @@ def edit_thread(request, nid):
 
 
 def delete_post(request):
-    row_id = request.GET.get('nid')
-    PostThread.objects.filter(id=row_id).delete()
+    if request.method == "GET":
+        staff_user = request.user.is_staff
+        user_id = request.user.id
+        row_id = request.GET.get('nid')
+        valid = PostThread.objects.filter(id=row_id, user_id=user_id).exists()
+
+        # check if the user is staff_user or the valid user to delete the post
+        if staff_user or valid:
+            PostThread.objects.filter(id=row_id).delete()
+        # TODO what if anyone force to delete the post
+        else:
+            print("!!!!!!!!!")
+            return redirect("/main_page/")
+
     return redirect("/main_page/")
 
 

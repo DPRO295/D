@@ -29,7 +29,9 @@
             {# <a class="navbar-item" href="/post_reward/"> New Reward </a> #}
             {# <a class="navbar-item"> Private Message </a> #}
 {#            <a class="navbar-item" href="/my_bookmark/"> BookMark </a>#}
-
+            {% if staff_user %}
+                <a class="navbar-item" href="/post_thread/"> Announcement </a>
+            {% endif %}
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link"> BookMark</a>
                 <div class="navbar-dropdown">
@@ -72,6 +74,9 @@
                                 <a class="navbar-item" href="/profile/">Profile</a>
                                 <a class="navbar-item" href="/coins/">Coins</a>
                                 <a class="navbar-item"  style="color: red;" href="/logout/">Logout</a>
+                                {% if staff_user %}
+                                    <a class="navbar-item"  style="color: red;" href="/teach_as/">Overview</a>
+                                {% endif %}
                             </div>
                         </div>
                     {% else %}
