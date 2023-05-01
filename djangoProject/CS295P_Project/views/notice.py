@@ -54,18 +54,18 @@ def update_accept_reward(sender, instance,**kwargs):
                 }
             )
 
-@receiver(pre_save, sender=PostReward)
-def update_new_reward(sender, instance,**kwargs):
-    if(instance.pk is None):
-        previous_taken_user_id = PostReward.objects.get(pk=instance.pk).taken_user_id
-        reward_id=instance.id
-        taken_user_id=instance.taken_user_id
-        if previous_taken_user_id != taken_user_id:
-            channel_layer = get_channel_layer()
-            async_to_sync(channel_layer.group_send)(
-                "my_group",
-                {
-                    "type": "New_Accept_Reward",
-                    "reward_id":  reward_id,
-                }
-            )
+#@receiver(pre_save, sender=PostReward)
+#def update_new_reward(sender, instance,**kwargs):
+#    if(instance.pk is None):
+#        previous_taken_user_id = PostReward.objects.get(pk=instance.pk).taken_user_id
+#        reward_id=instance.id
+#        taken_user_id=instance.taken_user_id
+#        if previous_taken_user_id != taken_user_id:
+#            channel_layer = get_channel_layer()
+#            async_to_sync(channel_layer.group_send)(
+#                "my_group",
+#                {
+#                    "type": "New_Accept_Reward",
+#                    "reward_id":  reward_id,
+#                }
+#            )

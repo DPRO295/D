@@ -75,4 +75,6 @@ urlpatterns = [
     path('tip_thread/',views.tip_thread),
     path('ans_history/', views.get_reward_history),
     path('teach_as/', views.teach_side),
+
+    path("course/", views.course),
 ]

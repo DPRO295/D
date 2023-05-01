@@ -1,0 +1,113 @@
+{% extends 'auth_layout.html' %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/course.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Course Name</h1>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="columns is-multiline">
+    <div class="column is-half-desktop is-full-tablet">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="fas fa-book"></i></span> Course Materials
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <ul>
+              <li><a href="#">Lecture Slides</a></li>
+              <li><a href="#">Reading Materials</a></li>
+              <li><a href="#">Assignments</a></li>
+            </ul>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item">View Material</a>
+          <a href="#" class="card-footer-item">Submit Assignment</a>
+        </footer>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="fas fa-bullhorn"></i></span> Announcements
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <ul>
+              <li>Announcement 1: A</li>
+              <li>Announcement 2: B</li>
+              <li>Announcement 3: C</li>
+            </ul>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item">View Announcement</a>
+        </footer>
+      </div>
+    </div>
+
+    <div class="column is-half-desktop is-full-tablet">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="fas fa-graduation-cap"></i></span> Grades
+          </p>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <ul>
+              <li>Assignment 1: Grade</li>
+              <li>Assignment 2: Grade</li>
+              <li>Midterm Exam: Grade</li>
+            </ul>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item">View Assignment Grades</a>
+          <a href="#" class="card-footer-item">Submit Late Assignment</a>
+        </footer>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="fas fa-comments"></i></span> Discussion Forum
+</p>
+</header>
+<div class="card-content">
+<div class="content">
+<p>discussion forum</p>
+</div>
+</div>
+<footer class="card-footer">
+<a href="/current_rewards/" class="card-footer-item">Go to Forum</a>
+</footer>
+</div>
+</div>
+
+  </div>
+</div>
+<button style="position: fixed; bottom: 20px; right: 20px;" id="scrollToTopBtn" class="button is-primary" title="Go to top">
+    <span class="icon">
+        <i class="fas fa-arrow-up"></i>
+    </span>
+</button>
+<script src="{% static 'js/roll.js' %}"></script>
+{% endblock %}
