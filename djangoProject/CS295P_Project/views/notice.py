@@ -54,18 +54,42 @@ def update_accept_reward(sender, instance,**kwargs):
                 }
             )
 
-@receiver(pre_save, sender=PostReward)
-def update_new_reward(sender, instance,**kwargs):
-    if(instance.pk is None):
-        previous_taken_user_id = PostReward.objects.get(pk=instance.pk).taken_user_id
-        reward_id=instance.id
-        taken_user_id=instance.taken_user_id
-        if previous_taken_user_id != taken_user_id:
+@receiver(pre_save, sender=PostThread)
+def update_like_number(sender, instance,**kwargs):
+    # send a message to WebSocket connection
+
+    if(instance.pk):
+
+        previous_likes = PostThread.objects.get(pk=instance.pk).likes
+        thread_id=instance.id
+        likes=instance.likes
+        if previous_likes != instance.likes:
+
             channel_layer = get_channel_layer()
             async_to_sync(channel_layer.group_send)(
                 "my_group",
                 {
-                    "type": "New_Accept_Reward",
-                    "reward_id":  reward_id,
+                    "type": "New_Like_number",
+                    "thread_id":  thread_id,
+                    "likes": likes
+                }
+            )
+
+
+@receiver(pre_save, sender=PostThread)
+def update_tip(sender, instance,**kwargs):
+    # send a message to WebSocket connection
+
+    if(instance.pk):
+
+        previous_tip = PostThread.objects.get(pk=instance.pk).tip_num
+        if previous_tip != instance.tip_num:
+
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                "my_group",
+                {
+                    "type": "New_Tip",
+                    "tip_num":  instance.tip_num,
                 }
             )

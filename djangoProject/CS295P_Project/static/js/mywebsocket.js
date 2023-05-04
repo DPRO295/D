@@ -6,13 +6,14 @@ socket.onopen = function(event) {
 
 socket.onmessage = function(event) {
     var message = JSON.parse(event.data);
-    console.log(message.type);
+    // console.log(message.type);
     if (message.type === "New_Reward") {
 
     }
     else if(message.type==="New_Watch_number"){   // update watches number
         var span=$('#watch-count'+message.reward_id);
         span.text(message.watches);
+
     }
     else if(message.type==="New_Answer"){      // update new answer
         if($('button[data-reward_id="'+message.reward_id+'"]').length>0){
@@ -24,4 +25,5 @@ socket.onmessage = function(event) {
             $('header[data-post_id='+message.reward_id+']').click();
         }
     }
+
 };
