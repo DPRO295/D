@@ -1,0 +1,47 @@
+<!-- use extends to reduce redundant code (check layout) -->
+{% extends 'auth_layout.html' %}
+
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Message List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Message List</h1>
+    {% for user_history in user_history_list %}
+      <div class="box">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Title</th>
+              <th>With student</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>{{ user_history.type }}</td>
+                  <td>{{ user_history.title }}</td>
+                  <td>
+                      {% if user_history.interact_id %}
+                            {{ user_history.interact_id }}
+                      {% else %}
+                            yourself
+                      {% endif %}
+                  </td>
+                  <td>{{ user_history.date }}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
+{% endblock %}

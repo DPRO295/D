@@ -79,3 +79,12 @@ class CoinsLog(models.Model):
     credit_type = models.CharField(max_length=10, choices=[('add', '增加'), ('sub', '减少')])
     amount = models.DecimalField(max_digits=8, decimal_places=2)
     notes = models.CharField(max_length=100, blank=True, null=True)
+
+class History(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    interact_id = models.IntegerField(null=True, blank=True)
+    title = models.TextField(max_length=255)
+    date = models.DateTimeField(null=True, blank=True)
+    type = models.CharField(max_length=32)
+    coins_history = models.IntegerField(default=0)
+    thread_id = models.IntegerField(null=True, blank=True)
