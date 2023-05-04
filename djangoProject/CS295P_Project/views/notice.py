@@ -94,7 +94,7 @@ def update_tip(sender, instance,**kwargs):
                     "type": "New_Tip",
                     "tip_num":  instance.tip_num,
                 }
-
+            )
 # @receiver(pre_save, sender=PostReward)
 # def update_new_reward(sender, instance,**kwargs):
 #     if(instance.pk is None):
@@ -110,6 +110,7 @@ def update_tip(sender, instance,**kwargs):
 #                     "reward_id":  reward_id,
 #                 }
 #             )
+
 
 @receiver(post_save, sender=PostReward)
 @receiver(post_save, sender=PostThread)
