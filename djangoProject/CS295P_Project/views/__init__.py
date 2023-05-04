@@ -10,3 +10,4 @@ from .current_rewards import *
 from .reward_history import *
 from .teach_sides import *
 from .notice import *
+from .message import *

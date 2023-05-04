@@ -51,6 +51,7 @@ urlpatterns = [
     path("delete_bookmark_reward/<int:post_id>/", views.delete_bookmark_reward),
     # post thread functions:
     path("post_thread/", views.post_thread),
+    path("message_list/", views.message_list),
     path("edit_thread/<int:nid>/", views.edit_thread),
     path("delete_post/", views.delete_post),
     path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
