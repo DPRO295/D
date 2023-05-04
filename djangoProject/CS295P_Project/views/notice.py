@@ -3,6 +3,7 @@ from asgiref.sync import async_to_sync
 from django.db.models.signals import post_save,pre_save
 from django.dispatch import receiver
 from ..models import *
+from django.db.models import Q
 
 @receiver(pre_save, sender=PostReward)
 def update_watch_number(sender, instance,**kwargs):
@@ -54,18 +55,80 @@ def update_accept_reward(sender, instance,**kwargs):
                 }
             )
 
-@receiver(pre_save, sender=PostReward)
-def update_new_reward(sender, instance,**kwargs):
-    if(instance.pk is None):
-        previous_taken_user_id = PostReward.objects.get(pk=instance.pk).taken_user_id
-        reward_id=instance.id
-        taken_user_id=instance.taken_user_id
-        if previous_taken_user_id != taken_user_id:
-            channel_layer = get_channel_layer()
-            async_to_sync(channel_layer.group_send)(
-                "my_group",
-                {
-                    "type": "New_Accept_Reward",
-                    "reward_id":  reward_id,
-                }
+# @receiver(pre_save, sender=PostReward)
+# def update_new_reward(sender, instance,**kwargs):
+#     if(instance.pk is None):
+#         previous_taken_user_id = PostReward.objects.get(pk=instance.pk).taken_user_id
+#         reward_id=instance.id
+#         taken_user_id=instance.taken_user_id
+#         if previous_taken_user_id != taken_user_id:
+#             channel_layer = get_channel_layer()
+#             async_to_sync(channel_layer.group_send)(
+#                 "my_group",
+#                 {
+#                     "type": "New_Accept_Reward",
+#                     "reward_id":  reward_id,
+#                 }
+#             )
+
+@receiver(post_save, sender=PostReward)
+@receiver(post_save, sender=PostThread)
+@receiver(post_save, sender=AnswerReward)
+def auto_save_history(sender, instance, **kwargs):
+    # send a message to WebSocket connection
+    created = kwargs.get('created', True)
+    if created:
+        if isinstance(instance, PostReward):
+            user = instance.user
+            date = instance.date
+            title = instance.title
+            type1 = "post reward"
+
+            # 在 history 模型中创建一条新记录
+            History.objects.create(
+                thread_id = instance.id,
+                user=user,
+                date=date,
+                type=type1,
+                title = title,
+                coins_history = instance.coin_num
+            )
+        elif isinstance(instance, PostThread):
+            user = instance.user
+            date = instance.date
+            title = instance.title
+            type1 = "thread recieve"
+            # 在 history 模型中创建一条新记录
+            History.objects.create(
+                user=user,
+                date=date,
+                type=type1,
+                title = title,
+                thread_id=instance.id
+                # coins_history = instance.coin_num
+            )
+            tmp = PostReward.objects.filter(Q(title=instance.title) & Q(user=instance.user)).first()
+            ans_user = AnswerReward.objects.filter(reward=tmp).first()
+            History.objects.create(
+                user=ans_user.answer_user,
+                date=date,
+                type="Answer recieved",
+                title=title,
+                thread_id=instance.id
+                # coins_history = instance.coin_num
+            )
+        elif isinstance(instance, AnswerReward):
+            History.objects.create(
+                user=instance.answer_user,
+                date=instance.date,
+                type="you answer",
+                interact_id = instance.reward.user.id,
+                thread_id=instance.reward.id
+            )
+            History.objects.create(
+                user=instance.reward.user,
+                date=instance.date,
+                type="someone answered you",
+                thread_id=instance.reward.id,
+                interact_id=instance.answer_user.id,
             )

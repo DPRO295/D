@@ -1,0 +1,1 @@
+default_app_config = 'CS295P_Project.apps.AccountConfig'
