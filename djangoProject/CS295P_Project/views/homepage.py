@@ -84,7 +84,9 @@ def main_page(request, thread_id=-1):
                       | PostThread.objects.filter(title__contains=query)).order_by("date").reverse()
         for post in all_thread:
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
+            is_disliked = User_disliked_Post.objects.filter(post=post, user=request.user).exists()
             post.is_liked = is_liked
+            post.is_disliked = is_disliked
 
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": user_obj, "user": request.user,
@@ -106,9 +108,10 @@ def main_page(request, thread_id=-1):
             all_thread = PostThread.objects.filter(category=post_kind).order_by("date").reverse()
 
         for post in all_thread:
-            # print(post.category)
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
+            is_disliked = User_disliked_Post.objects.filter(post=post, user=request.user).exists()
             post.is_liked = is_liked
+            post.is_disliked = is_disliked
 
         return render(request, "main_page.html",
                       {"post_thread": all_thread, "check_login": request.user.is_authenticated, "user": request.user,

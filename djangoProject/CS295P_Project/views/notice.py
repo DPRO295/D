@@ -77,6 +77,26 @@ def update_like_number(sender, instance,**kwargs):
                 }
             )
 
+@receiver(pre_save, sender=PostThread)
+def update_dislike_number(sender, instance,**kwargs):
+    # send a message to WebSocket connection
+
+    if(instance.pk):
+
+        previous_dislikes = PostThread.objects.get(pk=instance.pk).dislikes
+        thread_id=instance.id
+        dislikes=instance.dislikes
+        if previous_dislikes != instance.dislikes:
+
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                "my_group",
+                {
+                    "type": "New_DisLike_number",
+                    "thread_id":  thread_id,
+                    "dislikes": dislikes
+                }
+            )
 
 @receiver(pre_save, sender=PostThread)
 def update_tip(sender, instance,**kwargs):

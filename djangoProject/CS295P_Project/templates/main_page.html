@@ -211,6 +211,14 @@
                 </button>
                 <span id="like-count{{ each_thread.id }}">{{ each_thread.likes }}</span>
 
+                <button id="dislike-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"
+                    data-isdisliked="{{ each_thread.is_disliked }}"
+                    data-userid = "{{ user.id }}">
+                    <i class="fa-solid fa-thumbs-down"></i>
+                </button>
+                <span id="dislike-count{{ each_thread.id }}">{{ each_thread.dislikes }}</span>
+
+
                 <a href="/save_bookmark_thread/{{ each_thread.id }}/{{ user.id }}" class="card-footer-item">
                     <span class="icon"><i class="fa-regular fa-floppy-disk"></i></span>
                     <span>Save</span>

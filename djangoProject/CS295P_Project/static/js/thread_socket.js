@@ -16,4 +16,16 @@ socket.onmessage = function(event) {
 
         tip.text(message.tip_num);
     }
+
+};
+
+
+var socket2 = new WebSocket("ws://localhost:8000/post_reward/3");
+
+socket2.onmessage = function(event) {
+    var message = JSON.parse(event.data);
+    if(message.type==="New_DisLike_number"){
+        var xx=$('#dislike-count'+message.thread_id);
+        xx.text(message.dislikes);
+    }
 };

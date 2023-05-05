@@ -55,7 +55,7 @@ urlpatterns = [
     path("edit_thread/<int:nid>/", views.edit_thread),
     path("delete_post/", views.delete_post),
     path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
-
+    path('change_dislike/<int:post_id>/<int:user_id>/<str:isdisliked>/', views.change_dislike, name='change_dislike'),
     # for test use
     path("test/", views.test),
 

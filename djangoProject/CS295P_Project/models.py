@@ -47,6 +47,10 @@ class User_liked_Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     post = models.ForeignKey(PostThread, on_delete=models.CASCADE)
 
+class User_disliked_Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(PostThread, on_delete=models.CASCADE)
+
 class User_watched_Reward(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     reward = models.ForeignKey(PostReward, on_delete=models.CASCADE)
