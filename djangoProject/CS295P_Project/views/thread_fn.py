@@ -91,3 +91,26 @@ def change_like(request, post_id, user_id, isliked):
 
     data = {'likes': post.likes}
     return JsonResponse(data)
+
+
+@csrf_exempt
+def change_dislike(request, post_id, user_id, isdisliked):
+    post = get_object_or_404(PostThread, id=post_id)
+    user = get_object_or_404(User, id=user_id)
+    # likeit = User_liked_Post.objects.filter(post=post, user=user)
+    if isdisliked == 'True':
+        # print("yes")
+        post.dislikes -= 1
+        post.save()
+        # print(User_liked_Post.objects.filter(post=post, user=user).exists())
+        User_disliked_Post.objects.filter(post=post, user=user).delete()
+
+    elif isdisliked == 'False':
+        # print("No")
+        post.dislikes += 1
+        post.save()
+        # print(User_liked_Post.objects.filter(post=post, user=user).exists())
+        User_disliked_Post.objects.create(post=post, user=user)
+
+    data = {'dislikes': post.dislikes}
+    return JsonResponse(data)

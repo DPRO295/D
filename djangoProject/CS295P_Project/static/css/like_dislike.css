@@ -12,8 +12,23 @@ padding-left: 15px;
   background-color: transparent;
 }
 
+.undislike {
+  border: none;
+  background-color: transparent;
+  padding-left: 15px;
+}
 
+.dislike {
+  border: none;
+padding-left: 15px;
+  color: blue;
+  background-color: transparent;
+}
 
 button i.fa-heart {
+  font-size: 1.5em; /* or any other value you prefer */
+}
+
+button i.fa-thumbs-down {
   font-size: 1.5em; /* or any other value you prefer */
 }

@@ -33,7 +33,8 @@ class MyConsumer(WebsocketConsumer):
         self.send(text_data=json.dumps(event))
     def New_Like_number(self, event):
         self.send(text_data=json.dumps(event))
-
+    def New_DisLike_number(self, event):
+        self.send(text_data=json.dumps(event))
     def New_Tip(self, event):
         self.send(text_data=json.dumps(event))
 
