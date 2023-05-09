@@ -49,13 +49,18 @@ urlpatterns = [
     path("delete_bookmark_thread/<int:post_id>/", views.delete_bookmark_thread),
     path("save_bookmark_reward/<int:post_id>/<int:user_id>/", views.save_bookmark_reward),
     path("delete_bookmark_reward/<int:post_id>/", views.delete_bookmark_reward),
+
     # post thread functions:
     path("post_thread/", views.post_thread),
-    path("message_list/", views.message_list),
     path("edit_thread/<int:nid>/", views.edit_thread),
     path("delete_post/", views.delete_post),
     path('change_like/<int:post_id>/<int:user_id>/<str:isliked>/', views.change_like, name='change_like'),
     path('change_dislike/<int:post_id>/<int:user_id>/<str:isdisliked>/', views.change_dislike, name='change_dislike'),
+
+    # message:
+    path("message_list/", views.message_list),
+    path("del_mes_his/", views.del_mes_his),
+
     # for test use
     path("test/", views.test),
 
