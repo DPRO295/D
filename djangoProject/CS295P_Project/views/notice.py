@@ -134,77 +134,77 @@ def update_tip(sender, instance,**kwargs):
 
 
 
-# @receiver(post_save, sender=PostReward)
-# @receiver(post_save, sender=PostThread)
-# @receiver(post_save, sender=AnswerReward)
-# def auto_save_history(sender, instance, **kwargs):
-#     # send a message to WebSocket connection
-#     created = kwargs.get('created', True)
-#     if created:
-#         # if isinstance(instance, PostReward):
-#         #     user = instance.user
-#         #     date = instance.date
-#         #     title = instance.title
-#         #     type1 = "post reward"
-#         #
-#         #     # 在 history 模型中创建一条新记录
-#         #     History.objects.create(
-#         #         thread_id = instance.id,
-#         #         user=user,
-#         #         date=date,
-#         #         type=type1,
-#         #         title = title,
-#         #         coins_history = instance.coin_num
-#         #     )
-#         if isinstance(instance, PostThread):
-#             user = instance.user
-#             title = instance.title
-#             type1 = "Reward Completed"
-#             # 在 history 模型中创建一条新记录
-#             History.objects.create(
-#                 user=user,
-#                 type=type1,
-#                 title = title,
-#                 thread_id=instance.id
-#                 # coins_history = instance.coin_num
-#             )
-#             tmp = PostReward.objects.filter(Q(title=instance.title) & Q(user=instance.user)).first()
-#             ans_user = AnswerReward.objects.filter(reward=tmp).first()
-#             History.objects.create(
-#                 user=ans_user.answer_user,
-#                 type=type1,
-#                 title=title,
-#                 thread_id=instance.id
-#                 # coins_history = instance.coin_num
-#             )
-#         elif isinstance(instance, AnswerReward):
-#             ask_user = instance.reward.user
-#             if ask_user == instance.answer_user and instance.reward.taken_user_id != 0:
-#                 user_tmp = User.objects.get(id=instance.reward.taken_user_id)
-#                 History.objects.create(
-#                     user=user_tmp,
-#                     type="Keep asking",
-#                     title=instance.reward.title,
-#                     thread_id=instance.reward.id,
-#                     interact_id=ask_user.username,
-#                 )
-#             elif ask_user != instance.answer_user:
-#                 History.objects.create(
-#                     user=instance.reward.user,
-#                     type="Someone answered you",
-#                     thread_id=instance.reward.id,
-#                     interact_id=instance.answer_user.username,
-#                     title=instance.reward.title,
-#                 )
-#     else:
-#         if isinstance(instance, PostReward):
-#             user_tmp = User.objects.get(id=instance.taken_user_id)
-#             if instance.is_taken != sender.is_taken:
-#                 History.objects.create(
-#                     user=instance.user,
-#                     type="Reward Accepted",
-#                     thread_id=instance.id,
-#                     interact_id=user_tmp.username,
-#                     title=instance.title
-#                 )
+@receiver(post_save, sender=PostReward)
+@receiver(post_save, sender=PostThread)
+@receiver(post_save, sender=AnswerReward)
+def auto_save_history(sender, instance, **kwargs):
+    # send a message to WebSocket connection
+    created = kwargs.get('created', True)
+    if created:
+        # if isinstance(instance, PostReward):
+        #     user = instance.user
+        #     date = instance.date
+        #     title = instance.title
+        #     type1 = "post reward"
+        #
+        #     # 在 history 模型中创建一条新记录
+        #     History.objects.create(
+        #         thread_id = instance.id,
+        #         user=user,
+        #         date=date,
+        #         type=type1,
+        #         title = title,
+        #         coins_history = instance.coin_num
+        #     )
+        if isinstance(instance, PostThread):
+            user = instance.user
+            title = instance.title
+            type1 = "Reward Completed"
+            # 在 history 模型中创建一条新记录
+            History.objects.create(
+                user=user,
+                type=type1,
+                title = title,
+                thread_id=instance.id
+                # coins_history = instance.coin_num
+            )      #give accept user a message
+            # tmp = PostReward.objects.filter(Q(title=instance.title) & Q(user=instance.user)).first()
+            # ans_user = AnswerReward.objects.filter(reward=tmp).first()
+            # History.objects.create(
+            #     user=ans_user.answer_user,
+            #     type=type1,
+            #     title=title,
+            #     thread_id=instance.id
+            #     # coins_history = instance.coin_num
+            # )
+        elif isinstance(instance, AnswerReward):
+            ask_user = instance.reward.user
+            if ask_user == instance.answer_user and instance.reward.taken_user_id != 0:
+                user_tmp = User.objects.get(id=instance.reward.taken_user_id)
+                History.objects.create(
+                    user=user_tmp,
+                    type="Keep asking",
+                    title=instance.reward.title,
+                    thread_id=instance.reward.id,
+                    interact_id=ask_user.username,
+                )
+            elif ask_user != instance.answer_user:
+                History.objects.create(
+                    user=instance.reward.user,
+                    type="Someone answered you",
+                    thread_id=instance.reward.id,
+                    interact_id=instance.answer_user.username,
+                    title=instance.reward.title,
+                )
+    else:
+        if isinstance(instance, PostReward):
+            user_tmp = User.objects.get(id=instance.taken_user_id)
+            if instance.is_taken != sender.is_taken:
+                History.objects.create(
+                    user=instance.user,
+                    type="Reward Accepted",
+                    thread_id=instance.id,
+                    interact_id=user_tmp.username,
+                    title=instance.title
+                )
 
