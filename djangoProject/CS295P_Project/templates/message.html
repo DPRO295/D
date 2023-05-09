@@ -11,8 +11,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
 </head>
 <body>
+
   <div class="container">
     <h1 class="title">Message List</h1>
+    {# --------------------------- search function ---------------------------#}
+{#<div class="column is-two-fifths">#}
+    <div class="column">
+        <div class="card is-mobile">
+            <form method="post">
+                {% csrf_token %}
+                <div class="columns is-mobile">
+                    <div class="column ">
+                        <button class="button is-ghost is-medium" name="all">All</button>
+                        <button class="button is-ghost is-medium" name="Someone answered you">Answered</button>
+                        <button class="button is-ghost is-medium" name="Keep asking">Keep Asking</button>
+                        <button class="button is-ghost is-medium" name="Reward Completed">Reward Completed</button>
+                        <button class="button is-ghost is-medium" name="Reward Accepted">Reward Accepted</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{#</div>#}
+{# --------------------------- search function ---------------------------#}
     {% for user_history in user_history_list %}
       <div class="box">
         <table class="table">
@@ -22,6 +43,7 @@
               <th>Title</th>
               <th>With student</th>
               <th>Date</th>
+                <th>Jump</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +58,14 @@
                       {% endif %}
                   </td>
                   <td>{{ user_history.date }}</td>
+                  <td><a class="button is-large" href="/current_rewards/{{ user_history.thread_id }}">
+                    GO
+                </a></td>
+                 <td>
+                     <a href="/del_mes_his/?nid={{ user_history.id }}" class="card-footer-item">
+                    <span class="icon"><i class="fa-regular fa-trash-can"></i></span>
+                    <span>Delete</span>
+                </a></td>
               </tr>
           </tbody>
         </table>
