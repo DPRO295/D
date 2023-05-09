@@ -102,7 +102,7 @@ def main_page(request, thread_id=-1):
         print("post_kind", post_kind)
         # reset is same as all, can be removed
         if post_kind == "all" or post_kind == "resset":                    # if post kind is all no filter
-            all_thread = PostThread.objects.order_by("date").reverse()
+            all_thread = PostThread.objects.order_by("date").order_by("date").reverse()
             all_annc = PostThread.objects.filter(category="announcement").order_by("date").reverse()
         else:                                                              # filter the posts with post_kind
             all_thread = PostThread.objects.filter(category=post_kind).order_by("date").reverse()

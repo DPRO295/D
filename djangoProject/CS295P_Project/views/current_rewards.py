@@ -55,7 +55,7 @@ def current_rewards(request,reward_id=-1):
         print("post_kind", post_kind)
         # reset is same as all, can be removed
         if post_kind == "all" or post_kind == "resset":  # if post kind is all no filter
-            all_thread = PostReward.objects.order_by("date").reverse()
+            all_thread = PostReward.objects.order_by("date").reverse()    #remove order_by("date")
         else:  # filter the posts with post_kind
             all_thread = PostReward.objects.filter(category=post_kind).order_by("date").reverse()
 
@@ -169,24 +169,10 @@ def show_reward(request):
 
 
 @csrf_exempt
-def change_watch(request, post_id, user_id, iswatched):
+def change_watch(request, post_id):
     post = get_object_or_404(PostReward, id=post_id)
-    user = get_object_or_404(User, id=user_id)
-    # likeit = User_liked_Post.objects.filter(post=post, user=user)
-    if iswatched == 'True':
-        # print("yes")
-        post.watches -= 1
-        post.save()
-        # print(User_liked_Post.objects.filter(post=post, user=user).exists())
-        User_watched_Reward.objects.filter(reward=post, user=user).delete()
-
-    elif iswatched == 'False':
-        # print("No")
-        post.watches += 1
-        post.save()
-        # print(User_liked_Post.objects.filter(post=post, user=user).exists())
-        User_watched_Reward.objects.create(reward=post, user=user)
-
+    post.watches += 1
+    post.save()
     data = {'watches': post.watches}
     return JsonResponse(data)
 
@@ -266,10 +252,10 @@ def finish_reward(request):           # when poster is satisfied with the answer
     taken_user_profile.save()
 
     thread=PostThread.objects.create(user=reward.user,title=reward.title,content=reward.content
-                              ,category=reward.category)
+                              ,category=reward.category, date=reward.date)
     answers=AnswerReward.objects.filter(reward=reward).all()
     for answer in answers:
-        CommentThread.objects.create(comment_user=answer.answer_user,thread=thread,content=answer.content)
+        CommentThread.objects.create(comment_user=answer.answer_user,thread=thread,content=answer.content,date=answer.date)
     reward.delete()
     return redirect("/current_rewards/")
 
