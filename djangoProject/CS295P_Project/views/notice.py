@@ -180,7 +180,7 @@ def auto_save_history(sender, instance, **kwargs):
         elif isinstance(instance, AnswerReward):
             ask_user = instance.reward.user
             if ask_user == instance.answer_user and instance.reward.taken_user_id != 0:
-                user_tmp = User.objects.get(id=instance.reward.taken_user_id)
+                user_tmp = User.objects.filter(id=instance.reward.taken_user_id).first()
                 History.objects.create(
                     user=user_tmp,
                     type="Keep asking",
@@ -197,14 +197,15 @@ def auto_save_history(sender, instance, **kwargs):
                     title=instance.reward.title,
                 )
     else:
-        if isinstance(instance, PostReward):
-            user_tmp = User.objects.get(id=instance.taken_user_id)
-            if instance.is_taken != sender.is_taken:
-                History.objects.create(
-                    user=instance.user,
-                    type="Reward Accepted",
-                    thread_id=instance.id,
-                    interact_id=user_tmp.username,
-                    title=instance.title
-                )
+        pass
+        # if isinstance(instance, PostReward):
+        #     user_tmp = User.objects.get(id=instance.taken_user_id)
+        #     if instance.is_taken != sender.is_taken:
+        #         History.objects.create(
+        #             user=instance.user,
+        #             type="Reward Accepted",
+        #             thread_id=instance.id,
+        #             interact_id=user_tmp.username,
+        #             title=instance.title
+        #         )
 
