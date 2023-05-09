@@ -86,9 +86,9 @@ class CoinsLog(models.Model):
 
 class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    interact_id = models.IntegerField(null=True, blank=True)
+    interact_id = models.TextField(null=True, blank=True)
     title = models.TextField(max_length=255)
-    date = models.DateTimeField(null=True, blank=True)
+    date = models.DateTimeField(auto_now=True)
     type = models.CharField(max_length=32)
     coins_history = models.IntegerField(default=0)
     thread_id = models.IntegerField(null=True, blank=True)
