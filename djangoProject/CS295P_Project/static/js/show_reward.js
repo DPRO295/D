@@ -25,7 +25,8 @@ function createReward(parent,data){      //show a reward
         html+=`
             <button id="finish_reward" class="card-header-icon">     
                 <a href="/finish_reward/?reward_id=${ thread.id }" class="icon">
-                    <i class="fa-solid fa-cannabis" style="font-size:1.5em"></i>
+                    <i class="fa-regular fa-calendar-check" style="font-size:1.5em"></i>
+<!--                    <i class="fa-solid fa-cannabis" style="font-size:1.5em"></i>-->
                 </a>
             </button>
         `;

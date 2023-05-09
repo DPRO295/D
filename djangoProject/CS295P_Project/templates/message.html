@@ -12,66 +12,60 @@
 </head>
 <body>
 
-  <div class="container">
-    <h1 class="title">Message List</h1>
-    {# --------------------------- search function ---------------------------#}
-{#<div class="column is-two-fifths">#}
-    <div class="column">
-        <div class="card is-mobile">
-            <form method="post">
-                {% csrf_token %}
-                <div class="columns is-mobile">
-                    <div class="column ">
-                        <button class="button is-ghost is-medium" name="all">All</button>
-                        <button class="button is-ghost is-medium" name="Someone answered you">Answered</button>
-                        <button class="button is-ghost is-medium" name="Keep asking">Keep Asking</button>
-                        <button class="button is-ghost is-medium" name="Reward Completed">Reward Completed</button>
-                        <button class="button is-ghost is-medium" name="Reward Accepted">Reward Accepted</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+<section class="hero is-primary is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title has-text-centered">Message List</h1>
     </div>
-{#</div>#}
-{# --------------------------- search function ---------------------------#}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {#  search function #}
+    <div class="columns is-centered">
+      <div class="column">
+          <form method="post">
+                {% csrf_token %}
+        <div class="buttons is-centered">
+          <button class="button is-primary is-outlined" name="all">All</button>
+          <button class="button is-primary is-outlined" name="Someone answered you">Answered</button>
+          <button class="button is-primary is-outlined" name="Keep asking">Keep Asking</button>
+          <button class="button is-primary is-outlined" name="Reward Completed">Reward Completed</button>
+          <button class="button is-primary is-outlined" name="Reward Accepted">Reward Accepted</button>
+        </div>
+          </form>
+      </div>
+    </div>
+  {#  search function #}
+
     {% for user_history in user_history_list %}
-      <div class="box">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Title</th>
-              <th>With student</th>
-              <th>Date</th>
-                <th>Jump</th>
-            </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>{{ user_history.type }}</td>
-                  <td>{{ user_history.title }}</td>
-                  <td>
-                      {% if user_history.interact_id %}
-                            {{ user_history.interact_id }}
-                      {% else %}
-                            yourself
-                      {% endif %}
-                  </td>
-                  <td>{{ user_history.date }}</td>
-                  <td><a class="button is-large" href="/current_rewards/{{ user_history.thread_id }}">
-                    GO
-                </a></td>
-                 <td>
-                     <a href="/del_mes_his/?nid={{ user_history.id }}" class="card-footer-item">
-                    <span class="icon"><i class="fa-regular fa-trash-can"></i></span>
-                    <span>Delete</span>
-                </a></td>
-              </tr>
-          </tbody>
-        </table>
+      <div class="card mb-3">
+        <div class="card-content">
+          <div class="columns is-vcentered">
+            <div class="column">
+              <p class="is-size-5 mb-0"><strong>Type: {{ user_history.type }}</strong></p>
+              <p class="is-size-6 has-text-grey"><small>Date: {{ user_history.date }}</small></p>
+            </div>
+            <div class="column is-6">
+              <p class="is-size-5 mb-0"><strong>Title: {{ user_history.title }}</strong></p>
+              <p class="is-size-6 has-text-grey"><small>With student: {% if user_history.interact_id %}{{ user_history.interact_id }}{% else %}Yourself{% endif %}</small></p>
+            </div>
+            <div class="column is-narrow">
+              <div class="buttons">
+                <a href="/current_rewards/{{ user_history.thread_id }}" class="button is-primary is-small">View</a>
+                <a href="/del_mes_his/?nid={{ user_history.id }}" class="button is-danger is-small">Delete</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     {% endfor %}
+
   </div>
+</section>
+
 </body>
 </html>
+
 {% endblock %}

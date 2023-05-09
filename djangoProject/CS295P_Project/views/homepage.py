@@ -163,3 +163,12 @@ def tip_thread(request):
                             amount=tip_quantity)
     data={"tip_num":tip_num}
     return JsonResponse(data)
+
+def course(request):
+    if request.method == "GET":
+        user_obj = request.user.is_authenticated
+        email = request.user.email
+        name = request.user.username
+        return render(request, "course.html",
+        {"check_login": user_obj, "user_email": email, "username": name, "user":request.user
+                       })
