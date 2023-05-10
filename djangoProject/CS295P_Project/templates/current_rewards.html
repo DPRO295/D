@@ -233,8 +233,8 @@
 
                 <button id="watch-button{{ each_thread.id }}" data-post-id="{{ each_thread.id }}"
                     data-iswatched="{{ each_thread.is_watched }}"
-                    data-userid = "{{ user.id }}">
-                    <i class="fa-solid fa-eye "></i>
+                    data-userid = "{{ user.id }}" class="unwatch">
+                    <i class="fa-solid fa-eye"></i>
                 </button>
                 <span id="watch-count{{ each_thread.id }}">{{ each_thread.watches }}</span>
 

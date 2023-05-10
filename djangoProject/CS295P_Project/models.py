@@ -8,26 +8,27 @@ from math import pow
 # Create your models here.
 class PostThread(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
-    # email = models.CharField(max_length=32)
+    taken_user_id = models.IntegerField(default=0)
     title = models.TextField(max_length=255)
     content = models.TextField(max_length=255)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField()
     category = models.CharField(max_length=32)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     tip_num = models.IntegerField(default=0)
 
+
 class CommentThread(models.Model):
     comment_user=models.ForeignKey(User, on_delete=models.CASCADE)
     thread=models.ForeignKey(PostThread, on_delete=models.CASCADE)
     content = models.TextField(max_length=pow(2, 15))
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField()
 
 class PostReward(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField(max_length=255)
     content = models.TextField(max_length=pow(2,15))
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now_add=True)
     category = models.CharField(max_length=32)
     coin_num = models.IntegerField(default=0)
     is_taken = models.BooleanField(default=False)
@@ -39,7 +40,7 @@ class AnswerReward(models.Model):
     answer_user = models.ForeignKey(User, on_delete=models.CASCADE)
     reward = models.ForeignKey(PostReward, on_delete=models.CASCADE)
     content = models.TextField(max_length=pow(2,15))
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now_add=True)
     is_read = models.BooleanField(default=False)
     is_satisfied = models.BooleanField(default=False)
 
