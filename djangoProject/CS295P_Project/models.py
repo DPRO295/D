@@ -8,7 +8,7 @@ from math import pow
 # Create your models here.
 class PostThread(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
-    # email = models.CharField(max_length=32)
+    taken_user_id = models.IntegerField(default=0)
     title = models.TextField(max_length=255)
     content = models.TextField(max_length=255)
     date = models.DateTimeField()
@@ -16,6 +16,7 @@ class PostThread(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     tip_num = models.IntegerField(default=0)
+
 
 class CommentThread(models.Model):
     comment_user=models.ForeignKey(User, on_delete=models.CASCADE)

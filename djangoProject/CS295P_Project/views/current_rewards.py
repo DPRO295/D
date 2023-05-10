@@ -252,7 +252,7 @@ def finish_reward(request):           # when poster is satisfied with the answer
     taken_user_profile.save()
 
     thread=PostThread.objects.create(user=reward.user,title=reward.title,content=reward.content
-                              ,category=reward.category, date=reward.date)
+                              ,category=reward.category, date=reward.date, taken_user_id=reward.taken_user_id)
     answers=AnswerReward.objects.filter(reward=reward).all()
     for answer in answers:
         CommentThread.objects.create(comment_user=answer.answer_user,thread=thread,content=answer.content,date=answer.date)
