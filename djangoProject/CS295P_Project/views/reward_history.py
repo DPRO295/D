@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 def get_reward_history(request):
+    read = (History.objects.filter(user=request.user, is_read=False).first()) is None
     if request.method == "GET":
         # send login info
         user_obj = request.user.is_authenticated
