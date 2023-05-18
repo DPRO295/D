@@ -14,7 +14,7 @@ def post_thread(request):
         # send login info
         user_obj = request.user.is_authenticated
         email = request.user.email
-        post_threads = PostThread.objects.all()
+        post_threads = PostThread.objects.filter(hided=0)
         return render(request, "post_thread.html",
                       {"check_login": user_obj, "user_email": email,
                        "username": request.user.username, "post_threads": post_threads})

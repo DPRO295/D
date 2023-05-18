@@ -220,3 +220,18 @@ def check_dislike(sender, instance, **kwargs):
         dele = PostThread.objects.get(id=instance.id)
         dele.hided = 1
         dele.save()
+        try:
+            removeCoinsFromAns = User.objects.get(id=instance.taken_user_id)
+            removeCoinsFromAns1 = UserProfile.objects.get(user_id=removeCoinsFromAns.id)
+            if (removeCoinsFromAns1.coins - instance.tip_num) <= 0:
+                removeCoinsFromAns1.coins = 0
+                removeCoinsFromAns1.save()
+                CoinsLog.objects.create(user=removeCoinsFromAns, credit_type="sub",
+                                        amount=instance.tip_num, notes="Punishment")
+            else:
+                removeCoinsFromAns1.coins -= instance.tip_num
+                removeCoinsFromAns1.save()
+                CoinsLog.objects.create(user=removeCoinsFromAns, credit_type="sub",
+                                        amount=instance.tip_num, notes="Punishment")
+        except:
+            pass
