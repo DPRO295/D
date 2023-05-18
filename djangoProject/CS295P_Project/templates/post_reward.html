@@ -59,12 +59,19 @@
       <div class="create-post">
         <form method="post">
           {% csrf_token %}
-           <div class = "field">
-                <label class="label" for="title">Coins:</label>
-                <div class="control">
-                  <input class="input" style="width:15%" type="number" id="coin_num" name="coin_num">
-                </div>
-           </div>
+            <div class="field">
+            <label class="label" for="title">Coins:</label>
+            <div class="control">
+              <div class="select">
+                <select id="coin_num" name="coin_num">
+                  <option value="10">Easy - 10</option>
+                  <option value="20">Mid  - 20</option>
+                  <option value="30">Hard - 30</option>
+                  <option value="50">Ex   - 50</option>
+                </select>
+              </div>
+            </div>
+          </div>
           <div class="field">
             <label class="label" for="title">Title:</label>
             <div class="control">
@@ -100,6 +107,7 @@
                 <a class="button is-danger is-light"  href="/current_rewards/">Cancel</a>
             </div>
           </div>
+            <div style="color: red;">{{ error_msg }}</div>
         </form>
       </div>
     </div>
