@@ -70,3 +70,9 @@ def jump_message(request):
         return redirect("/main_page/" + str(thread_id))
     else:
         return redirect("/current_rewards/" + str(reward.id))
+
+@csrf_exempt
+def update_message_box(request):
+    read = (History.objects.filter(user=request.user, is_read=False).first()) is None
+    data = {"read":read}
+    return JsonResponse(data)
