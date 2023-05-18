@@ -16,6 +16,13 @@ def post_reward(request):
     coin_num = int(request.POST.get("coin_num"))
 
     user_profile=UserProfile.objects.filter(user=request.user).first()        # now let user's coins > reward coins by default
+    if (user_profile.coins-coin_num<0):
+        user_obj = request.user.is_authenticated
+        Rewards = PostReward.objects.all()
+        error_msg = "*** Insufficient Coins ***"
+        return render(request, "post_reward.html",
+                      {"check_login": user_obj, "username": request.user.username,
+                       "Rewards":Rewards,"user_id":request.user.id,"error_msg":error_msg})
     user_profile.coins-=coin_num
     user_profile.save()
     CoinsLog.objects.create(user=request.user, credit_type="sub",

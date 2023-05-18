@@ -16,6 +16,7 @@ class PostThread(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     tip_num = models.IntegerField(default=0)
+    hided = models.IntegerField(default=0)
 
 
 class CommentThread(models.Model):
@@ -35,6 +36,7 @@ class PostReward(models.Model):
     taken_user_id = models.IntegerField(default=0)
     is_completed = models.BooleanField(default=False)
     watches = models.IntegerField(default=0)
+
 
 class AnswerReward(models.Model):
     answer_user = models.ForeignKey(User, on_delete=models.CASCADE)

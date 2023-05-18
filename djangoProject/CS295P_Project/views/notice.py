@@ -212,3 +212,26 @@ def auto_save_history(sender, instance, **kwargs):
                         interact_id=user_tmp.username,
                         title=instance.title
                     )
+
+@receiver(post_save, sender=PostThread)
+def check_dislike(sender, instance, **kwargs):
+    dislike_number = instance.dislikes
+    if dislike_number >= 2 and instance.hided == 0:
+        dele = PostThread.objects.get(id=instance.id)
+        dele.hided = 1
+        dele.save()
+        try:
+            removeCoinsFromAns = User.objects.get(id=instance.taken_user_id)
+            removeCoinsFromAns1 = UserProfile.objects.get(user_id=removeCoinsFromAns.id)
+            if (removeCoinsFromAns1.coins - instance.tip_num) <= 0:
+                removeCoinsFromAns1.coins = 0
+                removeCoinsFromAns1.save()
+                CoinsLog.objects.create(user=removeCoinsFromAns, credit_type="sub",
+                                        amount=instance.tip_num, notes="Punishment")
+            else:
+                removeCoinsFromAns1.coins -= instance.tip_num
+                removeCoinsFromAns1.save()
+                CoinsLog.objects.create(user=removeCoinsFromAns, credit_type="sub",
+                                        amount=instance.tip_num, notes="Punishment")
+        except:
+            pass
