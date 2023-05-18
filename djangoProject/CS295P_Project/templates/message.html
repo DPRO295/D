@@ -47,13 +47,35 @@
               <p class="is-size-5 mb-0"><strong>Type: {{ user_history.type }}</strong></p>
               <p class="is-size-6 has-text-grey"><small>Date: {{ user_history.date }}</small></p>
             </div>
-            <div class="column is-6">
+
+            <div class="column auto" style="">
               <p class="is-size-5 mb-0"><strong>Title: {{ user_history.title }}</strong></p>
               <p class="is-size-6 has-text-grey"><small>With student: {% if user_history.interact_id %}{{ user_history.interact_id }}{% else %}Yourself{% endif %}</small></p>
             </div>
+
+
+          <div class="column auto">
+              {%  if not user_history.is_read %}
+          <div style="color:red;font-size: 20px;float:right">Unread</div>
+          {% else %}
+          {%  endif %}
+
+          </div>
+
+          <div>
+
+
+          </div>
+{#          {%  if not user_history.is_read %}#}
+{#          <div style="color:red;font-size: 20px;padding-right: 20px">New</div>#}
+{#          {% else %}#}
+{#          {%  endif %}#}
             <div class="column is-narrow">
               <div class="buttons">
-                <a href="/current_rewards/{{ user_history.thread_id }}" class="button is-primary is-small">View</a>
+                <a  href="/jump_message/?message_id={{ user_history.id }}"
+{#                      "/current_rewards/{{ user_history.thread_id }}"#}
+                    class="button is-primary is-small">View
+                  </a>
                 <a href="/del_mes_his/?nid={{ user_history.id }}" class="button is-danger is-small">Delete</a>
               </div>
             </div>

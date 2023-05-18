@@ -11,6 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render
 from django.db.models import Count
 
+
 def message_list(request):
     if request.method == "GET":
         user_obj = request.user.is_authenticated
@@ -26,7 +27,7 @@ def message_list(request):
         post_kind = post_kind_list[1]
         # print("post_kind", post_kind)
 
-        if post_kind == "all" or post_kind == "resset":                    # if post kind is all no filter
+        if post_kind == "all" or post_kind == "resset":  # if post kind is all no filter
             user_history_list = History.objects.filter(user=request.user).order_by("date").reverse()
         else:
             user_history_list = History.objects.filter(user=request.user, type=post_kind).order_by("date").reverse()
@@ -54,3 +55,18 @@ def del_mes_his(request):
             return redirect("/message_list/")
 
     return redirect("/message_list/")
+
+
+def jump_message(request):
+    message_id = request.GET.get('message_id')
+    message = History.objects.filter(id=message_id).first()
+    message.is_read = True
+    message.save()
+
+    reward = PostReward.objects.filter(id=message.thread_id).first()
+    # print(message.thread_id)
+    if not reward:
+        thread_id = PostThread.objects.filter(reward_id=message.thread_id).first().id
+        return redirect("/main_page/" + str(thread_id))
+    else:
+        return redirect("/current_rewards/" + str(reward.id))

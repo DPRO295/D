@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/message.css' %}">
 </head>
 <body>
 <!-- ======================== navbar start ======================== -->
@@ -65,7 +65,11 @@
         <div class="navbar-end">
             <div class="navbar-item" style="padding-top: 20px">
                 <a href="/message_list/">
+                    {% if read %}
                     <i class="fa-solid fa-envelope" style="font-size: 1.5em; color: white"></i>
+                    {% else %}
+                    <i class="fa-solid fa-envelope has_unread_message" style="font-size: 1.5em;"></i>
+                    {% endif %}
                 </a>
             </div>
             <div class="navbar-item">

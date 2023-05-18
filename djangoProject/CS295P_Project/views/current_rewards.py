@@ -39,11 +39,11 @@ def current_rewards(request,reward_id=-1):
             is_watched = User_watched_Reward.objects.filter(reward=post, user=request.user).exists()
             post.is_watched = is_watched
 
-
+        read = (History.objects.filter(user=request.user, is_read=False).first()) is None
         return render(request, "current_rewards.html",
                       {"post_thread": all_thread, "check_login": user_obj, "user": request.user,
                        "user_email": email,
-                       "username": request.user.username, "query": query,"reward_id": reward_id
+                       "username": request.user.username, "query": query,"reward_id": reward_id, "read": read,
                        })
 
     if request.method == "POST":
@@ -185,6 +185,8 @@ def edit_reward(request, nid):
         # print(nid)
         thread_data = PostReward.objects.filter(id=nid).first()
         # print(thread_data.title, thread_data.content)
+
+
         return render(request, "edit_reward.html",
                       {"check_login": user_obj, "user_email": email,
                        "username": request.user.username, "thread_data": thread_data}
@@ -252,7 +254,7 @@ def finish_reward(request):           # when poster is satisfied with the answer
     taken_user_profile.save()
 
     thread=PostThread.objects.create(user=reward.user,title=reward.title,content=reward.content
-                              ,category=reward.category, date=reward.date, taken_user_id=reward.taken_user_id)
+                              ,category=reward.category, date=reward.date, taken_user_id=reward.taken_user_id, reward_id=reward.id)
     answers=AnswerReward.objects.filter(reward=reward).all()
     for answer in answers:
         CommentThread.objects.create(comment_user=answer.answer_user,thread=thread,content=answer.content,date=answer.date)

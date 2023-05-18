@@ -16,6 +16,7 @@ class PostThread(models.Model):
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     tip_num = models.IntegerField(default=0)
+    reward_id = models.IntegerField(default=0)
     hided = models.IntegerField(default=0)
 
 
@@ -76,7 +77,6 @@ class Replies(models.Model):
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     coins = models.IntegerField(default = 1000)
-
     def __str__(self):
         return f"{self.user} {self.coins}"
 
@@ -91,7 +91,8 @@ class History(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     interact_id = models.TextField(null=True, blank=True)
     title = models.TextField(max_length=255)
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField(auto_now_add=True)
     type = models.CharField(max_length=32)
     coins_history = models.IntegerField(default=0)
     thread_id = models.IntegerField(null=True, blank=True)
+    is_read = models.BooleanField(default=False)

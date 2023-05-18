@@ -167,7 +167,7 @@ def auto_save_history(sender, instance, **kwargs):
                 user=user,
                 type=type1,
                 title=title,
-                thread_id=instance.id
+                thread_id=instance.reward_id
                 # coins_history = instance.coin_num
             )  # give accept user a message
             # tmp = PostReward.objects.filter(Q(title=instance.title) & Q(user=instance.user)).first()
@@ -177,7 +177,7 @@ def auto_save_history(sender, instance, **kwargs):
                 user=ans_user,
                 type=type1,
                 title=title,
-                thread_id=instance.id
+                thread_id=instance.reward_id
                 # coins_history = instance.coin_num
             )
         elif isinstance(instance, AnswerReward):
@@ -213,6 +213,16 @@ def auto_save_history(sender, instance, **kwargs):
                         title=instance.title
                     )
 
+
+# @receiver(pre_save, sender=History)
+# def add_unread_message(sender, instance, **kwargs):
+#     if not instance.pk:
+#         print("dssaddasdasdas")
+#         user=UserProfile.objects.filter(user=instance.user).first()
+#         user.unread_messages+=1
+#         user.save()
+
+
 @receiver(post_save, sender=PostThread)
 def check_dislike(sender, instance, **kwargs):
     dislike_number = instance.dislikes
@@ -235,3 +245,4 @@ def check_dislike(sender, instance, **kwargs):
                                         amount=instance.tip_num, notes="Punishment")
         except:
             pass
+
