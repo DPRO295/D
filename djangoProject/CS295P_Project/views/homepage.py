@@ -11,7 +11,7 @@ from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.forms.models import model_to_dict
 from django.forms import ModelForm
-
+from django.db.models import Q
 
 # ----------------------------------------  test use ----------------------------------------
 class UserModelForm(ModelForm):
@@ -80,8 +80,8 @@ def main_page(request, thread_id=-1):
         #     search_dic["content"] = query
 
         # TODO only search for the "content" part from "postthread" table for now
-        all_thread = (PostThread.objects.filter(content__contains=query)
-                      | PostThread.objects.filter(title__contains=query)).order_by("date").reverse()
+        all_thread = (PostThread.objects.filter(Q(content__contains=query) & Q(hided=0))
+                      | PostThread.objects.filter(Q(title__contains=query)&Q(hided=0)).order_by("date").reverse())
         for post in all_thread:
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
             is_disliked = User_disliked_Post.objects.filter(post=post, user=request.user).exists()
@@ -102,10 +102,10 @@ def main_page(request, thread_id=-1):
         print("post_kind", post_kind)
         # reset is same as all, can be removed
         if post_kind == "all" or post_kind == "resset":                    # if post kind is all no filter
-            all_thread = PostThread.objects.order_by("date").order_by("date").reverse()
+            all_thread = PostThread.objects.filter(hided=0).order_by("date").order_by("date").reverse()
             all_annc = PostThread.objects.filter(category="announcement").order_by("date").reverse()
         else:                                                              # filter the posts with post_kind
-            all_thread = PostThread.objects.filter(category=post_kind).order_by("date").reverse()
+            all_thread = PostThread.objects.filter(Q(category=post_kind) & Q(hided=0)).order_by("date").reverse()
 
         for post in all_thread:
             is_liked = User_liked_Post.objects.filter(post=post, user=request.user).exists()
