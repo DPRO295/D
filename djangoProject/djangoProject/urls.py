@@ -62,6 +62,7 @@ urlpatterns = [
     path("message_list/", views.message_list),
     path("del_mes_his/", views.del_mes_his),
     path("jump_message/", views.jump_message),
+    path("update_message_box/", views.update_message_box),
     # for test use
     path("test/", views.test),
 
