@@ -159,27 +159,28 @@ def auto_save_history(sender, instance, **kwargs):
         #         coins_history = instance.coin_num
         #     )
         if isinstance(instance, PostThread):
-            user = instance.user
-            title = instance.title
-            type1 = "Reward Completed"
-            # 在 history 模型中创建一条新记录
-            History.objects.create(
-                user=user,
-                type=type1,
-                title=title,
-                thread_id=instance.reward_id
-                # coins_history = instance.coin_num
-            )  # give accept user a message
-            # tmp = PostReward.objects.filter(Q(title=instance.title) & Q(user=instance.user)).first()
-            # ans_user = AnswerReward.objects.filter(reward=tmp).first()
-            ans_user = User.objects.get(id=instance.taken_user_id)
-            History.objects.create(
-                user=ans_user,
-                type=type1,
-                title=title,
-                thread_id=instance.reward_id
-                # coins_history = instance.coin_num
-            )
+            if instance.taken_user_id!=0:
+                user = instance.user
+                title = instance.title
+                type1 = "Reward Completed"
+                # 在 history 模型中创建一条新记录
+                History.objects.create(
+                    user=user,
+                    type=type1,
+                    title=title,
+                    thread_id=instance.reward_id
+                    # coins_history = instance.coin_num
+                )  # give accept user a message
+                # tmp = PostReward.objects.filter(Q(title=instance.title) & Q(user=instance.user)).first()
+                # ans_user = AnswerReward.objects.filter(reward=tmp).first()
+                ans_user = User.objects.get(id=instance.taken_user_id)
+                History.objects.create(
+                    user=ans_user,
+                    type=type1,
+                    title=title,
+                    thread_id=instance.reward_id
+                    # coins_history = instance.coin_num
+                )
         elif isinstance(instance, AnswerReward):
             ask_user = instance.reward.user
             if ask_user == instance.answer_user and instance.reward.taken_user_id != 0:

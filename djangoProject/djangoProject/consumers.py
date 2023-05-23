@@ -77,3 +77,4 @@ class MyConsumer(WebsocketConsumer):
                 "type": "error",
                 "message": "Invalid message type: %s" % message["type"]
             }))
+
